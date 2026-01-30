@@ -1,9 +1,11 @@
+import { View } from "reshaped";
+
 export function Header() {
   return (
-    <header>
+    <View as="header">
       <pre>logo</pre>
       <pre>counter</pre>
       <pre>home</pre>
-    </header>
+    </View>
   );
 }
