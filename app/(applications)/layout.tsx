@@ -1,18 +1,14 @@
 import { type ReactNode } from "react";
-import { View } from "reshaped";
+import { Container, View } from "reshaped";
 
-import { Header } from "@/components/header";
+import { AppHeader } from "@/components/app-header";
 
-export default function ApplicationsLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <>
-      <Header />
+    <Container height="100dvh" width="375px">
+      <AppHeader />
 
       <View as="main">{children}</View>
-    </>
+    </Container>
   );
 }

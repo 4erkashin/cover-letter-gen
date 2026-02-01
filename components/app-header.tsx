@@ -1,6 +1,6 @@
 import { View } from "reshaped";
 
-export function Header() {
+export function AppHeader() {
   return (
     <View as="header">
       <pre>logo</pre>
