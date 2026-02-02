@@ -12,7 +12,15 @@ export function AppHeader() {
       <AppLogo />
 
       <View align="center" direction="row" gap={4}>
-        <ProgressIndicator current={0} total={5}>
+        <ProgressIndicator current={2} total={5}>
+          <View align="center" direction="row" gap={1}>
+            <ProgressIndicator.Items>
+              {({ filled, index }) => (
+                <ProgressIndicator.Dot filled={filled} key={index} />
+              )}
+            </ProgressIndicator.Items>
+          </View>
+
           <ProgressIndicator.Label>
             {({ current, total }) => `${current}/${total} generated`}
           </ProgressIndicator.Label>

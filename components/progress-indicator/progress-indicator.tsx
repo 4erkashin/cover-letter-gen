@@ -1,11 +1,46 @@
 "use client";
 
 import { type ReactNode, use } from "react";
+import { View } from "reshaped";
 
 import {
   ProgressIndicatorContext,
   type ProgressIndicatorState,
 } from "./progress-indicator-context";
+
+function Root({
+  children,
+  current,
+  total,
+}: {
+  children: ReactNode;
+  current: number;
+  total: number;
+}) {
+  return (
+    <ProgressIndicatorContext.Provider
+      value={{ current: Math.min(current, total), total }}
+    >
+      {children}
+    </ProgressIndicatorContext.Provider>
+  );
+}
+
+function Label({
+  children,
+}: {
+  children: ({ current, total }: ProgressIndicatorState) => ReactNode;
+}) {
+  const context = use(ProgressIndicatorContext);
+
+  if (!context) {
+    throw new Error(
+      "ProgressIndicator.Label must be used within ProgressIndicator",
+    );
+  }
+
+  return <>{children(context)}</>;
+}
 
 function Items({
   children,
@@ -31,41 +66,31 @@ function Items({
   );
 }
 
-function Label({
-  children,
-}: {
-  children: ({ current, total }: ProgressIndicatorState) => ReactNode;
-}) {
-  const context = use(ProgressIndicatorContext);
-
-  if (!context) {
-    throw new Error(
-      "ProgressIndicator.Label must be used within ProgressIndicator",
-    );
-  }
-
-  return <>{children(context)}</>;
-}
-
-function Root({
-  children,
-  current,
-  total,
-}: {
-  children: React.ReactNode;
-  current: number;
-  total: number;
-}) {
+function Bar({ filled }: { filled: boolean; index?: number }) {
   return (
-    <ProgressIndicatorContext.Provider
-      value={{ current: Math.min(current, total), total }}
-    >
-      {children}
-    </ProgressIndicatorContext.Provider>
+    <View
+      backgroundColor={filled ? "black" : "neutral-faded"}
+      borderRadius="small"
+      height={4}
+      width={12}
+    />
   );
 }
 
-Root.Label = Label;
+function Dot({ filled }: { filled: boolean; index?: number }) {
+  return (
+    <View
+      backgroundColor={filled ? "black" : "neutral-faded"}
+      borderRadius="circular"
+      height={1.5}
+      width={1.5}
+    />
+  );
+}
+
+Root.Bar = Bar;
+Root.Dot = Dot;
 Root.Items = Items;
+Root.Label = Label;
 
 export const ProgressIndicator = Root;

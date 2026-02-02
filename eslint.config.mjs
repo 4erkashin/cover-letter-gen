@@ -18,6 +18,25 @@ const eslintConfig = defineConfig([
         "error",
         { fixStyle: "inline-type-imports" },
       ],
+      "perfectionist/sort-modules": [
+        "error",
+        {
+          groups: [
+            "declare-enum",
+            "export-enum",
+            "enum",
+            ["declare-interface", "declare-type"],
+            ["export-interface", "export-type"],
+            ["interface", "type"],
+            "declare-class",
+            "class",
+            "export-class",
+            { selector: "function", type: "unsorted" },
+          ],
+          order: "asc",
+          type: "natural",
+        },
+      ],
       "perfectionist/sort-union-types": [
         "error",
         {
