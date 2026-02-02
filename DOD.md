@@ -23,10 +23,10 @@
 
 ### App Header
 
-- [ ] Contains:
-  - [x] App Logo
-  - [ ] progress indicator
-  - [x] Home button
+- [x] App Logo
+- [x] Progress indicator with text "{current}/{total} generated"
+- [ ] Current passed to progress indicator from ls
+- [x] Home button
 
 #### Implementation details
 
@@ -38,9 +38,14 @@
 - [x] Home button
   - [x] Link from next/link passed via render prop, preserving reshaped button behavior, adding client side navigation without manual call of router.push
 
-- [ ] Progress indicator
+- [x] Progress indicator
   - [x] Pure UI, only receives current and total and then renders via composition
-  - [ ] Has composable Item, that can be filled to indicate progress
+  - [x] Has composable Item, that can be filled to indicate progress
+    - Note: using index as a key, to render items in the progress indicator is ok.  
+      The key is representing the item's identity (position in the progress indicator).  
+      There is no identity except for the position in that case.
+  - [x] Can render success icon instead of items if status is completed
+    - Note: built in intentionally, cuz there no evidence it can be customized for now. So, no premature abstractions.
 
 ### Home page
 

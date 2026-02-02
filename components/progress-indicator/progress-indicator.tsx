@@ -1,8 +1,9 @@
 "use client";
 
 import { type ReactNode, use } from "react";
-import { View } from "reshaped";
+import { Icon, View } from "reshaped";
 
+import CheckIcon from "./check.svg";
 import {
   ProgressIndicatorContext,
   type ProgressIndicatorState,
@@ -19,7 +20,11 @@ function Root({
 }) {
   return (
     <ProgressIndicatorContext.Provider
-      value={{ current: Math.min(current, total), total }}
+      value={{
+        current: Math.min(current, total),
+        status: current >= total ? "completed" : "in-progress",
+        total,
+      }}
     >
       {children}
     </ProgressIndicatorContext.Provider>
@@ -55,7 +60,22 @@ function Items({
     );
   }
 
-  const { current, total } = context;
+  const { current, status, total } = context;
+
+  if (status === "completed") {
+    return (
+      <View
+        align="center"
+        backgroundColor="positive-faded"
+        borderRadius="circular"
+        height={5}
+        justify="center"
+        width={5}
+      >
+        <Icon color="positive" size={2.5} svg={CheckIcon} />
+      </View>
+    );
+  }
 
   return (
     <>

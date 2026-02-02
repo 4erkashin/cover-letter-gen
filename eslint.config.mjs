@@ -31,7 +31,7 @@ const eslintConfig = defineConfig([
             "declare-class",
             "class",
             "export-class",
-            { selector: "function", type: "unsorted" },
+            { group: "function", type: "unsorted" },
           ],
           order: "asc",
           type: "natural",
