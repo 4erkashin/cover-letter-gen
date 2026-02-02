@@ -18,6 +18,12 @@ const eslintConfig = defineConfig([
         "error",
         { fixStyle: "inline-type-imports" },
       ],
+      "perfectionist/sort-union-types": [
+        "error",
+        {
+          groups: ["named", "nullish"],
+        },
+      ],
     },
   },
   eslintConfigPrettier,

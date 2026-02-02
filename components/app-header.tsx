@@ -1,7 +1,10 @@
+"use client";
+
 import { View } from "reshaped";
 
 import { AppLogo } from "./app-logo";
 import { HomeButton } from "./home-button";
+import { ProgressIndicator } from "./progress-indicator";
 
 export function AppHeader() {
   return (
@@ -9,8 +12,11 @@ export function AppHeader() {
       <AppLogo />
 
       <View align="center" direction="row" gap={4}>
-        <pre>counter</pre>
-
+        <ProgressIndicator current={0} total={5}>
+          <ProgressIndicator.Label>
+            {({ current, total }) => `${current}/${total} generated`}
+          </ProgressIndicator.Label>
+        </ProgressIndicator>
         <HomeButton />
       </View>
     </View>

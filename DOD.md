@@ -38,6 +38,9 @@
 - [x] Home button
   - [x] Link from next/link passed via render prop, preserving reshaped button behavior, adding client side navigation without manual call of router.push
 
+- [ ] Progress indicator
+  - [x] Pure UI, only receives current and total and then renders via composition
+
 ### Home page
 
 - [ ] Contains:
