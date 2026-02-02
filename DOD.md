@@ -40,6 +40,7 @@
 
 - [ ] Progress indicator
   - [x] Pure UI, only receives current and total and then renders via composition
+  - [ ] Has composable Item, that can be filled to indicate progress
 
 ### Home page
 

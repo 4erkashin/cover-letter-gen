@@ -7,7 +7,31 @@ import {
   type ProgressIndicatorState,
 } from "./progress-indicator-context";
 
-function ProgressIndicatorLabel({
+function Items({
+  children,
+}: {
+  children: (item: { filled: boolean; index: number }) => ReactNode;
+}) {
+  const context = use(ProgressIndicatorContext);
+
+  if (!context) {
+    throw new Error(
+      "ProgressIndicator.Items must be used within ProgressIndicator",
+    );
+  }
+
+  const { current, total } = context;
+
+  return (
+    <>
+      {Array.from({ length: total }, (_, index) =>
+        children({ filled: index < current, index }),
+      )}
+    </>
+  );
+}
+
+function Label({
   children,
 }: {
   children: ({ current, total }: ProgressIndicatorState) => ReactNode;
@@ -20,13 +44,10 @@ function ProgressIndicatorLabel({
     );
   }
 
-  const { total } = context;
-  const current = Math.min(context.current, total);
-
-  return <>{children({ current, total })}</>;
+  return <>{children(context)}</>;
 }
 
-function ProgressIndicatorRoot({
+function Root({
   children,
   current,
   total,
@@ -36,12 +57,15 @@ function ProgressIndicatorRoot({
   total: number;
 }) {
   return (
-    <ProgressIndicatorContext.Provider value={{ current, total }}>
+    <ProgressIndicatorContext.Provider
+      value={{ current: Math.min(current, total), total }}
+    >
       {children}
     </ProgressIndicatorContext.Provider>
   );
 }
 
-ProgressIndicatorRoot.Label = ProgressIndicatorLabel;
+Root.Label = Label;
+Root.Items = Items;
 
-export const ProgressIndicator = ProgressIndicatorRoot;
+export const ProgressIndicator = Root;
