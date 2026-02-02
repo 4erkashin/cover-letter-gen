@@ -8,22 +8,30 @@
 
 ### Routing
 
-- [ ] Home page is accessible via `/` route
-- [ ] Create new application page is accessible via `/application/new` route
-- [ ] Application details page is accessible via `/application/:id` route
-- [ ] 404 page is implemented and falls back from other paths
+- [x] Home page is accessible via `/` route
+- [x] Create new application page is accessible via `/application/new` route
+- [x] Application details page is accessible via `/application/:id` route
+- [ ] 404 page
+  - [x] Implemented by default Next.js 404 page
+  - [ ] Nice to have: custom 404 page
+- [ ] Nice to have redirect from `/application` to `/`
 
 ### Layout
 
-- [ ] App Header is visible on all pages
-- [ ] Create application and application details pages shares the same layout
+- [x] App Header is visible on all pages
+- [x] Create application and application details pages shares the same layout
 
 ### App Header
 
 - [ ] Contains:
-  - [ ] logo
+  - [ ] Logo
   - [ ] progress indicator
   - [ ] home button
+
+#### Implementation details
+
+- [ ] Logo
+  - [x] Svg handled via reshaped recommended way: svgr + Icon component
 
 ### Home page
 
