@@ -24,14 +24,16 @@
 ### App Header
 
 - [ ] Contains:
-  - [ ] Logo
+  - [ ] App Logo
   - [ ] progress indicator
   - [ ] home button
 
 #### Implementation details
 
-- [ ] Logo
+- [x] App Logo
   - [x] Svg handled via reshaped recommended way: svgr + Icon component
+  - [x] Component consists of svg icon with circle and svg icon with text
+  - Caveat: Icon component suited for square icons only, so custom stuff like [app-logo-text](./components/app-logo/app-logo-text.svg) should be handled with CSS without passing to the Icon component
 
 ### Home page
 

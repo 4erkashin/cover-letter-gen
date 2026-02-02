@@ -1,0 +1,5 @@
+.logoText {
+  height: var(--rs-unit-x3);
+  width: calc(var(--rs-unit-x1) * 15);
+  color: var(--rs-color-foreground-neutral);
+}
