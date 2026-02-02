@@ -24,9 +24,9 @@
 ### App Header
 
 - [ ] Contains:
-  - [ ] App Logo
+  - [x] App Logo
   - [ ] progress indicator
-  - [ ] home button
+  - [x] Home button
 
 #### Implementation details
 
@@ -34,6 +34,9 @@
   - [x] Svg handled via reshaped recommended way: svgr + Icon component
   - [x] Component consists of svg icon with circle and svg icon with text
   - Caveat: Icon component suited for square icons only, so custom stuff like [app-logo-text](./components/app-logo/app-logo-text.svg) should be handled with CSS without passing to the Icon component
+
+- [x] Home button
+  - [x] Link from next/link passed via render prop, preserving reshaped button behavior, adding client side navigation without manual call of router.push
 
 ### Home page
 
