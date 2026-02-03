@@ -24,35 +24,28 @@
 ### App Header
 
 - [x] App Logo
-- [x] Progress indicator with text "{current}/{total} generated"
-- [ ] Current passed to progress indicator from ls
-- [x] Home button
-
-#### Implementation details
-
-- [x] App Logo
   - [x] Svg handled via reshaped recommended way: svgr + Icon component
   - [x] Component consists of svg icon with circle and svg icon with text
   - Caveat: Icon component suited for square icons only, so custom stuff like [app-logo-text](./components/app-logo/app-logo-text.svg) should be handled with CSS without passing to the Icon component
 
-- [x] Home button
-  - [x] Link from next/link passed via render prop, preserving reshaped button behavior, adding client side navigation without manual call of router.push
-
-- [x] Progress indicator
-  - [x] Pure UI, only receives current and total and then renders via composition
+- [ ] Progress indicator with text "{current}/{total} generated"
+  - [x] Pure UI, only receives current and total and then renders via composition, with utilisation of the context api to manage internal state logic
   - [x] Has composable Item, that can be filled to indicate progress
     - Note: using index as a key, to render items in the progress indicator is ok.  
       The key is representing the item's identity (position in the progress indicator).  
       There is no identity except for the position in that case.
   - [x] Can render success icon instead of items if status is completed
     - Note: built in intentionally, cuz there no evidence it can be customized for now. So, no premature abstractions.
+  - [x] Current amount of applications read from ls via custom hook, reactive to ls changes -[ ] Ls key and total amount extracted to the constants
+
+- [x] Home button
+  - [x] Link from next/link passed via render prop, preserving reshaped button behavior, adding client side navigation without manual call of router.push
 
 ### Home page
 
-- [ ] Contains:
-  - [ ] title
-  - [ ] button to create new application
-  - [ ] horizontal separator
+- [ ] Title
+- [ ] button to create new application
+- [ ] horizontal separator
 
 - [ ] Can show:
   - [ ] list of application previews
