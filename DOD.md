@@ -26,30 +26,44 @@
 - [x] App Logo
   - [x] Svg handled via reshaped recommended way: svgr + Icon component
   - [x] Component consists of svg icon with circle and svg icon with text
-  - Caveat: Icon component suited for square icons only, so custom stuff like [app-logo-text](./components/app-logo/app-logo-text.svg) should be handled with CSS without passing to the Icon component
+  - Caveat: reshaped Icon component suited for square icons only,  
+    so not square svg like [app-logo-text](./components/app-logo/app-logo-text.svg) should be handled with CSS without passing to the Icon component
+  - [ ] Fits figma design
 
-- [ ] Progress indicator with text "{current}/{total} generated"
-  - [x] Pure UI, only receives current and total and then renders via composition, with utilisation of the context api to manage internal state logic
-  - [x] Has composable Item, that can be filled to indicate progress
-    - Note: using index as a key, to render items in the progress indicator is ok.  
-      The key is representing the item's identity (position in the progress indicator).  
-      There is no identity except for the position in that case.
-  - [x] Can render success icon instead of items if status is completed
-    - Note: built in intentionally, cuz there no evidence it can be customized for now. So, no premature abstractions.
-  - [x] Current amount of applications read from ls via custom hook, reactive to ls changes -[ ] Ls key and total amount extracted to the constants
+- [x] Progress indicator
+  - [x] Uses shared [Progress indicator](#progress-indicator)
+  - [x] Text "{current}/{total} generated"
+  - [x] Current capped by total, so 6/5 becomes 5/5
+  - [x] Dots to indicate progress
+  - [x] Success icon if status is completed
 
 - [x] Home button
-  - [x] Link from next/link passed via render prop, preserving reshaped button behavior, adding client side navigation without manual call of router.push
+  - [x] Uses shared [Link button](#link-button)
+  - [x] No text, icon only
+  - [x] Click navigates to the home page (pathname `/`) without reloading the page
+  - [ ] Fits figma design
 
 ### Home page
 
-- [ ] Title
-- [ ] button to create new application
-- [ ] horizontal separator
+- [ ] Header
+  - [ ] Title
+    - [x] Text "Applications"
+    - [ ] Implemented as reshaped suggests for typography handling
+    - [ ] Fits figma design
+
+  - [x] Create application button
+    - [x] Uses shared [Create application button](#create-application-button)
+
+  - [x] Title and button are in a row with justify content set as space between
+  - [x] Border bottom
+  - [ ] Fits figma design
 
 - [ ] Can show:
-  - [ ] list of application previews
-  - [ ] hit the goal widget
+  - [ ] List of application previews
+    - [ ] Condition: ls has at least one application
+
+  - [ ] Hit the goal widget
+    - [ ] Condition: amount of applications is less than total defined in the constants
 
 ### Create new application page
 
@@ -80,15 +94,31 @@
 
 #### Progress indicator
 
-- [ ] Used in
-  - [ ] App Header
+- [x] Implemented via composition, to fit figma design where it used in two places with different layout and item styling
+- [x] Has composable Item, that can be filled to indicate progress
+  - Note: using index as a key, to render items in the progress indicator is ok.  
+    The key is representing the item's identity (position in the progress indicator).  
+    There is no identity except for the position in that case.
+- [x] Can render success icon instead of items if status is completed
+  - Note: built in intentionally, cuz there no evidence it can be customized for now. So, no premature abstractions.
+- [x] Current amount of applications read from ls via custom hook, reactive to ls changes
+- [ ] Ls key and total amount extracted to the constants
+- [ ] Fits figma design
+
+- Used in
+  - [x] [App Header](#app-header)
   - [ ] Hit the goal widget
+
+#### Link button
+
+Utility component to allow using next/link with reshaped button.
 
 #### Create application button
 
-- [ ] Used in
-  - [ ] Home page
-  - [ ] Hit the goal widget
+- [x] Text "Create new"
+- [x] Plus icon before the text
+- [x] Click navigates to the create new application page (pathname `/application/new`) without reloading the page
+- [ ] Fits figma design
 
 #### Hit the goal widget
 
