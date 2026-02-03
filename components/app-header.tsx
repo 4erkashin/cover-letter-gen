@@ -2,14 +2,14 @@
 
 import { View } from "reshaped";
 
-import { useLocalStorageSync } from "@/lib/useLocalStorage";
+import { useLocalStorage } from "@/lib/useLocalStorage";
 
 import { AppLogo } from "./app-logo";
 import { HomeButton } from "./home-button";
 import { ProgressIndicator } from "./progress-indicator";
 
 export function AppHeader() {
-  const [current] = useLocalStorageSync("current", 0);
+  const [current] = useLocalStorage("current", 0);
 
   return (
     <View align="center" as="header" direction="row" justify="space-between">

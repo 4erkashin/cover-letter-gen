@@ -5,13 +5,13 @@ import { useCallback, useSyncExternalStore } from "react";
 const CUSTOM_EVENT = "local-storage-change";
 
 /**
- * useLocalStorageSync (useSyncExternalStore)
+ * useLocalStorage (useSyncExternalStore)
  *
  * React-recommended for external stores. Prevents tearing during
  * concurrent rendering. getServerSnapshot returns initialValue for SSR.
  * Syncs across tabs (storage event) and same-tab (custom event).
  */
-export function useLocalStorageSync<T>(
+export function useLocalStorage<T>(
   key: string,
   initialValue: T,
 ): [T, (value: T | ((prev: T) => T)) => void] {

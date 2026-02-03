@@ -60,10 +60,11 @@
 
 - [ ] Can show:
   - [ ] List of application previews
-    - [ ] Condition: ls has at least one application
+    - [ ] Showing condition: ls has at least one application
 
   - [ ] Hit the goal widget
-    - [ ] Condition: amount of applications is less than total defined in the constants
+    - [x] Uses shared [Hit the goal widget](#hit-the-goal-widget)
+    - [ ] Showing condition: amount of applications is less than total defined in the constants
 
 ### Create new application page
 
@@ -122,9 +123,8 @@ Utility component to allow using next/link with reshaped button.
 
 #### Hit the goal widget
 
-- [ ] Used in
-  - [ ] Application details page
-  - [ ] Home page
+- []
+- [ ] Fits figma design
 
 #### Card with actions bar
 
