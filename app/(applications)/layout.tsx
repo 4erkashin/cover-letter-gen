@@ -10,7 +10,9 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     <Container className={styles.container} height="100dvh" width="375px">
       <AppHeader />
 
-      <View as="main">{children}</View>
+      <View as="main" gap={8}>
+        {children}
+      </View>
     </Container>
   );
 }

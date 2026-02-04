@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, type ReactNode } from "react";
 
 import { useLocalStorage } from "@/lib/useLocalStorage";
@@ -34,7 +36,7 @@ export function ApplicationsProvider({ children }: { children: ReactNode }) {
         addApplication,
         applications,
         goal: {
-          current: applications.length,
+          current: Math.min(applications.length, APPLICATIONS_AMOUNT_GOAL),
           status:
             applications.length <= APPLICATIONS_AMOUNT_GOAL
               ? "in-progress"

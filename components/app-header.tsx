@@ -1,36 +1,39 @@
 "use client";
 
+import { use } from "react";
 import { View } from "reshaped";
 
-import { useLocalStorage } from "@/lib/useLocalStorage";
+import { ApplicationsContext } from "@/features/application";
 
 import { AppLogo } from "./app-logo";
+import { GoalProgress } from "./goal-progress";
 import { HomeButton } from "./home-button";
-import { ProgressIndicator } from "./progress-indicator";
 
 export function AppHeader() {
-  const [current] = useLocalStorage("current", 0);
+  const applicationsContext = use(ApplicationsContext);
+
+  if (!applicationsContext) {
+    throw new Error("AppHeader must be used within ApplicationsProvider");
+  }
+
+  const { current, total } = applicationsContext.goal;
 
   return (
     <View align="center" as="header" direction="row" justify="space-between">
       <AppLogo />
 
       <View align="center" direction="row" gap={4}>
-        <ProgressIndicator current={current} total={5}>
-          <View align="center" direction="row" gap={3}>
-            <ProgressIndicator.Label>
-              {({ current, total }) => `${current}/${total} generated`}
-            </ProgressIndicator.Label>
+        <View align="center" direction="row" gap={3}>
+          <span>{`${current}/${total} generated`}</span>
 
-            <View align="center" direction="row" gap={1}>
-              <ProgressIndicator.Items>
-                {({ filled, index }) => (
-                  <ProgressIndicator.Dot filled={filled} key={index} />
-                )}
-              </ProgressIndicator.Items>
-            </View>
+          <View align="center" direction="row" gap={1}>
+            <GoalProgress>
+              {({ filled, index }) => (
+                <GoalProgress.Dot filled={filled} key={index} />
+              )}
+            </GoalProgress>
           </View>
-        </ProgressIndicator>
+        </View>
 
         <HomeButton />
       </View>
