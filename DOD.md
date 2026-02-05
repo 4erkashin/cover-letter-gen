@@ -52,7 +52,7 @@
 - [ ] Header
   - [ ] Title
     - [x] Text "Applications"
-    - [ ] Implemented as reshaped suggests for typography handling
+    - [ ] Implemented via reshaped typography handling approach
 
     - [ ] Fits figma design
 
@@ -71,20 +71,21 @@
 
   - [ ] Hit the goal widget
     - [x] Uses shared [Hit the goal widget](#hit-the-goal-widget)
+    - [x] Showing condition: goal status is "in-progress"
 
-    - [ ] Showing condition: goal status is "in-progress"
+    - [ ] Fits figma design
 
 ### Create new application page
 
-- [ ] Contains:
-  - [ ] title
-  - [ ] form consisting of:
-    - [ ] text input for job title
-    - [ ] text input for company name
-    - [ ] text input for skills (i'm good at)
-    - [ ] text area for additional details
-    - [ ] submit button
-  - [ ] area for generated cover letter
+- [ ] Title
+  - [x] Text "New application"
+  - [ ] Implemented via reshaped typography handling approach
+
+  - [ ] Fits figma design
+
+- [ ] Form
+
+- [ ] Generated cover letter
 
 ### Application details page
 
@@ -105,6 +106,7 @@
 
 - [x] Implemented via composition, to fit figma design where it used in two places with different layout and item styling
 - [x] Has composables Dot and Bar, that can be filled to indicate progress
+
 - [ ] Fits figma design
 
 #### Link button
@@ -139,6 +141,4 @@ Utility component to allow using next/link with reshaped button.
 
 #### Form
 
-- [ ] Used in
-  - [ ] Create new application page
-  - [ ] Application details page
+- [ ] Utilises RHF
