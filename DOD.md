@@ -4,7 +4,7 @@
 - [ ] No changes to the code needed
 - [ ] App is deployed to the Vercel
 
-## Code part
+## Code: implementation details
 
 ### Routing
 
@@ -19,7 +19,7 @@
 ### Layout
 
 - [x] App Header is visible on all pages
-- [x] Create application and application details pages shares the same layout
+- [x] Application create and details pages share the same layout
 
 ### App Header
 
@@ -58,10 +58,6 @@
 
   - [x] Create application button
     - [x] Uses shared [Create application button](#create-application-button)
-
-  - [x] Title and button are in a row with justify content set as space between
-
-  - [x] Border bottom
 
   - [ ] Fits figma design
 
@@ -102,16 +98,20 @@
 
 ### Shared UI
 
+#### Page header
+
+Container with a preset paddings and border bottom.
+
+#### Link button
+
+Utility component to allow using next/link with reshaped button.
+
 #### Goal progress
 
 - [x] Implemented via composition, to fit figma design where it used in two places with different layout and item styling
 - [x] Has composables Dot and Bar, that can be filled to indicate progress
 
 - [ ] Fits figma design
-
-#### Link button
-
-Utility component to allow using next/link with reshaped button.
 
 #### Create application button
 
@@ -139,6 +139,16 @@ Utility component to allow using next/link with reshaped button.
   - [ ] Home page to show application preview
   - [ ] Application details page to show generated cover letter
 
-#### Form
+#### Application form
 
-- [ ] Utilises RHF
+- [x] Uses RHF
+- [x] Uses Zod schema for validation
+  - [x] job title
+    - [x] required
+  - [x] company name
+    - [x] required
+  - [ ] skills
+    - [x] optional
+  - [ ] additional details
+    - [x] optional
+    - [x] max length from application domain const
