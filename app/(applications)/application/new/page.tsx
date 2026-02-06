@@ -1,4 +1,5 @@
 import { ApplicationForm } from "@/components/application-form";
+import { CoverLetterWidget } from "@/components/cover-letter-widget";
 import { PageHeader } from "@/components/page-header";
 
 export default function CreateApplication() {
@@ -9,6 +10,8 @@ export default function CreateApplication() {
       </PageHeader>
 
       <ApplicationForm />
+
+      <CoverLetterWidget />
     </>
   );
 }

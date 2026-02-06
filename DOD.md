@@ -6,6 +6,12 @@
 
 ## Code: implementation details
 
+### Domain types
+
+#### Application
+
+- [ ] id: string
+
 ### Routing
 
 - [x] Home page is accessible via `/` route
@@ -73,15 +79,27 @@
 
 ### Create new application page
 
+- [x] Uses shared [Page header](#page-header)
+
 - [ ] Title
   - [x] Text "New application"
   - [ ] Implemented via reshaped typography handling approach
-
-  - [ ] Fits figma design
+    - [ ] Fits figma design
 
 - [ ] Form
+  - [x] Uses shared [Application form](#application-form)
+  - [x] Default values are empty
 
-- [ ] Generated cover letter
+  - [ ] Submit button
+    - [x] Text "Generate now"
+    - [ ] Disabled initially
+
+- [ ] Cover letter widget
+  - [x] Uses shared [Cover letter widget](#cover-letter-widget)
+  - [x] Text:"Your personalized job application will appear here..."
+  - [ ] Has "Coppy to clipboard" button in bottom right corner
+
+  - [ ] Fits figma design
 
 ### Application details page
 
@@ -133,12 +151,6 @@ Utility component to allow using next/link with reshaped button.
 
 - [ ] Fits figma design
 
-#### Card with actions bar
-
-- [ ] Used in
-  - [ ] Home page to show application preview
-  - [ ] Application details page to show generated cover letter
-
 #### Application form
 
 - [x] Uses RHF
@@ -156,12 +168,18 @@ Utility component to allow using next/link with reshaped button.
 
   - [x] Uses shared [Form field](#form-field) component
 
+  - [ ] On submit
+    - [ ] Stores [application](#application) into local storage
+
 #### Form field
 
 - [x] Uses context from RHF to get access to the form state
 - [x] Uses RHF Controller to control the form state
 
 - [x] Uses reshaped TextField or TextArea components depending on the type prop
-- [x] Uses reshaped FormControl component to provide label
+- [x] Uses reshaped FormControl.Label component to provide label
+- [x] Uses reshaped FormControl.Error component to show validation errors
 
 - [ ] Fits figma design
+
+#### Cover letter widget

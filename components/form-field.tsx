@@ -15,16 +15,17 @@ export function FormField({
   const { control } = useFormContext();
 
   return (
-    <FormControl>
-      <FormControl.Label>{label}</FormControl.Label>
+    <Controller
+      control={control}
+      name={name}
+      render={({
+        field: { name: fieldName, onChange, value, ...fieldProps },
+        fieldState,
+      }) => (
+        <FormControl hasError={!!fieldState.error}>
+          <FormControl.Label>{label}</FormControl.Label>
 
-      <Controller
-        control={control}
-        name={name}
-        render={({
-          field: { name: fieldName, onChange, value, ...fieldProps },
-        }) =>
-          type === "text" ? (
+          {type === "text" ? (
             <TextField
               inputAttributes={fieldProps}
               name={fieldName}
@@ -41,9 +42,11 @@ export function FormField({
               resize="auto"
               value={value}
             />
-          )
-        }
-      />
-    </FormControl>
+          )}
+
+          <FormControl.Error>{fieldState.error?.message}</FormControl.Error>
+        </FormControl>
+      )}
+    />
   );
 }
