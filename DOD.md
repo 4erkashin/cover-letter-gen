@@ -142,13 +142,25 @@ Utility component to allow using next/link with reshaped button.
 #### Application form
 
 - [x] Uses RHF
+
 - [x] Uses Zod schema for validation
   - [x] job title
     - [x] required
   - [x] company name
     - [x] required
-  - [ ] skills
+  - [x] skills
     - [x] optional
-  - [ ] additional details
+  - [x] additional details
     - [x] optional
     - [x] max length from application domain const
+
+  - [ ] Uses shared [Text field](#text-field) component
+
+#### Text field
+
+- [x] Uses context from RHF to get access to the form state
+- [x] Uses RHF Controller to control the form state
+- [x] Uses reshaped TextField component
+- [x] Uses reshaped FormControl component to wrap the TextField
+
+- [ ] Fits figma design
