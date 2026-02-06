@@ -154,13 +154,14 @@ Utility component to allow using next/link with reshaped button.
     - [x] optional
     - [x] max length from application domain const
 
-  - [ ] Uses shared [Text field](#text-field) component
+  - [x] Uses shared [Form field](#form-field) component
 
-#### Text field
+#### Form field
 
 - [x] Uses context from RHF to get access to the form state
 - [x] Uses RHF Controller to control the form state
-- [x] Uses reshaped TextField component
-- [x] Uses reshaped FormControl component to wrap the TextField
+
+- [x] Uses reshaped TextField or TextArea components depending on the type prop
+- [x] Uses reshaped FormControl component to provide label
 
 - [ ] Fits figma design

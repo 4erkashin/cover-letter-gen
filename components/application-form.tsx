@@ -7,7 +7,7 @@ import z from "zod";
 
 import { APPLICATION_DETAILS_MAX_LENGTH } from "@/features/application";
 
-import { TextField } from "./text-field";
+import { FormField } from "./form-field";
 
 const Schema = z.object({
   additionalDetails: z
@@ -36,24 +36,25 @@ export function ApplicationForm() {
         attributes={{ onSubmit: form.handleSubmit(console.log, console.error) }}
         gap={3}
       >
-        <TextField
+        <FormField
           label="Job title"
           name="jobTitle"
           placeholder="Product manager"
         />
 
-        <TextField label="Company" name="companyName" placeholder="Apple" />
+        <FormField label="Company" name="companyName" placeholder="Apple" />
 
-        <TextField
+        <FormField
           label="I am good at..."
           name="skills"
           placeholder="HTML, CSS and doing things in time"
         />
 
-        <TextField
+        <FormField
           label="Additional details"
           name="additionalDetails"
           placeholder="Describe why you are a great fit or paste your bio"
+          type="textarea"
         />
 
         <Button fullWidth type="submit">
