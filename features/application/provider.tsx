@@ -1,14 +1,15 @@
 "use client";
 
-import { createContext, type ReactNode } from "react";
+import { createContext, type ReactNode, use } from "react";
 
 import { useLocalStorage } from "@/lib/useLocalStorage";
 
+import { type Application } from "./application";
 import { APPLICATIONS_AMOUNT_GOAL, APPLICATIONS_LS_KEY } from "./const";
 
 interface ApplicationsState {
-  addApplication: (application: unknown) => void;
-  applications: unknown[];
+  addApplication: (application: Application) => void;
+  applications: Application[];
   goal: {
     current: number;
     status: "completed" | "in-progress";
@@ -16,17 +17,24 @@ interface ApplicationsState {
   };
 }
 
-export const ApplicationsContext = createContext<ApplicationsState | null>(
-  null,
-);
+const ApplicationsContext = createContext<ApplicationsState | null>(null);
+
+export function useApplicationsContext() {
+  const context = use(ApplicationsContext);
+
+  if (!context) {
+    throw new Error("Context must be used within ApplicationsProvider");
+  }
+  return context;
+}
 
 export function ApplicationsProvider({ children }: { children: ReactNode }) {
-  const [applications, setApplications] = useLocalStorage<unknown[]>(
+  const [applications, setApplications] = useLocalStorage<Application[]>(
     APPLICATIONS_LS_KEY,
     [],
   );
 
-  const addApplication = (application: unknown) => {
+  const addApplication = (application: Application) => {
     setApplications((prev) => [...prev, application]);
   };
 

@@ -1,19 +1,14 @@
 "use client";
 
-import { use } from "react";
 import { View } from "reshaped";
 
-import { ApplicationsContext } from "@/features/application";
+import { useApplicationsContext } from "@/features/application";
 
 import { CreateApplicationButton } from "./create-application-button";
 import { GoalProgress } from "./goal-progress";
 
 export function HitGoalWidget() {
-  const applicationsContext = use(ApplicationsContext);
-
-  if (!applicationsContext) {
-    throw new Error("AppHeader must be used within ApplicationsProvider");
-  }
+  const applicationsContext = useApplicationsContext();
 
   const { current, total } = applicationsContext.goal;
 

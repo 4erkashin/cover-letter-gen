@@ -1,20 +1,15 @@
 "use client";
 
-import { use } from "react";
 import { View } from "reshaped";
 
-import { ApplicationsContext } from "@/features/application";
+import { useApplicationsContext } from "@/features/application";
 
 import { AppLogo } from "./app-logo";
 import { GoalProgress } from "./goal-progress";
 import { HomeButton } from "./home-button";
 
 export function AppHeader() {
-  const applicationsContext = use(ApplicationsContext);
-
-  if (!applicationsContext) {
-    throw new Error("AppHeader must be used within ApplicationsProvider");
-  }
+  const applicationsContext = useApplicationsContext();
 
   const { current, total } = applicationsContext.goal;
 

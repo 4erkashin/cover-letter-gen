@@ -1,9 +1,9 @@
 "use client";
 
-import { type ReactNode, use } from "react";
+import { type ReactNode } from "react";
 import { Icon, View } from "reshaped";
 
-import { ApplicationsContext } from "@/features/application";
+import { useApplicationsContext } from "@/features/application";
 
 import CheckIcon from "./check.svg";
 
@@ -12,11 +12,7 @@ export function GoalProgress({
 }: {
   children: (item: { filled: boolean; index: number }) => ReactNode;
 }) {
-  const applicationsContext = use(ApplicationsContext);
-
-  if (!applicationsContext) {
-    throw new Error("GoalProgress must be used within ApplicationsProvider");
-  }
+  const applicationsContext = useApplicationsContext();
 
   const progressStatus = applicationsContext.goal.status;
 
