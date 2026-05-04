@@ -7,3 +7,5 @@ export interface CoverLetter {
   createdAt: IsoDatetimeString;
   updatedAt: IsoDatetimeString;
 }
+
+export const REQ_GENERATED_COUNT = 5;

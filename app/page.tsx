@@ -1,4 +1,4 @@
-import { PersistStorageDevPanel } from "@/features/persist-storage/dev-panel";
+import { PersistStorageDevPanel } from "@/features/persist-storage";
 
 export default function Home() {
   return <PersistStorageDevPanel />;
