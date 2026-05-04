@@ -1,7 +1,7 @@
 import { persist } from "zustand/middleware";
 import { createStore } from "zustand/vanilla";
 
-import type { CoverLetter } from "@/domain/cover-letter";
+import type { CoverLetter } from "@/domain";
 
 import { STORAGE_KEY } from "./const";
 import { createSsrSafePersistStorage, createTestLetter } from "./util";
@@ -14,8 +14,7 @@ export type PersistStorageActions = {
   addLetter: () => void;
 };
 
-export type PersistStorageStore = PersistStorageState &
-  PersistStorageActions;
+export type PersistStorageStore = PersistStorageState & PersistStorageActions;
 
 export function createPersistStorageStore() {
   return createStore<PersistStorageStore>()(

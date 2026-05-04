@@ -1,6 +1,6 @@
 import { createJSONStorage, type PersistStorage } from "zustand/middleware";
 
-import type { CoverLetter } from "@/domain/cover-letter";
+import type { CoverLetter } from "@/domain";
 
 /**
  * Persist storage that never touches `localStorage`.

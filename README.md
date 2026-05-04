@@ -25,6 +25,10 @@ When the user opens the app, it restores previously generated cover letters from
 - The restored data fully reflects the last known state of the user’s generated letters.
 - Updates from other tabs are reflected in the app, no stale tabs issues.
 
+### Generated letters threshold
+
+The threshold for “enough” generated letters is **5**: the product flow is tuned so users are encouraged to reach at least five cover letters.
+
 ## Decision log
 
 0. Chose Next.js as the main tool, due to plan to use vercel AI SDK for generating cover letters, deploy to vercel, and be able to not to expose prompt for letters generation to the client bundle.
