@@ -1,9 +1,17 @@
 # Cover Letter Generator
 
-HR-tech style app that helps job seekers create and keep AI-generated cover letters in the browser.
+Greenfield Alt+Shift app for creating and managing AI-generated cover letters against a job goal.
 
 ## Language
 
 **Cover Letter**:
-A job-application letter the user creates (with AI) and keeps in their list. User-facing Figma copy may say “application”; that string is presentation, not a second concept.
-_Avoid_: Application (as a domain synonym), email, document
+A saved generated letter for a specific job (title + company + skills + details). The core domain entity; list length drives the goal.
+_Avoid_: Application (as the domain type), Letter alone when ambiguous with UI chrome
+
+**Application (UI copy)**:
+Presentation wording in the mock (“Applications”, “New application”, “applications generated”). Not a second domain entity — always refers to a Cover Letter.
+_Avoid_: Using “Application” as the code/module type name
+
+**Goal**:
+The target count of distinct saved Cover Letters (5). Progress is list length; regenerating (Try Again) does not increment it.
+_Avoid_: Streak, quota, XP
