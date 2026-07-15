@@ -1,0 +1,239 @@
+.primary {
+  appearance: none;
+  border: 0;
+  margin-top: 0.35rem;
+  width: 100%;
+  min-height: 2.85rem;
+  border-radius: 0.75rem;
+  background: #1f6b45;
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary:hover:not(:disabled) {
+  background: #185536;
+}
+
+.primary:disabled,
+.loading {
+  cursor: wait;
+}
+
+.spinner {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.spinner svg {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.previewInner {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  min-height: 100%;
+}
+
+.reducedMotionCopy {
+  display: none;
+}
+
+.letter {
+  align-self: stretch;
+  width: 100%;
+  white-space: pre-wrap;
+  color: #344054;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.fadeIn {
+  animation: fadeIn 320ms ease-out both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Variant A: morphing orb between Figma start/end sizes --- */
+.orb {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #ffffff 0%, rgba(255, 255, 255, 0.55) 42%, rgba(255, 255, 255, 0) 72%),
+    radial-gradient(circle at 70% 65%, rgba(208, 213, 221, 0.55), transparent 60%);
+  filter: blur(18px);
+  box-shadow:
+    0 0 40px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 24px rgba(16, 24, 40, 0.06);
+}
+
+.orbMorph {
+  width: 9rem;
+  height: 9rem;
+  animation: morphOrb 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes morphOrb {
+  from {
+    width: 7.5rem;
+    height: 7.5rem;
+    opacity: 0.85;
+    filter: blur(14px);
+  }
+  to {
+    width: 16rem;
+    height: 16rem;
+    opacity: 1;
+    filter: blur(28px);
+  }
+}
+
+/* --- Variant B: sample-style bounce blob --- */
+.bounceWrap {
+  width: 160px;
+  height: 160px;
+  animation: bounceY 1s ease-in-out infinite alternate;
+}
+
+.bounceBlob {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bounceBlob::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  filter: blur(40px);
+}
+
+.bounceBlob::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  box-shadow: inset 0 -2px 32px 0 rgba(16, 24, 40, 0.08);
+  background:
+    radial-gradient(100% 100% at 0% 0%, #ffffff 0%, #d0d5dd 100%),
+    radial-gradient(60.16% 60.16% at 74.22% 21.88%, #ffffff 0%, rgba(255, 255, 255, 0.16) 100%);
+  transform: rotate(22deg);
+}
+
+@keyframes bounceY {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(16px);
+    opacity: 0.48;
+  }
+}
+
+/* --- Variant C: one-shot grow then pulse; wipe reveal --- */
+.orbGrowPulse {
+  width: 7.5rem;
+  height: 7.5rem;
+  animation:
+    growOnce 1.2s ease-out forwards,
+    pulseEnd 1.1s ease-in-out 1.2s infinite alternate;
+}
+
+@keyframes growOnce {
+  from {
+    width: 7.5rem;
+    height: 7.5rem;
+    opacity: 0.8;
+    filter: blur(14px);
+  }
+  to {
+    width: 16rem;
+    height: 16rem;
+    opacity: 1;
+    filter: blur(28px);
+  }
+}
+
+@keyframes pulseEnd {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.06);
+    opacity: 0.72;
+  }
+}
+
+.wipe {
+  position: absolute;
+  inset: 0;
+  padding: 1.5rem;
+  display: flex;
+  animation: wipeIn 500ms ease-out both;
+  background: linear-gradient(#f2f4f7, #f2f4f7);
+}
+
+@keyframes wipeIn {
+  from {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0.4;
+  }
+  to {
+    clip-path: circle(150% at 50% 50%);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbMorph,
+  .bounceWrap,
+  .orbGrowPulse,
+  .fadeIn,
+  .wipe,
+  .spinner svg {
+    animation: none !important;
+  }
+
+  .orbMorph,
+  .orbGrowPulse,
+  .bounceWrap {
+    display: none;
+  }
+
+  .reducedMotionCopy {
+    display: block;
+    color: #667085;
+    font-size: 0.95rem;
+  }
+}
