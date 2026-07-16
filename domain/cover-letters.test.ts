@@ -5,6 +5,7 @@ import {
   coverLetterTitle,
   findCoverLetter,
   goalProgress,
+  overwriteCoverLetter,
   type CoverLetter,
 } from "./cover-letters";
 
@@ -76,5 +77,36 @@ describe("coverLetterTitle", () => {
     expect(coverLetterTitle("Product manager", "Apple")).toBe(
       "Product manager, Apple",
     );
+  });
+});
+
+describe("overwriteCoverLetter", () => {
+  it("keeps id and createdAt while replacing title, content, details, and updatedAt", () => {
+    const existing = makeCoverLetter({
+      id: "same-id",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      updatedAt: "2026-01-01T00:00:00.000Z",
+      title: "Designer, Stripe",
+      content: "Old letter body",
+    });
+    const generated = {
+      title: "Engineer, Notion",
+      content: "New letter body",
+      details: {
+        jobTitle: "Engineer",
+        companyName: "Notion",
+        skills: "TypeScript",
+        additionalDetails: "I ship products.",
+      },
+    };
+
+    const next = overwriteCoverLetter(existing, generated);
+
+    expect(next.id).toBe("same-id");
+    expect(next.createdAt).toBe("2026-01-01T00:00:00.000Z");
+    expect(next.title).toBe("Engineer, Notion");
+    expect(next.content).toBe("New letter body");
+    expect(next.details).toEqual(generated.details);
+    expect(next.updatedAt).not.toBe(existing.updatedAt);
   });
 });

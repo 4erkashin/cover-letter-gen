@@ -12,8 +12,15 @@ import {
   useToast,
 } from "reshaped";
 
-import type { CoverLetter, CoverLetterDetails } from "@/domain";
-import { saveCoverLetter } from "@/features/persist-storage";
+import {
+  overwriteCoverLetter,
+  type CoverLetter,
+  type CoverLetterDetails,
+} from "@/domain";
+import {
+  saveCoverLetter,
+  updateCoverLetter,
+} from "@/features/persist-storage";
 import { CharCounter } from "@/ui/char-counter";
 import { FormHeader } from "@/ui/form-header";
 import { GENERATING_STATUS } from "@/ui/letter-preview";
@@ -37,17 +44,24 @@ type LetterFormProps = {
     details: CoverLetterDetails,
   ) => Promise<CoverLetter>;
   onGeneratingChange?: (isGenerating: boolean) => void;
+  onGenerated?: (letter: CoverLetter) => void;
   submitLabel?: string;
+  initialDetails?: CoverLetterDetails;
+  /** When set, Try Again overwrites this id and stays on the page. */
+  existingCoverLetter?: Pick<CoverLetter, "id" | "createdAt">;
 };
 
 export function LetterForm({
   generateCoverLetter = defaultGenerateCoverLetter,
   onGeneratingChange,
+  onGenerated,
   submitLabel = "Generate Now",
+  initialDetails = EMPTY_DETAILS,
+  existingCoverLetter,
 }: LetterFormProps) {
   const router = useRouter();
   const { show } = useToast();
-  const [details, setDetails] = useState<CoverLetterDetails>(EMPTY_DETAILS);
+  const [details, setDetails] = useState<CoverLetterDetails>(initialDetails);
   const [isGenerating, setIsGenerating] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
 
@@ -55,6 +69,7 @@ export function LetterForm({
     details.additionalDetails,
   );
   const isValid = isCoverLetterDetailsValid(details);
+  const isEdit = existingCoverLetter != null;
 
   const updateField =
     (field: keyof CoverLetterDetails) =>
@@ -76,13 +91,22 @@ export function LetterForm({
     setGenerating(true);
     setStatusMessage(GENERATING_STATUS);
     try {
-      const letter = await generateCoverLetter(details);
-      saveCoverLetter(letter);
+      const generated = await generateCoverLetter(details);
+      if (isEdit) {
+        const letter = overwriteCoverLetter(existingCoverLetter, generated);
+        updateCoverLetter(letter);
+        setStatusMessage("Cover letter generated.");
+        onGenerated?.(letter);
+        setGenerating(false);
+        return;
+      }
+      saveCoverLetter(generated);
       setStatusMessage("Cover letter generated.");
+      onGenerated?.(generated);
       // Keep busy until navigation unmounts — avoids empty-preview flash.
-      router.replace(`/${letter.id}`);
+      router.replace(`/${generated.id}`);
     } catch {
-      // Stay on /new with the form intact; nothing persisted.
+      // Stay on the page with the form intact; nothing persisted.
       setStatusMessage(
         "Generation failed. Could not generate the letter.",
       );

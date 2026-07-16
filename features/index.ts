@@ -1,5 +1,9 @@
 export { Dashboard } from "./dashboard";
-export { CreateCoverLetter, LetterForm } from "./letter-form";
+export {
+  CreateCoverLetter,
+  EditCoverLetter,
+  LetterForm,
+} from "./letter-form";
 export {
   STORAGE_KEY,
   getCoverLetters,

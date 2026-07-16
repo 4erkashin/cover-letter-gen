@@ -3,6 +3,7 @@ export {
   coverLetterTitle,
   findCoverLetter,
   goalProgress,
+  overwriteCoverLetter,
 } from "./cover-letters";
 export type {
   CoverLetter,

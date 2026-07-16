@@ -13,6 +13,7 @@ vi.mock("next/navigation", () => ({
 
 vi.mock("@/features/persist-storage", () => ({
   saveCoverLetter,
+  updateCoverLetter: vi.fn(),
 }));
 
 vi.mock("reshaped", async (importOriginal) => {

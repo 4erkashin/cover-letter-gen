@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Text, View } from "reshaped";
 
 import { findCoverLetter } from "@/domain";
+import { EditCoverLetter } from "@/features/letter-form";
 import { useCoverLetters } from "@/features/persist-storage";
 
 type EditCoverLetterPageProps = {
@@ -33,14 +34,5 @@ export default function EditCoverLetterPage({
     notFound();
   }
 
-  return (
-    <View gap={2}>
-      <Text variant="title-3" as="h1">
-        Edit application
-      </Text>
-      <Text variant="body-2" color="neutral-faded">
-        Edit stub for Cover Letter {coverLetter.id} — Try Again arrives later.
-      </Text>
-    </View>
-  );
+  return <EditCoverLetter coverLetter={coverLetter} />;
 }

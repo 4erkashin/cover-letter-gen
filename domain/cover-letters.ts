@@ -48,3 +48,18 @@ export function coverLetterTitle(
 ): string {
   return `${jobTitle.trim()}, ${companyName.trim()}`;
 }
+
+/** Try Again: keep identity, replace generated fields, bump updatedAt. */
+export function overwriteCoverLetter(
+  existing: Pick<CoverLetter, "id" | "createdAt">,
+  generated: Pick<CoverLetter, "title" | "content" | "details">,
+): CoverLetter {
+  return {
+    id: existing.id,
+    createdAt: existing.createdAt,
+    title: generated.title,
+    content: generated.content,
+    details: generated.details,
+    updatedAt: new Date().toISOString(),
+  };
+}
