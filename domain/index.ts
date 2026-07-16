@@ -1,5 +1,6 @@
 export {
   GOAL_TARGET,
+  coverLetterTitle,
   findCoverLetter,
   goalProgress,
 } from "./cover-letters";

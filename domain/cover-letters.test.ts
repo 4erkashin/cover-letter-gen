@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   GOAL_TARGET,
+  coverLetterTitle,
   findCoverLetter,
   goalProgress,
   type CoverLetter,
@@ -67,5 +68,13 @@ describe("findCoverLetter", () => {
   it("returns null when the id is missing", () => {
     expect(findCoverLetter([makeCoverLetter()], "missing")).toBeNull();
     expect(findCoverLetter([], "a")).toBeNull();
+  });
+});
+
+describe("coverLetterTitle", () => {
+  it("formats job title and company for display and persistence", () => {
+    expect(coverLetterTitle("Product manager", "Apple")).toBe(
+      "Product manager, Apple",
+    );
   });
 });

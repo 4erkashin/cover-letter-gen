@@ -1,0 +1,20 @@
+import { Text } from "reshaped";
+
+type CharCounterProps = {
+  length: number;
+  max: number;
+};
+
+export function CharCounter({ length, max }: CharCounterProps) {
+  const isOverLimit = length > max;
+
+  return (
+    <Text
+      color={isOverLimit ? "critical" : "neutral-faded"}
+      variant="caption-1"
+      attributes={{ "data-over-limit": isOverLimit ? "true" : "false" }}
+    >
+      {length}/{max}
+    </Text>
+  );
+}

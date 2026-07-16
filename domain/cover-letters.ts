@@ -40,3 +40,11 @@ export function findCoverLetter(
 ): CoverLetter | null {
   return letters.find((letter) => letter.id === id) ?? null;
 }
+
+/** Display / persist title: `{Job title}, {Company}`. */
+export function coverLetterTitle(
+  jobTitle: string,
+  companyName: string,
+): string {
+  return `${jobTitle.trim()}, ${companyName.trim()}`;
+}

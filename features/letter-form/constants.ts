@@ -1,0 +1,1 @@
+export const ADDITIONAL_DETAILS_MAX = 1200;
