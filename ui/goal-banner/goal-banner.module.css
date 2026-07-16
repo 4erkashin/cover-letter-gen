@@ -1,0 +1,6 @@
+.root {
+  width: 100%;
+  border-radius: var(--rs-radius-medium);
+  background-color: var(--rs-color-background-primary-faded);
+  padding: 54px 16px;
+}

@@ -2,10 +2,14 @@
 
 import { View } from "reshaped";
 
+import { useCoverLetters } from "@/features/persist-storage";
 import { BrandLink } from "@/ui/brand-link";
+import { GoalHeader } from "@/ui/goal-header";
 import { HomeButton } from "@/ui/home-button";
 
 export function AppHeader() {
+  const { coverLetters } = useCoverLetters();
+
   return (
     <View
       as="header"
@@ -17,7 +21,10 @@ export function AppHeader() {
       width="100%"
     >
       <BrandLink />
-      <HomeButton />
+      <View direction="row" align="center" gap={4}>
+        <GoalHeader count={coverLetters.length} />
+        <HomeButton />
+      </View>
     </View>
   );
 }
