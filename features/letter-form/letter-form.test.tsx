@@ -155,5 +155,72 @@ describe("LetterForm", () => {
     expect(
       screen.getByRole("heading", { name: "Product manager, Apple" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("status"),
+    ).toHaveTextContent("Generation failed. Could not generate the letter.");
+    expect(
+      screen.getByRole("button", { name: "Generate Now" }),
+    ).toBeEnabled();
+  });
+
+  it("shows a busy Generate control and announces start while generation is in flight", async () => {
+    let resolveGenerate!: (letter: CoverLetter) => void;
+    const generate = vi.fn(
+      () =>
+        new Promise<CoverLetter>((resolve) => {
+          resolveGenerate = resolve;
+        }),
+    );
+    const onGeneratingChange = vi.fn();
+
+    render(
+      <LetterForm
+        generateCoverLetter={generate}
+        onGeneratingChange={onGeneratingChange}
+      />,
+    );
+    fillValidForm();
+    fireEvent.click(screen.getByRole("button", { name: "Generate Now" }));
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("button", { name: "Generating…" }),
+      ).toBeDisabled();
+      expect(screen.getByRole("status")).toHaveTextContent("Generating…");
+      expect(onGeneratingChange).toHaveBeenCalledWith(true);
+    });
+
+    expect(screen.getByLabelText("Job title")).toHaveValue(
+      validDetails.jobTitle,
+    );
+
+    resolveGenerate({
+      id: "letter-id",
+      title: "Product manager, Apple",
+      content: "Dear Apple Team,\n\nI am writing to express my interest.",
+      details: validDetails,
+      createdAt: "2026-01-01T00:00:00.000Z",
+      updatedAt: "2026-01-01T00:00:00.000Z",
+    });
+
+    await waitFor(() => {
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "Cover letter generated.",
+      );
+      expect(replace).toHaveBeenCalledWith("/letter-id");
+    });
+
+    // Stay busy until navigation unmounts — no empty-preview flash.
+    expect(onGeneratingChange).toHaveBeenCalledWith(true);
+    expect(onGeneratingChange).not.toHaveBeenCalledWith(false);
+    expect(
+      screen.getByRole("button", { name: "Generating…" }),
+    ).toBeDisabled();
+  });
+
+  it("uses Try Again as the idle label when submitLabel is set", () => {
+    render(<LetterForm submitLabel="Try Again" />);
+
+    expect(screen.getByRole("button", { name: "Try Again" })).toBeDisabled();
   });
 });

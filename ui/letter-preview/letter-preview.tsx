@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Text, View } from "reshaped";
 
 import styles from "./letter-preview.module.css";
@@ -5,24 +8,62 @@ import styles from "./letter-preview.module.css";
 const EMPTY_PLACEHOLDER =
   "Your personalized job application will appear here...";
 
+export const GENERATING_STATUS = "Generating…";
+
 type LetterPreviewProps = {
   content?: string | null;
+  isGenerating?: boolean;
 };
 
-export function LetterPreview({ content = null }: LetterPreviewProps) {
+export function LetterPreview({
+  content = null,
+  isGenerating = false,
+}: LetterPreviewProps) {
+  const [wasGenerating, setWasGenerating] = useState(false);
+  const [shouldReveal, setShouldReveal] = useState(false);
+
+  if (isGenerating && !wasGenerating) {
+    setWasGenerating(true);
+    setShouldReveal(false);
+  } else if (!isGenerating && wasGenerating) {
+    setWasGenerating(false);
+    if (content) {
+      setShouldReveal(true);
+    }
+  }
+
   return (
     <View
       className={styles.root}
       attributes={{
         role: "region",
         "aria-label": "Generated letter preview",
+        "aria-busy": isGenerating || undefined,
       }}
     >
-      {content ? (
+      {isGenerating ? (
+        <>
+          <div
+            className={styles.preloader}
+            data-testid="letter-preloader"
+            aria-hidden
+          >
+            <div className={styles.preloaderBlob} />
+          </div>
+          <Text
+            color="neutral-faded"
+            variant="body-2"
+            className={styles.reducedMotionCopy}
+          >
+            {GENERATING_STATUS}
+          </Text>
+        </>
+      ) : content ? (
         <Text
           as="p"
           color="neutral"
           variant="body-2"
+          className={shouldReveal ? styles.reveal : undefined}
           attributes={{ style: { whiteSpace: "pre-wrap" } }}
         >
           {content}

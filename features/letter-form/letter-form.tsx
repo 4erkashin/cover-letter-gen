@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react";
 import {
   Button,
   FormControl,
+  HiddenVisually,
   TextArea,
   TextField,
   View,
@@ -15,6 +16,7 @@ import type { CoverLetter, CoverLetterDetails } from "@/domain";
 import { saveCoverLetter } from "@/features/persist-storage";
 import { CharCounter } from "@/ui/char-counter";
 import { FormHeader } from "@/ui/form-header";
+import { GENERATING_STATUS } from "@/ui/letter-preview";
 
 import { ADDITIONAL_DETAILS_MAX } from "./constants";
 import { generateCoverLetter as defaultGenerateCoverLetter } from "./generate-cover-letter";
@@ -34,15 +36,20 @@ type LetterFormProps = {
   generateCoverLetter?: (
     details: CoverLetterDetails,
   ) => Promise<CoverLetter>;
+  onGeneratingChange?: (isGenerating: boolean) => void;
+  submitLabel?: string;
 };
 
 export function LetterForm({
   generateCoverLetter = defaultGenerateCoverLetter,
+  onGeneratingChange,
+  submitLabel = "Generate Now",
 }: LetterFormProps) {
   const router = useRouter();
   const { show } = useToast();
   const [details, setDetails] = useState<CoverLetterDetails>(EMPTY_DETAILS);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const detailsOverLimit = isAdditionalDetailsOverLimit(
     details.additionalDetails,
@@ -55,27 +62,37 @@ export function LetterForm({
       setDetails((current) => ({ ...current, [field]: value }));
     };
 
+  const setGenerating = (next: boolean) => {
+    setIsGenerating(next);
+    onGeneratingChange?.(next);
+  };
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!isValid || isSubmitting) {
+    if (!isValid || isGenerating) {
       return;
     }
 
-    setIsSubmitting(true);
+    setGenerating(true);
+    setStatusMessage(GENERATING_STATUS);
     try {
       const letter = await generateCoverLetter(details);
       saveCoverLetter(letter);
+      setStatusMessage("Cover letter generated.");
+      // Keep busy until navigation unmounts — avoids empty-preview flash.
       router.replace(`/${letter.id}`);
     } catch {
       // Stay on /new with the form intact; nothing persisted.
+      setStatusMessage(
+        "Generation failed. Could not generate the letter.",
+      );
       show({
         color: "critical",
         position: "bottom-end",
         title: "Generation failed",
         text: "Could not generate the letter. Try again later.",
       });
-    } finally {
-      setIsSubmitting(false);
+      setGenerating(false);
     }
   };
 
@@ -150,10 +167,21 @@ export function LetterForm({
           variant="solid"
           fullWidth
           size="large"
-          disabled={!isValid || isSubmitting}
+          disabled={!isValid || isGenerating}
+          loading={isGenerating}
+          loadingAriaLabel={GENERATING_STATUS}
+          attributes={
+            isGenerating ? { "aria-label": GENERATING_STATUS } : undefined
+          }
         >
-          Generate Now
+          {submitLabel}
         </Button>
+
+        <HiddenVisually>
+          <div role="status" aria-live="polite">
+            {statusMessage}
+          </div>
+        </HiddenVisually>
       </View>
     </form>
   );

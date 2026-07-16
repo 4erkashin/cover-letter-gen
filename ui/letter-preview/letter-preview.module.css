@@ -1,7 +1,100 @@
 .root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 320px;
   width: 100%;
   border-radius: var(--rs-radius-medium);
   background-color: var(--rs-color-background-neutral-faded);
   padding: 24px;
+}
+
+.preloader {
+  width: 160px;
+  height: 160px;
+  animation: bounceY 1s ease-in-out infinite alternate;
+}
+
+.preloaderBlob {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.preloaderBlob::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  filter: blur(40px);
+}
+
+.preloaderBlob::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  box-shadow: inset 0 -2px 32px 0 rgba(16, 24, 40, 0.08);
+  background:
+    radial-gradient(100% 100% at 0% 0%, #ffffff 0%, #d0d5dd 100%),
+    radial-gradient(
+      60.16% 60.16% at 74.22% 21.88%,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.16) 100%
+    );
+  transform: rotate(22deg);
+}
+
+.reducedMotionCopy {
+  display: none;
+}
+
+.reveal {
+  align-self: stretch;
+  width: 100%;
+  animation: revealLetter 320ms ease-out both;
+}
+
+@keyframes bounceY {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(16px);
+    opacity: 0.48;
+  }
+}
+
+@keyframes revealLetter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader,
+  .reveal {
+    animation: none !important;
+  }
+
+  .preloader {
+    display: none;
+  }
+
+  .reducedMotionCopy {
+    display: block;
+  }
 }
