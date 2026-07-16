@@ -1,6 +1,7 @@
 export { AppHeader } from "./app-header";
 export { BrandLink } from "./brand-link";
 export { CharCounter } from "./char-counter";
+export { CopyButton } from "./copy-button";
 export { CreateNewButton } from "./create-new-button";
 export { MAX_APP_WIDTH } from "./constants";
 export { fixelDisplay, fixelText } from "./fonts";
@@ -11,6 +12,7 @@ export { GoalHeader } from "./goal-header";
 export { HomeButton } from "./home-button";
 export { InformedError } from "./informed-error";
 export type { InformedErrorKind } from "./informed-error";
+export { LetterCard } from "./letter-card";
 export { LetterPreview } from "./letter-preview";
 export { ProgressTracker } from "./progress-tracker";
 export { ReshapedRoot } from "./reshaped-root";

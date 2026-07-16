@@ -33,6 +33,10 @@ vi.mock("@/ui/assets/plus-icon.svg", () => ({
   default: () => <svg data-testid="plus-icon" />,
 }));
 
+vi.mock("@/ui/assets/copy-icon.svg", () => ({
+  default: () => <svg data-testid="copy-icon" />,
+}));
+
 vi.mock("@/features/persist-storage", () => ({
   saveCoverLetter,
   updateCoverLetter,

@@ -1,9 +1,23 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("@/ui/assets/copy-icon.svg", () => ({
+  default: () => <svg data-testid="copy-icon" />,
+}));
 
 import { LetterPreview } from "./letter-preview";
 
 describe("LetterPreview", () => {
+  const writeText = vi.fn();
+
+  beforeEach(() => {
+    writeText.mockReset();
+    Object.defineProperty(navigator, "clipboard", {
+      configurable: true,
+      value: { writeText },
+    });
+  });
+
   it("shows the empty-state placeholder when there is no content", () => {
     render(<LetterPreview />);
 
@@ -15,6 +29,9 @@ describe("LetterPreview", () => {
     expect(
       screen.getByRole("region", { name: "Generated letter preview" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /copy to clipboard/i }),
+    ).toBeDisabled();
   });
 
   it("shows the Preloader and marks the region busy while generating", () => {
@@ -68,5 +85,16 @@ describe("LetterPreview", () => {
 
     expect(screen.getByTestId("letter-preloader")).toBeInTheDocument();
     expect(screen.queryByText(/Previous letter/)).not.toBeInTheDocument();
+  });
+
+  it("copies letter content from the preview Copy button", () => {
+    const content = "Dear Apple Team,\n\nI am writing to express my interest.";
+    render(<LetterPreview content={content} />);
+
+    fireEvent.click(
+      screen.getByRole("button", { name: /copy to clipboard/i }),
+    );
+
+    expect(writeText).toHaveBeenCalledWith(content);
   });
 });

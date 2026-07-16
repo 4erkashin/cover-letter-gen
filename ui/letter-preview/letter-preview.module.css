@@ -1,13 +1,28 @@
 .root {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   min-height: 320px;
   width: 100%;
   border-radius: var(--rs-radius-medium);
   background-color: var(--rs-color-background-neutral-faded);
   padding: 24px;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 16px;
 }
 
 .preloader {

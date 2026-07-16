@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Text, View } from "reshaped";
 
+import { CopyButton } from "@/ui/copy-button";
+
 import styles from "./letter-preview.module.css";
 
 const EMPTY_PLACEHOLDER =
@@ -32,6 +34,8 @@ export function LetterPreview({
     }
   }
 
+  const copyText = content ?? "";
+
   return (
     <View
       className={styles.root}
@@ -41,38 +45,44 @@ export function LetterPreview({
         "aria-busy": isGenerating || undefined,
       }}
     >
-      {isGenerating ? (
-        <>
-          <div
-            className={styles.preloader}
-            data-testid="letter-preloader"
-            aria-hidden
-          >
-            <div className={styles.preloaderBlob} />
-          </div>
+      <div className={styles.body}>
+        {isGenerating ? (
+          <>
+            <div
+              className={styles.preloader}
+              data-testid="letter-preloader"
+              aria-hidden
+            >
+              <div className={styles.preloaderBlob} />
+            </div>
+            <Text
+              color="neutral-faded"
+              variant="body-2"
+              className={styles.reducedMotionCopy}
+            >
+              {GENERATING_STATUS}
+            </Text>
+          </>
+        ) : content ? (
           <Text
-            color="neutral-faded"
+            as="p"
+            color="neutral"
             variant="body-2"
-            className={styles.reducedMotionCopy}
+            className={shouldReveal ? styles.reveal : undefined}
+            attributes={{ style: { whiteSpace: "pre-wrap" } }}
           >
-            {GENERATING_STATUS}
+            {content}
           </Text>
-        </>
-      ) : content ? (
-        <Text
-          as="p"
-          color="neutral"
-          variant="body-2"
-          className={shouldReveal ? styles.reveal : undefined}
-          attributes={{ style: { whiteSpace: "pre-wrap" } }}
-        >
-          {content}
-        </Text>
-      ) : (
-        <Text color="neutral-faded" variant="body-2">
-          {EMPTY_PLACEHOLDER}
-        </Text>
-      )}
+        ) : (
+          <Text color="neutral-faded" variant="body-2">
+            {EMPTY_PLACEHOLDER}
+          </Text>
+        )}
+      </div>
+
+      <div className={styles.actions}>
+        <CopyButton text={copyText} />
+      </div>
     </View>
   );
 }

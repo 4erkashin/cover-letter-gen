@@ -1,15 +1,45 @@
 "use client";
 
-import { Text, View } from "reshaped";
+import { Button, Grid, Text, View, useToast } from "reshaped";
 
-import { useCoverLetters } from "@/features/persist-storage";
+import type { CoverLetter } from "@/domain";
+import {
+  removeCoverLetter,
+  saveCoverLetter,
+  useCoverLetters,
+} from "@/features/persist-storage";
 import { CreateNewButton } from "@/ui/create-new-button";
 import { GoalBanner } from "@/ui/goal-banner";
+import { LetterCard } from "@/ui/letter-card";
 
 export function Dashboard() {
   const { coverLetters, isLoading } = useCoverLetters();
+  const { show, hide } = useToast();
   const count = coverLetters.length;
   const isEmpty = !isLoading && count === 0;
+
+  const handleDelete = (letter: CoverLetter) => {
+    removeCoverLetter(letter.id);
+    const toastId = show({
+      title: "Cover letter deleted",
+      text: "You can undo this action.",
+      position: "bottom-end",
+      timeout: "long",
+      actionsSlot: (
+        <Button
+          type="button"
+          variant="ghost"
+          size="small"
+          onClick={() => {
+            saveCoverLetter(letter);
+            hide(toastId);
+          }}
+        >
+          Undo
+        </Button>
+      ),
+    });
+  };
 
   return (
     <View gap={8}>
@@ -30,6 +60,20 @@ export function Dashboard() {
           </Text>
           <CreateNewButton />
         </View>
+      ) : null}
+
+      {count > 0 ? (
+        <Grid columns={{ s: 1, m: 2 }} gap={4}>
+          {coverLetters.map((letter) => (
+            <Grid.Item key={letter.id}>
+              <LetterCard
+                id={letter.id}
+                content={letter.content}
+                onDelete={() => handleDelete(letter)}
+              />
+            </Grid.Item>
+          ))}
+        </Grid>
       ) : null}
 
       <GoalBanner count={count} />

@@ -24,6 +24,10 @@ vi.mock("reshaped", async (importOriginal) => {
   };
 });
 
+vi.mock("@/ui/assets/copy-icon.svg", () => ({
+  default: () => <svg data-testid="copy-icon" />,
+}));
+
 import { CreateCoverLetter } from "./create-cover-letter";
 
 const validDetails: CoverLetterDetails = {
