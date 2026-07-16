@@ -8,6 +8,7 @@ import {
   TextArea,
   TextField,
   View,
+  useToast,
 } from "reshaped";
 
 import type { CoverLetter, CoverLetterDetails } from "@/domain";
@@ -16,7 +17,7 @@ import { CharCounter } from "@/ui/char-counter";
 import { FormHeader } from "@/ui/form-header";
 
 import { ADDITIONAL_DETAILS_MAX } from "./constants";
-import { createStubCoverLetter as defaultCreateStubCoverLetter } from "./create-stub-cover-letter";
+import { generateCoverLetter as defaultGenerateCoverLetter } from "./generate-cover-letter";
 import {
   isAdditionalDetailsOverLimit,
   isCoverLetterDetailsValid,
@@ -30,15 +31,16 @@ const EMPTY_DETAILS: CoverLetterDetails = {
 };
 
 type LetterFormProps = {
-  createStubCoverLetter?: (
+  generateCoverLetter?: (
     details: CoverLetterDetails,
   ) => Promise<CoverLetter>;
 };
 
 export function LetterForm({
-  createStubCoverLetter = defaultCreateStubCoverLetter,
+  generateCoverLetter = defaultGenerateCoverLetter,
 }: LetterFormProps) {
   const router = useRouter();
+  const { show } = useToast();
   const [details, setDetails] = useState<CoverLetterDetails>(EMPTY_DETAILS);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -61,11 +63,17 @@ export function LetterForm({
 
     setIsSubmitting(true);
     try {
-      const letter = await createStubCoverLetter(details);
+      const letter = await generateCoverLetter(details);
       saveCoverLetter(letter);
       router.replace(`/${letter.id}`);
     } catch {
       // Stay on /new with the form intact; nothing persisted.
+      show({
+        color: "critical",
+        position: "bottom-end",
+        title: "Generation failed",
+        text: "Could not generate the letter. Try again later.",
+      });
     } finally {
       setIsSubmitting(false);
     }

@@ -25,6 +25,7 @@ export default function RootLayout({
       lang="en"
       className={`${fixelDisplay.variable} ${fixelText.variable}`}
       data-rs-theme="slate"
+      data-scroll-behavior="smooth"
     >
       <body>
         <ReshapedRoot>

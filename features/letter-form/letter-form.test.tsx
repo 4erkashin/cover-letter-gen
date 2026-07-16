@@ -5,6 +5,7 @@ import type { CoverLetter, CoverLetterDetails } from "@/domain";
 
 const replace = vi.hoisted(() => vi.fn());
 const saveCoverLetter = vi.hoisted(() => vi.fn());
+const showToast = vi.hoisted(() => vi.fn());
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ replace }),
@@ -13,6 +14,14 @@ vi.mock("next/navigation", () => ({
 vi.mock("@/features/persist-storage", () => ({
   saveCoverLetter,
 }));
+
+vi.mock("reshaped", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("reshaped")>();
+  return {
+    ...actual,
+    useToast: () => ({ show: showToast }),
+  };
+});
 
 import { LetterForm } from "./letter-form";
 
@@ -41,6 +50,7 @@ describe("LetterForm", () => {
   beforeEach(() => {
     replace.mockReset();
     saveCoverLetter.mockReset();
+    showToast.mockReset();
   });
 
   it("shows empty-state labels, placeholder, counter, and muted Generate Now", () => {
@@ -98,37 +108,43 @@ describe("LetterForm", () => {
     expect(screen.getByRole("button", { name: "Generate Now" })).toBeDisabled();
   });
 
-  it("persists a stub Cover Letter and replace-navigates to /[id] on success", async () => {
-    const stubLetter: CoverLetter = {
-      id: "stub-id",
+  it("persists a generated Cover Letter and replace-navigates to /[id] on success", async () => {
+    const generatedLetter: CoverLetter = {
+      id: "letter-id",
       title: "Product manager, Apple",
-      content: "Stub cover letter for Product manager at Apple.",
+      content: "Dear Apple Team,\n\nI am writing to express my interest.",
       details: validDetails,
       createdAt: "2026-01-01T00:00:00.000Z",
       updatedAt: "2026-01-01T00:00:00.000Z",
     };
-    const createStub = vi.fn().mockResolvedValue(stubLetter);
+    const generate = vi.fn().mockResolvedValue(generatedLetter);
 
-    render(<LetterForm createStubCoverLetter={createStub} />);
+    render(<LetterForm generateCoverLetter={generate} />);
     fillValidForm();
     fireEvent.click(screen.getByRole("button", { name: "Generate Now" }));
 
     await waitFor(() => {
-      expect(createStub).toHaveBeenCalledWith(validDetails);
-      expect(saveCoverLetter).toHaveBeenCalledWith(stubLetter);
-      expect(replace).toHaveBeenCalledWith("/stub-id");
+      expect(generate).toHaveBeenCalledWith(validDetails);
+      expect(saveCoverLetter).toHaveBeenCalledWith(generatedLetter);
+      expect(replace).toHaveBeenCalledWith("/letter-id");
     });
   });
 
-  it("keeps the form and writes nothing when stub create fails", async () => {
-    const createStub = vi.fn().mockRejectedValue(new Error("stub failed"));
+  it("keeps the form, writes nothing, and announces an error when generate fails", async () => {
+    const generate = vi.fn().mockRejectedValue(new Error("generate failed"));
 
-    render(<LetterForm createStubCoverLetter={createStub} />);
+    render(<LetterForm generateCoverLetter={generate} />);
     fillValidForm();
     fireEvent.click(screen.getByRole("button", { name: "Generate Now" }));
 
     await waitFor(() => {
-      expect(createStub).toHaveBeenCalled();
+      expect(generate).toHaveBeenCalled();
+      expect(showToast).toHaveBeenCalledWith({
+        color: "critical",
+        position: "bottom-end",
+        title: "Generation failed",
+        text: "Could not generate the letter. Try again later.",
+      });
     });
 
     expect(saveCoverLetter).not.toHaveBeenCalled();
