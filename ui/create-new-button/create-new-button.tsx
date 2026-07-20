@@ -16,7 +16,7 @@ export function CreateNewButton({
       className={className}
       href="/new"
       variant="solid"
-      color="primary"
+      color="positive"
       size={size}
       icon={PlusIcon}
     >

@@ -21,6 +21,7 @@ import {
   saveCoverLetter,
   updateCoverLetter,
 } from "@/features/persist-storage";
+import RetryIcon from "@/ui/assets/retry-icon.svg";
 import { CharCounter } from "@/ui/char-counter";
 import { FormHeader } from "@/ui/form-header";
 import { GENERATING_STATUS } from "@/ui/letter-preview";
@@ -129,7 +130,7 @@ export function LetterForm({
         />
 
         <View direction="row" gap={4}>
-          <View.Item columns={6}>
+          <View.Item columns={{ s: 12, m: 6 }}>
             <FormControl>
               <FormControl.Label>Job title</FormControl.Label>
               <TextField
@@ -141,7 +142,7 @@ export function LetterForm({
             </FormControl>
           </View.Item>
 
-          <View.Item columns={6}>
+          <View.Item columns={{ s: 12, m: 6 }}>
             <FormControl>
               <FormControl.Label>Company</FormControl.Label>
               <TextField
@@ -187,8 +188,9 @@ export function LetterForm({
 
         <Button
           type="submit"
-          color="positive"
-          variant="solid"
+          color={isEdit && !isGenerating ? "neutral" : "positive"}
+          variant={isEdit && !isGenerating ? "outline" : "solid"}
+          icon={isEdit && !isGenerating ? RetryIcon : undefined}
           fullWidth
           size="large"
           disabled={!isValid || isGenerating}

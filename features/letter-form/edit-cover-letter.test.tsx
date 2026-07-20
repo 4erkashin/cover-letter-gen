@@ -33,6 +33,10 @@ vi.mock("@/ui/assets/plus-icon.svg", () => ({
   default: () => <svg data-testid="plus-icon" />,
 }));
 
+vi.mock("@/ui/assets/retry-icon.svg", () => ({
+  default: () => <svg data-testid="retry-icon" />,
+}));
+
 vi.mock("@/ui/assets/copy-icon.svg", () => ({
   default: () => <svg data-testid="copy-icon" />,
 }));

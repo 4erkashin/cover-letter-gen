@@ -25,6 +25,10 @@ vi.mock("reshaped", async (importOriginal) => {
   };
 });
 
+vi.mock("@/ui/assets/retry-icon.svg", () => ({
+  default: () => <svg data-testid="retry-icon" />,
+}));
+
 import { LetterForm } from "./letter-form";
 
 const validDetails: CoverLetterDetails = {
@@ -225,6 +229,42 @@ describe("LetterForm", () => {
     render(<LetterForm submitLabel="Try Again" />);
 
     expect(screen.getByRole("button", { name: "Try Again" })).toBeDisabled();
+  });
+
+  it("shows outline Try Again with a refresh icon in edit mode", () => {
+    const existing: CoverLetter = {
+      id: "existing-id",
+      title: "Product manager, Apple",
+      content: "Old letter body",
+      details: validDetails,
+      createdAt: "2026-01-01T00:00:00.000Z",
+      updatedAt: "2026-01-01T00:00:00.000Z",
+    };
+
+    render(
+      <LetterForm
+        initialDetails={existing.details}
+        existingCoverLetter={existing}
+        submitLabel="Try Again"
+      />,
+    );
+
+    const button = screen.getByRole("button", { name: "Try Again" });
+    expect(button).toBeEnabled();
+    expect(button.className).toMatch(/variant-outline/);
+    expect(button.className).toMatch(/color-neutral/);
+    expect(screen.getByTestId("retry-icon")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Generate Now" })).toBeNull();
+  });
+
+  it("keeps solid Generate Now without a refresh icon on create", () => {
+    render(<LetterForm initialDetails={validDetails} />);
+
+    const button = screen.getByRole("button", { name: "Generate Now" });
+    expect(button).toBeEnabled();
+    expect(button.className).toMatch(/variant-solid/);
+    expect(button.className).toMatch(/color-positive/);
+    expect(screen.queryByTestId("retry-icon")).toBeNull();
   });
 
   it("seeds fields from initialDetails", () => {

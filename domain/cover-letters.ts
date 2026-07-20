@@ -1,6 +1,5 @@
 export type IsoDatetimeString = string;
 
-/** Job fields captured for a Cover Letter (not a separate “Application” entity). */
 export type CoverLetterDetails = {
   jobTitle: string;
   companyName: string;

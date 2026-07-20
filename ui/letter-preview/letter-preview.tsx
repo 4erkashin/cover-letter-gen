@@ -45,7 +45,14 @@ export function LetterPreview({
         "aria-busy": isGenerating || undefined,
       }}
     >
-      <div className={styles.body}>
+      <div
+        className={[
+          styles.body,
+          isGenerating ? styles.bodyGenerating : undefined,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
         {isGenerating ? (
           <>
             <div

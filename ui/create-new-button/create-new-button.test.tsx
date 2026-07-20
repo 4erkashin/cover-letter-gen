@@ -29,4 +29,13 @@ describe("CreateNewButton", () => {
       screen.getByRole("link", { name: /create new/i }),
     ).toHaveAttribute("href", "/new");
   });
+
+  it("uses the positive solid Create New styling from the mock", () => {
+    render(<CreateNewButton />);
+
+    const button = screen.getByRole("link", { name: /create new/i });
+    expect(button.className).toMatch(/variant-solid/);
+    expect(button.className).toMatch(/color-positive/);
+    expect(screen.getByTestId("plus-icon")).toBeInTheDocument();
+  });
 });
