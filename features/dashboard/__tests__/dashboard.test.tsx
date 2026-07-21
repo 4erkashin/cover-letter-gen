@@ -57,7 +57,7 @@ vi.mock("@/ui/assets/trash-icon.svg", () => ({
   default: () => <svg data-testid="trash-icon" />,
 }));
 
-import { Dashboard } from "./dashboard";
+import { Dashboard } from "../dashboard";
 
 function makeCoverLetter(
   id: string,

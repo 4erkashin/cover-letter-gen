@@ -44,7 +44,7 @@ vi.mock("@/ui/assets/check-icon.svg", () => ({
   default: () => <svg data-testid="check-icon" />,
 }));
 
-import { AppHeader } from "./app-header";
+import { AppHeader } from "../app-header";
 
 beforeEach(() => {
   coverLettersState.coverLetters = [];

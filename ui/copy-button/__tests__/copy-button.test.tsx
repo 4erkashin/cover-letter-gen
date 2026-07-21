@@ -5,7 +5,7 @@ vi.mock("@/ui/assets/copy-icon.svg", () => ({
   default: () => <svg data-testid="copy-icon" />,
 }));
 
-import { CopyButton } from "./copy-button";
+import { CopyButton } from "../copy-button";
 
 describe("CopyButton", () => {
   const writeText = vi.fn();

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { InformedError } from "./informed-error";
+import { InformedError } from "../informed-error";
 
 describe("InformedError", () => {
   it("shows locked Cover Letter not-found copy with a Home CTA", () => {

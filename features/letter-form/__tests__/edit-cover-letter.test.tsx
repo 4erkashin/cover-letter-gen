@@ -55,7 +55,7 @@ vi.mock("reshaped", async (importOriginal) => {
   };
 });
 
-import { EditCoverLetter } from "./edit-cover-letter";
+import { EditCoverLetter } from "../edit-cover-letter";
 
 const validDetails: CoverLetterDetails = {
   jobTitle: "Product manager",

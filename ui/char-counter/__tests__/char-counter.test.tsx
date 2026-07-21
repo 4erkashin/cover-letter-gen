@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { CharCounter } from "./char-counter";
+import { CharCounter } from "../char-counter";
 
 describe("CharCounter", () => {
   it("shows current over max in {current}/{max} form", () => {

@@ -9,7 +9,7 @@ import {
   resetCoverLettersForTests,
   saveCoverLetter,
   updateCoverLetter,
-} from "./store";
+} from "../store";
 
 function makeCoverLetter(overrides: Partial<CoverLetter> = {}): CoverLetter {
   return {

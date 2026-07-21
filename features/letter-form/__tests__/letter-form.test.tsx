@@ -29,7 +29,7 @@ vi.mock("@/ui/assets/retry-icon.svg", () => ({
   default: () => <svg data-testid="retry-icon" />,
 }));
 
-import { LetterForm } from "./letter-form";
+import { LetterForm } from "../letter-form";
 
 const validDetails: CoverLetterDetails = {
   jobTitle: "Product manager",

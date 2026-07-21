@@ -7,7 +7,7 @@ import {
   goalProgress,
   overwriteCoverLetter,
   type CoverLetter,
-} from "./cover-letters";
+} from "../cover-letters";
 
 function makeCoverLetter(overrides: Partial<CoverLetter> = {}): CoverLetter {
   return {

@@ -5,7 +5,7 @@ vi.mock("@/ui/assets/check-icon.svg", () => ({
   default: () => <svg data-testid="check-icon" />,
 }));
 
-import { GoalHeader } from "./goal-header";
+import { GoalHeader } from "../goal-header";
 
 describe("GoalHeader", () => {
   it("shows count over target with applications generated copy", () => {

@@ -19,7 +19,7 @@ vi.mock("@/ui/assets/plus-icon.svg", () => ({
   default: () => <svg data-testid="plus-icon" />,
 }));
 
-import { GoalBanner } from "./goal-banner";
+import { GoalBanner } from "../goal-banner";
 
 describe("GoalBanner", () => {
   it("shows Hit your goal copy, meter, and Create New while below target", () => {

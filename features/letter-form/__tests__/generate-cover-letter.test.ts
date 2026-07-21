@@ -8,8 +8,8 @@ vi.mock("ai", () => ({
   generateText,
 }));
 
-import { FLASH_MODEL } from "./constants";
-import { generateCoverLetter } from "./generate-cover-letter";
+import { FLASH_MODEL } from "../constants";
+import { generateCoverLetter } from "../generate-cover-letter";
 
 const details: CoverLetterDetails = {
   jobTitle: "  Product manager  ",
