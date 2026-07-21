@@ -1,8 +1,8 @@
-# PRD: Greenfield Alt+Shift cover-letter app (v3)
+# PRD: Greenfield Alt+Shift cover-letter app
 
 ## Summary
 
-Greenfield **v3** Alt+Shift cover-letter app (informed by v2, **not** a port): Reshaped UI; three primary screens (dashboard / create / edit) plus informed error screens (Cover Letter not-found; unknown-route 404); required generation-status animation; browser persistence with cross-tab sync; AI generation via AI SDK (`generateText`) + Server Actions.
+Greenfield Alt+Shift cover-letter app (informed by v2, **not** a port): Reshaped UI; three primary screens (dashboard / create / edit) plus informed error screens (Cover Letter not-found; unknown-route 404); required generation-status animation; browser persistence with cross-tab sync; AI generation via AI SDK (`generateText`) + Server Actions.
 
 Domain language: **Cover Letter** (see `CONTEXT.md`). UI copy may say “application(s)” per mock — that is presentation only, not a second entity.
 

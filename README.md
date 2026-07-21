@@ -1,4 +1,4 @@
-# Cover Letter Gen (v3)
+# Cover Letter Gen
 
 Greenfield **Alt+Shift** app for creating and managing AI-generated cover letters against a hiring goal.
 
@@ -42,5 +42,5 @@ Useful scripts: `pnpm lint` · `pnpm typecheck` · `pnpm test`
 Open work that owns README sections **not** filled here yet:
 
 - [Ship obligations (README Decision Log, AI workflow, deploy)](https://github.com/4erkashin/cover-letter-gen/issues/20)
-- [Map: Bring v3 codebase to order](https://github.com/4erkashin/cover-letter-gen/issues/21)
+- [Map: Bring codebase to order](https://github.com/4erkashin/cover-letter-gen/issues/21)
 - [Add Prettier (format script + config)](https://github.com/4erkashin/cover-letter-gen/issues/28)
