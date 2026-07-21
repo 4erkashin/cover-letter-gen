@@ -1,9 +1,9 @@
 import { Text, View } from "reshaped";
 
 import { GOAL_TARGET, goalProgress } from "@/domain";
-import { CreateNewButton } from "@/ui/create-new-button";
-import { ProgressTracker } from "@/ui/progress-tracker";
 
+import { CreateNewButton } from "../create-new-button";
+import { ProgressTracker } from "../progress-tracker";
 import styles from "./goal-banner.module.css";
 
 type GoalBannerProps = {

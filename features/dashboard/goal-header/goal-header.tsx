@@ -2,8 +2,8 @@ import { Text, View } from "reshaped";
 
 import { GOAL_TARGET, goalProgress } from "@/domain";
 import CheckIcon from "@/ui/assets/check-icon.svg";
-import { ProgressTracker } from "@/ui/progress-tracker";
 
+import { ProgressTracker } from "../progress-tracker";
 import styles from "./goal-header.module.css";
 
 type GoalHeaderProps = {

@@ -8,9 +8,9 @@ import {
   saveCoverLetter,
   useCoverLetters,
 } from "@/features/persist-storage";
-import { CreateNewButton } from "@/ui/create-new-button";
-import { GoalBanner } from "@/ui/goal-banner";
-import { LetterCard } from "@/ui/letter-card";
+import { CreateNewButton } from "./create-new-button";
+import { GoalBanner } from "./goal-banner";
+import { LetterCard } from "./letter-card";
 
 export function Dashboard() {
   const { coverLetters, isLoading } = useCoverLetters();

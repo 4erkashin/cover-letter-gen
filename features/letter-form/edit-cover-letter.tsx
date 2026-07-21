@@ -4,12 +4,12 @@ import { useState } from "react";
 import { View } from "reshaped";
 
 import type { CoverLetter, CoverLetterDetails } from "@/domain";
+import { GoalBanner } from "@/features/dashboard/goal-banner";
 import { useCoverLetters } from "@/features/persist-storage";
-import { FormPreviewShell } from "@/ui/form-preview-shell";
-import { GoalBanner } from "@/ui/goal-banner";
-import { LetterPreview } from "@/ui/letter-preview";
 
+import { FormPreviewShell } from "./form-preview-shell";
 import { LetterForm } from "./letter-form";
+import { LetterPreview } from "./letter-preview";
 
 type EditCoverLetterProps = {
   coverLetter: CoverLetter;

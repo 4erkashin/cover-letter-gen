@@ -1,9 +1,9 @@
 import { Button, Text, View } from "reshaped";
 
-export type InformedErrorKind = "cover-letter-missing" | "unknown-route";
+export type InformedErrorKind = "missing-application" | "unknown-route";
 
 const COPY = {
-  "cover-letter-missing": {
+  "missing-application": {
     headline: "This application isn't here",
     supporting: "It may have been removed, or the link may be out of date.",
   },

@@ -4,8 +4,9 @@ import { View } from "reshaped";
 
 import { useCoverLetters } from "@/features/persist-storage";
 import { BrandLink } from "@/ui/brand-link";
-import { GoalHeader } from "@/ui/goal-header";
 import { HomeButton } from "@/ui/home-button";
+
+import { GoalHeader } from "../goal-header";
 
 import styles from "./app-header.module.css";
 

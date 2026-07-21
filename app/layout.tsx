@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import { Container, View } from "reshaped";
 
-import {
-  AppHeader,
-  MAX_APP_WIDTH,
-  ReshapedRoot,
-  fixelDisplay,
-  fixelText,
-} from "@/ui";
+import { AppHeader } from "@/features/dashboard/app-header";
+import { MAX_APP_WIDTH } from "@/ui/constants";
+import { fixelDisplay, fixelText } from "@/ui/fonts";
+import { ReshapedRoot } from "@/ui/reshaped-root";
 import "@/ui/globals.css";
 
 export const metadata: Metadata = {

@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 import type { CoverLetter, CoverLetterDetails } from "@/domain";
-import { FormPreviewShell } from "@/ui/form-preview-shell";
-import { LetterPreview } from "@/ui/letter-preview";
 
+import { FormPreviewShell } from "./form-preview-shell";
 import { LetterForm } from "./letter-form";
+import { LetterPreview } from "./letter-preview";
 
 type CreateCoverLetterProps = {
   generateCoverLetter?: (details: CoverLetterDetails) => Promise<CoverLetter>;

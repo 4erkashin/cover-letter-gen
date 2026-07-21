@@ -1,5 +1,5 @@
-import { InformedError } from "@/ui";
+import { InformedError } from "@/ui/informed-error";
 
 export default function CoverLetterNotFound() {
-  return <InformedError kind="cover-letter-missing" />;
+  return <InformedError kind="missing-application" />;
 }

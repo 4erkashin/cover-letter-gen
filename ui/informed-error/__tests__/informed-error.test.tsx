@@ -4,8 +4,8 @@ import { describe, expect, it } from "vitest";
 import { InformedError } from "../informed-error";
 
 describe("InformedError", () => {
-  it("shows locked Cover Letter not-found copy with a Home CTA", () => {
-    render(<InformedError kind="cover-letter-missing" />);
+  it("shows locked missing-application copy with a Home CTA", () => {
+    render(<InformedError kind="missing-application" />);
 
     expect(
       screen.getByRole("heading", { name: "This application isn't here" }),

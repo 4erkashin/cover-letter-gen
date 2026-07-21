@@ -30,12 +30,26 @@ Useful scripts: `pnpm lint` · `pnpm typecheck` · `pnpm test`
 
 ## Layout
 
-| Folder      | Role                        |
-| ----------- | --------------------------- |
-| `app/`      | Routes and thin page wiring |
-| `domain/`   | Cover Letter domain         |
-| `features/` | Screen/feature compositions |
-| `ui/`       | Reusable UI patterns        |
+| Folder      | Role                                                                 |
+| ----------- | -------------------------------------------------------------------- |
+| `domain/`   | Pure Cover Letter / Goal types and rules — no React, I/O, or UI copy |
+| `features/` | User-facing capabilities; own their domain-flavored UI               |
+| `ui/`       | Reusable chrome — no Cover Letter / Goal vocabulary in name or props |
+| `app/`      | Thin Next.js routes only — wire features, do not host logic          |
+
+`ui/` may also hold shared shell helpers (`assets/`, `themes/`, fonts, globals, Reshaped root) — not a second component tree.
+
+### Fat features
+
+A feature is too fat when its short description needs the word **“and”** (two jobs in one name). Split by capability, not by file type — do not invent `components/` + `lib/` just to tidy. `features/letter-form/` is **watch / maybe-split**, not a mandatory split.
+
+### Prototypes
+
+Delete production leftovers. Do not keep a permanent `app/prototype/` home. Future prototypes stay out of committed `app/` unless a ticket explicitly ships a prototype route.
+
+### Barrels
+
+Keep per-module barrels (`ui/copy-button/index.ts`, `features/letter-form/index.ts`). Import from the owning module — no root grab-bag barrels under `ui/` or `features/`.
 
 ## Related issues
 
@@ -43,4 +57,3 @@ Open work that owns README sections **not** filled here yet:
 
 - [Ship obligations (README Decision Log, AI workflow, deploy)](https://github.com/4erkashin/cover-letter-gen/issues/20)
 - [Map: Bring codebase to order](https://github.com/4erkashin/cover-letter-gen/issues/21)
-- [Add Prettier (format script + config)](https://github.com/4erkashin/cover-letter-gen/issues/28)

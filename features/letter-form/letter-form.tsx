@@ -20,10 +20,10 @@ import {
 import { saveCoverLetter, updateCoverLetter } from "@/features/persist-storage";
 import RetryIcon from "@/ui/assets/retry-icon.svg";
 import { CharCounter } from "@/ui/char-counter";
-import { FormHeader } from "@/ui/form-header";
-import { GENERATING_STATUS } from "@/ui/letter-preview";
 
 import { ADDITIONAL_DETAILS_MAX } from "./constants";
+import { FormHeader } from "./form-header";
+import { GENERATING_STATUS } from "./letter-preview";
 import { generateCoverLetter as defaultGenerateCoverLetter } from "./generate-cover-letter";
 import {
   isAdditionalDetailsOverLimit,
