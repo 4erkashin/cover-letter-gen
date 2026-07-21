@@ -21,6 +21,7 @@ const details: CoverLetterDetails = {
 describe("generateCoverLetter", () => {
   beforeEach(() => {
     generateText.mockReset();
+    process.env.AI_GATEWAY_API_KEY = "test-key";
   });
 
   it("calls generateText with a Flash-class model and returns a Cover Letter", async () => {
@@ -58,5 +59,23 @@ describe("generateCoverLetter", () => {
     generateText.mockRejectedValue(new Error("gateway down"));
 
     await expect(generateCoverLetter(details)).rejects.toThrow("gateway down");
+  });
+
+  it("fails early with a clear message when AI_GATEWAY_API_KEY is missing", async () => {
+    const previous = process.env.AI_GATEWAY_API_KEY;
+    delete process.env.AI_GATEWAY_API_KEY;
+
+    try {
+      await expect(generateCoverLetter(details)).rejects.toThrow(
+        /AI_GATEWAY_API_KEY/,
+      );
+      expect(generateText).not.toHaveBeenCalled();
+    } finally {
+      if (previous === undefined) {
+        delete process.env.AI_GATEWAY_API_KEY;
+      } else {
+        process.env.AI_GATEWAY_API_KEY = previous;
+      }
+    }
   });
 });

@@ -30,7 +30,7 @@ export function InformedError({ kind }: InformedErrorProps) {
           {supporting}
         </Text>
       </View>
-      <Button href="/" variant="solid" color="primary">
+      <Button href="/" variant="solid" color="positive">
         Home
       </Button>
     </View>

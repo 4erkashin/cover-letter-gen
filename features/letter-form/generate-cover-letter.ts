@@ -14,6 +14,12 @@ import { SYSTEM_PROMPT, composePrompt } from "./prompts";
 export async function generateCoverLetter(
   details: CoverLetterDetails,
 ): Promise<CoverLetter> {
+  if (!process.env.AI_GATEWAY_API_KEY) {
+    throw new Error(
+      "AI_GATEWAY_API_KEY is not set. Add it to .env.local to enable cover letter generation.",
+    );
+  }
+
   const trimmed: CoverLetterDetails = {
     jobTitle: details.jobTitle.trim(),
     companyName: details.companyName.trim(),

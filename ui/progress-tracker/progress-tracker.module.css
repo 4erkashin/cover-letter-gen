@@ -13,9 +13,8 @@
 
 .step {
   background-color: var(--rs-color-background-neutral-faded);
-  opacity: 0.4;
   border-radius: 4px;
-  transition: opacity 225ms ease-in-out;
+  transition: background-color 225ms ease-in-out;
 }
 
 .dots .step {
@@ -30,5 +29,4 @@
 
 .step.active {
   background-color: var(--rs-color-foreground-neutral);
-  opacity: 1;
 }
