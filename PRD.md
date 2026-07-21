@@ -49,11 +49,11 @@ Tracked separately: [Ship obligations (README Decision Log, AI workflow, deploy)
 
 ## Screens & navigation
 
-| Screen | Path |
-| --- | --- |
-| Dashboard | `/` |
-| Create | `/new` |
-| Edit | `/[id]` |
+| Screen    | Path    |
+| --------- | ------- |
+| Dashboard | `/`     |
+| Create    | `/new`  |
+| Edit      | `/[id]` |
 
 ### Navigation rules
 
@@ -79,6 +79,7 @@ Source: [Lock app routes and navigation](https://github.com/4erkashin/cover-lett
 
 Nine screenshot-backed states (pass/fail “matches mockup”). Sources under `.wayfinder/screenshots/`. Full inventory: [`docs/research/figma-screenshot-inventory.md`](https://github.com/4erkashin/cover-letter-gen/blob/research/figma-screenshot-inventory/docs/research/figma-screenshot-inventory.md) on `research/figma-screenshot-inventory`.
 
+<!-- prettier-ignore -->
 1. **Dashboard / goal in progress** — H1 **Applications**, **+ Create New**, cards (Delete + Copy), `{n}/5 applications generated` + 5-dot header, **Hit your goal** banner (segments + `{n} out of 5`)
 2. **Dashboard / goal achieved** — `5/5` + green check, **no** banner; Create New remains
 3. **Create / empty** — **New application**, four fields, `0/1200` + placeholder, muted Generate Now, empty preview
@@ -161,22 +162,22 @@ Thin `ui/` wrappers only where assignment-specific (e.g. `CharCounter`, CTA mode
 
 Entity patterns: `Letter*` (`LetterCard`, `LetterForm`, `LetterPreview`, …). Chrome: `AppHeader`, `GoalHeader`, `HomeButton`, `GoalBanner`, `ProgressTracker`, etc.
 
-| Pattern | Home | Role |
-| --- | --- | --- |
-| `AppHeader` | `ui/` | Alt+Shift brand + goal chrome + Home |
-| `GoalHeader` | `ui/` | `{n}/5 applications generated` + dots **or** check |
-| `HomeButton` | `ui/` | House → `/` |
-| `GoalBanner` | `ui/` | Hit your goal; hide when `n ≥ 5` |
-| `ProgressTracker` | `ui/` | Compact dots (header) + large segments (banner); one `n` = list length |
-| `CreateNewButton` | `ui/` | `+ Create New` |
-| `CopyButton` | `ui/` | Copy (disabled when preview empty) |
-| `LetterCard` | `ui/` | Truncated preview + Delete + Copy → edit |
-| `CharCounter` | `ui/` | `{current}/1200` + over-limit chrome |
-| `FormHeader` | `ui/` | “New application” → `{Job title}, {Company}` |
-| `LetterPreview` | `ui/` | Placeholder / letter / Preloader + Copy |
-| `FormPreviewShell` | `ui/` | 2-col form + preview layout |
-| `LetterForm` + CTA modes | `features/` | Four fields; Generate Now / Try Again / disabled / spinner |
-| Dashboard page chrome | `features/` | Applications H1 + Create New + card grid |
+| Pattern                  | Home        | Role                                                                   |
+| ------------------------ | ----------- | ---------------------------------------------------------------------- |
+| `AppHeader`              | `ui/`       | Alt+Shift brand + goal chrome + Home                                   |
+| `GoalHeader`             | `ui/`       | `{n}/5 applications generated` + dots **or** check                     |
+| `HomeButton`             | `ui/`       | House → `/`                                                            |
+| `GoalBanner`             | `ui/`       | Hit your goal; hide when `n ≥ 5`                                       |
+| `ProgressTracker`        | `ui/`       | Compact dots (header) + large segments (banner); one `n` = list length |
+| `CreateNewButton`        | `ui/`       | `+ Create New`                                                         |
+| `CopyButton`             | `ui/`       | Copy (disabled when preview empty)                                     |
+| `LetterCard`             | `ui/`       | Truncated preview + Delete + Copy → edit                               |
+| `CharCounter`            | `ui/`       | `{current}/1200` + over-limit chrome                                   |
+| `FormHeader`             | `ui/`       | “New application” → `{Job title}, {Company}`                           |
+| `LetterPreview`          | `ui/`       | Placeholder / letter / Preloader + Copy                                |
+| `FormPreviewShell`       | `ui/`       | 2-col form + preview layout                                            |
+| `LetterForm` + CTA modes | `features/` | Four fields; Generate Now / Try Again / disabled / spinner             |
+| Dashboard page chrome    | `features/` | Applications H1 + Create New + card grid                               |
 
 Loading fidelity owned via `LetterPreview` + submit modes (animation ticket).
 
@@ -188,20 +189,20 @@ Source: [Name design patterns the PRD must require](https://github.com/4erkashin
 
 ### Empty dashboard (list area; banner still follows `n < 5`)
 
-| Slot | Copy |
-| --- | --- |
-| Headline | **No applications yet** |
-| Supporting | **Create your first one and it will show up here.** |
-| CTA | **Create New** (same plus-icon control as header / banner) |
+| Slot       | Copy                                                       |
+| ---------- | ---------------------------------------------------------- |
+| Headline   | **No applications yet**                                    |
+| Supporting | **Create your first one and it will show up here.**        |
+| CTA        | **Create New** (same plus-icon control as header / banner) |
 
 Source: [Lock calm dashboard empty-state copy](https://github.com/4erkashin/cover-letter-gen/issues/5)
 
 ### Error screens
 
-| Screen | Headline | Supporting | CTA |
-| --- | --- | --- | --- |
+| Screen                 | Headline                        | Supporting                                                    | CTA            |
+| ---------------------- | ------------------------------- | ------------------------------------------------------------- | -------------- |
 | Cover Letter not-found | **This application isn't here** | **It may have been removed, or the link may be out of date.** | **Home** → `/` |
-| Unknown-route 404 | **This page isn't here** | **The address may be mistyped, or the page may have moved.** | **Home** → `/` |
+| Unknown-route 404      | **This page isn't here**        | **The address may be mistyped, or the page may have moved.**  | **Home** → `/` |
 
 Source: [Lock not-found and unknown-route 404 copy](https://github.com/4erkashin/cover-letter-gen/issues/10)
 
@@ -216,16 +217,16 @@ Source: [Lock not-found and unknown-route 404 copy](https://github.com/4erkashin
 
 ## References & linked assets
 
-| Asset | Location |
-| --- | --- |
-| Map | [Map: Cover letter app handoff PRD](https://github.com/4erkashin/cover-letter-gen/issues/1) |
-| Domain | `CONTEXT.md` |
-| Screenshots | `.wayfinder/screenshots/` |
-| Figma | https://www.figma.com/design/pDG3us59WwezyhA11akWbL/Test-Assignment?node-id=4-12036 |
-| UI inventory | [`docs/research/figma-screenshot-inventory.md`](https://github.com/4erkashin/cover-letter-gen/blob/research/figma-screenshot-inventory/docs/research/figma-screenshot-inventory.md) (`research/figma-screenshot-inventory`) |
+| Asset                               | Location                                                                                                                                                                                                                                              |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Map                                 | [Map: Cover letter app handoff PRD](https://github.com/4erkashin/cover-letter-gen/issues/1)                                                                                                                                                           |
+| Domain                              | `CONTEXT.md`                                                                                                                                                                                                                                          |
+| Screenshots                         | `.wayfinder/screenshots/`                                                                                                                                                                                                                             |
+| Figma                               | https://www.figma.com/design/pDG3us59WwezyhA11akWbL/Test-Assignment?node-id=4-12036                                                                                                                                                                   |
+| UI inventory                        | [`docs/research/figma-screenshot-inventory.md`](https://github.com/4erkashin/cover-letter-gen/blob/research/figma-screenshot-inventory/docs/research/figma-screenshot-inventory.md) (`research/figma-screenshot-inventory`)                           |
 | Figma→AI teach notes (README later) | [`docs/research/figma-to-ai-codegen.md`](https://github.com/4erkashin/cover-letter-gen/blob/research/figma-to-ai-codegen/docs/research/figma-to-ai-codegen.md) (`research/figma-to-ai-codegen`) — screenshot-first default; optional Figma remote MCP |
-| Animation prototype | `prototype/generation-loading-animation` — `/prototype/generation-animation?variant=B` |
-| Prior apps (inform, don’t port) | v1 `/Users/y.cherkashin/Projects/cover-letter-gen.v1`, v2 `.../cover-letter-gen.v2`, sample `.../cover-letter-gen.sample` |
+| Animation prototype                 | `prototype/generation-loading-animation` — `/prototype/generation-animation?variant=B`                                                                                                                                                                |
+| Prior apps (inform, don’t port)     | v1 `/Users/y.cherkashin/Projects/cover-letter-gen.v1`, v2 `.../cover-letter-gen.v2`, sample `.../cover-letter-gen.sample`                                                                                                                             |
 
 Outline source: [Lock PRD issue outline and acceptance mapping](https://github.com/4erkashin/cover-letter-gen/issues/8)
 
@@ -233,16 +234,16 @@ Outline source: [Lock PRD issue outline and acceptance mapping](https://github.c
 
 ## Acceptance mapping
 
-| Criterion | Points at | Concrete checks |
-| --- | --- | --- |
-| Consistency with the mockup | UI states checklist; Screens & navigation | Nine named states; synced header/banner `n`; field labels/limits/`current/1200` + red over-limit |
-| Understanding of design | Design system; Edge cases & locked copy | Named patterns inventory used (not one-off screens); empty + both 404 copy locked |
-| Quality of the design system | Design system & folder layout | Reshaped + prescribed `app/`·`domain/`·`features/`·`ui/`; thin wrappers only where assignment-specific |
-| Quality of layout and responsiveness | Screens; Scope (mobile discretion) | Desktop matches mock compositions; single-column mobile adaptation present (exact breakpoints discretionary) |
-| Project structure | Design system & folder layout | Exact four-folder layout; `Letter*` entity patterns vs chrome names as locked |
-| Understanding of React / best practices | Generation; Goal & persistence; Design system | Server Action + AI SDK `generateText`; client persistence with cross-tab sync; feature compositions own screen behavior |
-| Code readability | Design system; References | Pattern names match PRD inventory; decisions traceable via linked tickets/assets |
-| Code scalability | Design system; Generation | Domain in `domain/`; swappable Flash-class model; UI patterns reusable across create/edit |
-| Handling of edge cases | Edge cases & locked copy; Generation | Gen failure (create writes nothing / edit keeps last-good); delete+undo; not-found + unknown-route 404 (no silent redirect); leave discards unsaved edits |
-| Attention to detail | UI states; Generation animation; Edge cases | Loading: Preloader + button spinner + ~320ms letter reveal + a11y; exact locked copy strings; banner absent at ≥5 |
-| Product solutions | Goal & persistence; Scope (delivery obligations) | Goal = list length, Try Again no +1; banner while &lt;5; calm empty state; README Decision Log + AI workflow + deploy called out as post-PRD obligations |
+| Criterion                               | Points at                                        | Concrete checks                                                                                                                                           |
+| --------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Consistency with the mockup             | UI states checklist; Screens & navigation        | Nine named states; synced header/banner `n`; field labels/limits/`current/1200` + red over-limit                                                          |
+| Understanding of design                 | Design system; Edge cases & locked copy          | Named patterns inventory used (not one-off screens); empty + both 404 copy locked                                                                         |
+| Quality of the design system            | Design system & folder layout                    | Reshaped + prescribed `app/`·`domain/`·`features/`·`ui/`; thin wrappers only where assignment-specific                                                    |
+| Quality of layout and responsiveness    | Screens; Scope (mobile discretion)               | Desktop matches mock compositions; single-column mobile adaptation present (exact breakpoints discretionary)                                              |
+| Project structure                       | Design system & folder layout                    | Exact four-folder layout; `Letter*` entity patterns vs chrome names as locked                                                                             |
+| Understanding of React / best practices | Generation; Goal & persistence; Design system    | Server Action + AI SDK `generateText`; client persistence with cross-tab sync; feature compositions own screen behavior                                   |
+| Code readability                        | Design system; References                        | Pattern names match PRD inventory; decisions traceable via linked tickets/assets                                                                          |
+| Code scalability                        | Design system; Generation                        | Domain in `domain/`; swappable Flash-class model; UI patterns reusable across create/edit                                                                 |
+| Handling of edge cases                  | Edge cases & locked copy; Generation             | Gen failure (create writes nothing / edit keeps last-good); delete+undo; not-found + unknown-route 404 (no silent redirect); leave discards unsaved edits |
+| Attention to detail                     | UI states; Generation animation; Edge cases      | Loading: Preloader + button spinner + ~320ms letter reveal + a11y; exact locked copy strings; banner absent at ≥5                                         |
+| Product solutions                       | Goal & persistence; Scope (delivery obligations) | Goal = list length, Try Again no +1; banner while &lt;5; calm empty state; README Decision Log + AI workflow + deploy called out as post-PRD obligations  |

@@ -10,9 +10,7 @@ const coverLettersState = vi.hoisted(() => ({
 
 const removeCoverLetter = vi.hoisted(() => vi.fn());
 const saveCoverLetter = vi.hoisted(() => vi.fn());
-const showToast = vi.hoisted(() =>
-  vi.fn((..._args: unknown[]) => "toast-1"),
-);
+const showToast = vi.hoisted(() => vi.fn((..._args: unknown[]) => "toast-1"));
 const hideToast = vi.hoisted(() => vi.fn());
 
 vi.mock("@/features/persist-storage", () => ({

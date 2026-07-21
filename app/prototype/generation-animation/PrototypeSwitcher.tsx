@@ -51,7 +51,11 @@ export function PrototypeSwitcher({ variants }: Props) {
   if (process.env.NODE_ENV === "production") return null;
 
   return (
-    <div className={styles.bar} role="navigation" aria-label="Prototype variants">
+    <div
+      className={styles.bar}
+      role="navigation"
+      aria-label="Prototype variants"
+    >
       <button
         type="button"
         className={styles.arrow}

@@ -30,12 +30,12 @@ Useful scripts: `pnpm lint` · `pnpm typecheck` · `pnpm test`
 
 ## Layout
 
-| Folder | Role |
-| --- | --- |
-| `app/` | Routes and thin page wiring |
-| `domain/` | Cover Letter domain |
+| Folder      | Role                        |
+| ----------- | --------------------------- |
+| `app/`      | Routes and thin page wiring |
+| `domain/`   | Cover Letter domain         |
 | `features/` | Screen/feature compositions |
-| `ui/` | Reusable UI patterns |
+| `ui/`       | Reusable UI patterns        |
 
 ## Related issues
 

@@ -34,9 +34,10 @@ describe("GoalBanner", () => {
       ),
     ).toBeInTheDocument();
     expect(screen.getByText("2 out of 5")).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /create new/i }),
-    ).toHaveAttribute("href", "/new");
+    expect(screen.getByRole("link", { name: /create new/i })).toHaveAttribute(
+      "href",
+      "/new",
+    );
   });
 
   it("renders nothing when the goal is reached", () => {

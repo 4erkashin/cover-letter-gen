@@ -19,7 +19,9 @@ vi.mock("next/link", () => ({
     children,
     href,
     ...props
-  }: React.PropsWithChildren<{ href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>>) => (
+  }: React.PropsWithChildren<
+    { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+  >) => (
     <a href={href} {...props}>
       {children}
     </a>
@@ -111,8 +113,6 @@ describe("AppHeader", () => {
 
     render(<AppHeader />);
 
-    expect(
-      screen.getByText("2/5 applications generated"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("2/5 applications generated")).toBeInTheDocument();
   });
 });

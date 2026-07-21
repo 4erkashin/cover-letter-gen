@@ -72,9 +72,7 @@ describe("LetterCard", () => {
       <LetterCard id="letter-1" content={longContent} onDelete={vi.fn()} />,
     );
 
-    expect(
-      screen.getByRole("button", { name: /delete/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /delete/i })).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: /copy to clipboard/i }),
     ).toBeInTheDocument();

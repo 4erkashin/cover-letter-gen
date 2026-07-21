@@ -25,9 +25,10 @@ describe("CreateNewButton", () => {
   it("navigates to /new", () => {
     render(<CreateNewButton />);
 
-    expect(
-      screen.getByRole("link", { name: /create new/i }),
-    ).toHaveAttribute("href", "/new");
+    expect(screen.getByRole("link", { name: /create new/i })).toHaveAttribute(
+      "href",
+      "/new",
+    );
   });
 
   it("uses the positive solid Create New styling from the mock", () => {

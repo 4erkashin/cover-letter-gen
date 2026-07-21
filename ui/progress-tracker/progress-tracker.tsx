@@ -23,10 +23,7 @@ export function ProgressTracker({
       {Array.from({ length: GOAL_TARGET }, (_, index) => (
         <span
           key={index}
-          className={[
-            styles.step,
-            index < filled ? styles.active : undefined,
-          ]
+          className={[styles.step, index < filled ? styles.active : undefined]
             .filter(Boolean)
             .join(" ")}
           data-progress-dot={variant === "dots" ? "true" : undefined}

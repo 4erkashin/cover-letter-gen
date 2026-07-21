@@ -17,10 +17,7 @@ import {
   type CoverLetter,
   type CoverLetterDetails,
 } from "@/domain";
-import {
-  saveCoverLetter,
-  updateCoverLetter,
-} from "@/features/persist-storage";
+import { saveCoverLetter, updateCoverLetter } from "@/features/persist-storage";
 import RetryIcon from "@/ui/assets/retry-icon.svg";
 import { CharCounter } from "@/ui/char-counter";
 import { FormHeader } from "@/ui/form-header";
@@ -41,9 +38,7 @@ const EMPTY_DETAILS: CoverLetterDetails = {
 };
 
 type LetterFormProps = {
-  generateCoverLetter?: (
-    details: CoverLetterDetails,
-  ) => Promise<CoverLetter>;
+  generateCoverLetter?: (details: CoverLetterDetails) => Promise<CoverLetter>;
   onGeneratingChange?: (isGenerating: boolean) => void;
   onGenerated?: (letter: CoverLetter) => void;
   submitLabel?: string;
@@ -108,9 +103,7 @@ export function LetterForm({
       router.replace(`/${generated.id}`);
     } catch {
       // Stay on the page with the form intact; nothing persisted.
-      setStatusMessage(
-        "Generation failed. Could not generate the letter.",
-      );
+      setStatusMessage("Generation failed. Could not generate the letter.");
       show({
         color: "critical",
         position: "bottom-end",

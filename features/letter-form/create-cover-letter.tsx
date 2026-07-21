@@ -9,9 +9,7 @@ import { LetterPreview } from "@/ui/letter-preview";
 import { LetterForm } from "./letter-form";
 
 type CreateCoverLetterProps = {
-  generateCoverLetter?: (
-    details: CoverLetterDetails,
-  ) => Promise<CoverLetter>;
+  generateCoverLetter?: (details: CoverLetterDetails) => Promise<CoverLetter>;
 };
 
 export function CreateCoverLetter({

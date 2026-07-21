@@ -94,7 +94,9 @@ describe("LetterForm", () => {
     expect(
       screen.getByRole("heading", { name: "Product manager, Apple" }),
     ).toBeInTheDocument();
-    expect(screen.getByText(`${validDetails.additionalDetails.length}/1200`)).toBeInTheDocument();
+    expect(
+      screen.getByText(`${validDetails.additionalDetails.length}/1200`),
+    ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Generate Now" })).toBeEnabled();
   });
 
@@ -162,12 +164,10 @@ describe("LetterForm", () => {
     expect(
       screen.getByRole("heading", { name: "Product manager, Apple" }),
     ).toBeInTheDocument();
-    expect(
-      screen.getByRole("status"),
-    ).toHaveTextContent("Generation failed. Could not generate the letter.");
-    expect(
-      screen.getByRole("button", { name: "Generate Now" }),
-    ).toBeEnabled();
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Generation failed. Could not generate the letter.",
+    );
+    expect(screen.getByRole("button", { name: "Generate Now" })).toBeEnabled();
   });
 
   it("shows a busy Generate control and announces start while generation is in flight", async () => {
@@ -220,9 +220,7 @@ describe("LetterForm", () => {
     // Stay busy until navigation unmounts — no empty-preview flash.
     expect(onGeneratingChange).toHaveBeenCalledWith(true);
     expect(onGeneratingChange).not.toHaveBeenCalledWith(false);
-    expect(
-      screen.getByRole("button", { name: "Generating…" }),
-    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Generating…" })).toBeDisabled();
   });
 
   it("uses Try Again as the idle label when submitLabel is set", () => {
@@ -268,7 +266,9 @@ describe("LetterForm", () => {
   });
 
   it("seeds fields from initialDetails", () => {
-    render(<LetterForm initialDetails={validDetails} submitLabel="Try Again" />);
+    render(
+      <LetterForm initialDetails={validDetails} submitLabel="Try Again" />,
+    );
 
     expect(screen.getByLabelText("Job title")).toHaveValue(
       validDetails.jobTitle,
@@ -342,8 +342,6 @@ describe("LetterForm", () => {
       expect(onGeneratingChange).toHaveBeenCalledWith(false);
     });
 
-    expect(
-      screen.getByRole("button", { name: "Try Again" }),
-    ).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Try Again" })).toBeEnabled();
   });
 });

@@ -22,9 +22,7 @@ describe("LetterPreview", () => {
     render(<LetterPreview />);
 
     expect(
-      screen.getByText(
-        "Your personalized job application will appear here...",
-      ),
+      screen.getByText("Your personalized job application will appear here..."),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("region", { name: "Generated letter preview" }),
@@ -91,9 +89,7 @@ describe("LetterPreview", () => {
     const content = "Dear Apple Team,\n\nI am writing to express my interest.";
     render(<LetterPreview content={content} />);
 
-    fireEvent.click(
-      screen.getByRole("button", { name: /copy to clipboard/i }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /copy to clipboard/i }));
 
     expect(writeText).toHaveBeenCalledWith(content);
   });

@@ -13,9 +13,7 @@ import { LetterForm } from "./letter-form";
 
 type EditCoverLetterProps = {
   coverLetter: CoverLetter;
-  generateCoverLetter?: (
-    details: CoverLetterDetails,
-  ) => Promise<CoverLetter>;
+  generateCoverLetter?: (details: CoverLetterDetails) => Promise<CoverLetter>;
 };
 
 export function EditCoverLetter({
@@ -40,10 +38,7 @@ export function EditCoverLetter({
           />
         }
         preview={
-          <LetterPreview
-            content={previewContent}
-            isGenerating={isGenerating}
-          />
+          <LetterPreview content={previewContent} isGenerating={isGenerating} />
         }
       />
       <GoalBanner count={coverLetters.length} />

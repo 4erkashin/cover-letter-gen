@@ -48,7 +48,10 @@ export function VariantC() {
             </p>
           )}
           {phase === "loading" && (
-            <div className={`${styles.orb} ${styles.orbGrowPulse}`} aria-hidden />
+            <div
+              className={`${styles.orb} ${styles.orbGrowPulse}`}
+              aria-hidden
+            />
           )}
           {phase === "success" && (
             <div className={styles.wipe}>

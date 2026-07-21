@@ -13,9 +13,7 @@ describe("FormHeader", () => {
   });
 
   it("shows job title and company when both are filled", () => {
-    render(
-      <FormHeader jobTitle="Product manager" companyName="Apple" />,
-    );
+    render(<FormHeader jobTitle="Product manager" companyName="Apple" />);
 
     expect(
       screen.getByRole("heading", { name: "Product manager, Apple" }),

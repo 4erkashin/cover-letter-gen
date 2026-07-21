@@ -37,9 +37,7 @@ describe("CopyButton", () => {
   it("copies Cover Letter text to the clipboard", () => {
     render(<CopyButton text="Dear Stripe team," />);
 
-    fireEvent.click(
-      screen.getByRole("button", { name: /copy to clipboard/i }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: /copy to clipboard/i }));
 
     expect(writeText).toHaveBeenCalledWith("Dear Stripe team,");
   });

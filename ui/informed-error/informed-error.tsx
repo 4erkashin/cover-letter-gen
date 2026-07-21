@@ -5,13 +5,11 @@ export type InformedErrorKind = "cover-letter-missing" | "unknown-route";
 const COPY = {
   "cover-letter-missing": {
     headline: "This application isn't here",
-    supporting:
-      "It may have been removed, or the link may be out of date.",
+    supporting: "It may have been removed, or the link may be out of date.",
   },
   "unknown-route": {
     headline: "This page isn't here",
-    supporting:
-      "The address may be mistyped, or the page may have moved.",
+    supporting: "The address may be mistyped, or the page may have moved.",
   },
 } as const;
 

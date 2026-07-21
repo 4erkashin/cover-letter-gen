@@ -69,10 +69,12 @@ describe("cover letter persistence", () => {
     });
 
     expect(getCoverLetters()).toHaveLength(2);
-    expect(getCoverLetters().find((letter) => letter.id === "a")).toMatchObject({
-      content: "v2",
-      title: "Updated",
-    });
+    expect(getCoverLetters().find((letter) => letter.id === "a")).toMatchObject(
+      {
+        content: "v2",
+        title: "Updated",
+      },
+    );
   });
 
   it("removes a Cover Letter by id", () => {

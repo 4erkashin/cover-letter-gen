@@ -91,7 +91,11 @@ export function PrototypeFormShell({
         <aside className={styles.preview} aria-busy={phase === "loading"}>
           {preview}
           {phase !== "loading" && (
-            <button type="button" className={styles.copy} disabled={phase !== "success"}>
+            <button
+              type="button"
+              className={styles.copy}
+              disabled={phase !== "success"}
+            >
               Copy to clipboard
             </button>
           )}
@@ -102,12 +106,20 @@ export function PrototypeFormShell({
         <p className={styles.state}>{stateLine}</p>
         <div className={styles.actions}>
           {phase === "idle" && (
-            <button type="button" className={styles.secondary} onClick={onGenerate}>
+            <button
+              type="button"
+              className={styles.secondary}
+              onClick={onGenerate}
+            >
               Simulate generate
             </button>
           )}
           {phase !== "idle" && (
-            <button type="button" className={styles.secondary} onClick={onReset}>
+            <button
+              type="button"
+              className={styles.secondary}
+              onClick={onReset}
+            >
               Reset
             </button>
           )}
