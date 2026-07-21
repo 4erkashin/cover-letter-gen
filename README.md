@@ -16,6 +16,8 @@ Domain language: **[`CONTEXT.md`](./CONTEXT.md)** (**Cover Letter**; UI may say 
 - Nanostores + `localStorage` (cross-tab sync)
 - Vitest
 
+**Prompts stay server-side** (author preference, not a pdf.net brief requirement): generation prompt text must not ship in the browser client bundle. See [`docs/adr/0002-prompts-stay-server-side.md`](./docs/adr/0002-prompts-stay-server-side.md) and `PRD.md` → Generation.
+
 ## Getting started
 
 ```bash
@@ -28,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Useful scripts: `pnpm lint` · `pnpm format` · `pnpm typecheck` · `pnpm test`
 
-Lint sorting + type-import style: [`docs/adr/0001-eslint-sorting-and-type-imports.md`](./docs/adr/0001-eslint-sorting-and-type-imports.md).
+ADRs: [`docs/adr/0001-eslint-sorting-and-type-imports.md`](./docs/adr/0001-eslint-sorting-and-type-imports.md) · [`docs/adr/0002-prompts-stay-server-side.md`](./docs/adr/0002-prompts-stay-server-side.md)
 
 ## Layout
 

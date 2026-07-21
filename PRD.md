@@ -120,6 +120,7 @@ Source: [Inventory Figma and screenshot UI states for PRD fidelity](https://gith
 - AI SDK Server Action + `generateText`
 - Model: cheap/fast Flash-class; **swappable**
 - No streaming required for v1 animation
+- **Prompts stay server-side (author preference, not a pdf.net brief requirement):** treat generation prompts (system prompt, composition helpers, templates) as valuable prompt text that should not be readable from the browser via client sources (DevTools / View Source / client JS bundle). They may still live in the git repo. Enforce with Next `server-only` (and/or Server Actions / Route Handlers only) — never import prompt modules from Client Components. Rationale: [`docs/adr/0002-prompts-stay-server-side.md`](./docs/adr/0002-prompts-stay-server-side.md)
 
 ### Loading animation (create **and** Try Again)
 
@@ -241,7 +242,7 @@ Outline source: [Lock PRD issue outline and acceptance mapping](https://github.c
 | Quality of the design system            | Design system & folder layout                    | Reshaped + prescribed `app/`·`domain/`·`features/`·`ui/`; thin wrappers only where assignment-specific                                                    |
 | Quality of layout and responsiveness    | Screens; Scope (mobile discretion)               | Desktop matches mock compositions; single-column mobile adaptation present (exact breakpoints discretionary)                                              |
 | Project structure                       | Design system & folder layout                    | Exact four-folder layout; `Letter*` entity patterns vs chrome names as locked                                                                             |
-| Understanding of React / best practices | Generation; Goal & persistence; Design system    | Server Action + AI SDK `generateText`; client persistence with cross-tab sync; feature compositions own screen behavior                                   |
+| Understanding of React / best practices | Generation; Goal & persistence; Design system    | Server Action + AI SDK `generateText`; prompts server-only (`server-only` / no Client Component import); client persistence with cross-tab sync; feature compositions own screen behavior |
 | Code readability                        | Design system; References                        | Pattern names match PRD inventory; decisions traceable via linked tickets/assets                                                                          |
 | Code scalability                        | Design system; Generation                        | Domain in `domain/`; swappable Flash-class model; UI patterns reusable across create/edit                                                                 |
 | Handling of edge cases                  | Edge cases & locked copy; Generation             | Gen failure (create writes nothing / edit keeps last-good); delete+undo; not-found + unknown-route 404 (no silent redirect); leave discards unsaved edits |
