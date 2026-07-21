@@ -2,7 +2,7 @@
 
 ## Summary
 
-Greenfield Alt+Shift cover-letter app (informed by v2, **not** a port): Reshaped UI; three primary screens (dashboard / create / edit) plus informed error screens (Cover Letter not-found; unknown-route 404); required generation-status animation; browser persistence with cross-tab sync; AI generation via AI SDK (`generateText`) + Server Actions.
+Cover-letter generator app. Users can list, create, and edit Cover Letters; missing Cover Letters and unknown routes get clear error pages. Generation must show a status animation. Data lives in the browser and stays in sync across tabs. AI runs through the AI SDK (`generateText`) and Server Actions, with a Reshaped UI.
 
 Domain language: **Cover Letter** (see `CONTEXT.md`). UI copy may say “application(s)” per mock — that is presentation only, not a second entity.
 
@@ -160,11 +160,11 @@ Reshaped + prescribed folders (not sample FSD):
 
 Thin `ui/` wrappers only where assignment-specific (e.g. `CharCounter`, CTA modes, `CopyButton`, `CreateNewButton`) — not a full Reshaped façade.
 
-Entity patterns: `Letter*` (`LetterCard`, `LetterForm`, `LetterPreview`, …). Chrome: `AppHeader`, `GoalHeader`, `HomeButton`, `GoalBanner`, `ProgressTracker`, etc.
+Entity patterns: `Letter*` (`LetterCard`, `LetterForm`, `LetterPreview`, …). Chrome: root layout `<header>`, `GoalHeader`, `HomeButton`, `GoalBanner`, `ProgressTracker`, etc.
 
 | Pattern                  | Home        | Role                                                                   |
 | ------------------------ | ----------- | ---------------------------------------------------------------------- |
-| `AppHeader`              | `ui/`       | Alt+Shift brand + goal chrome + Home                                   |
+| Root layout `<header>`   | `app/`      | Alt+Shift brand + goal chrome + Home (composes `ui/` + features)       |
 | `GoalHeader`             | `ui/`       | `{n}/5 applications generated` + dots **or** check                     |
 | `HomeButton`             | `ui/`       | House → `/`                                                            |
 | `GoalBanner`             | `ui/`       | Hit your goal; hide when `n ≥ 5`                                       |

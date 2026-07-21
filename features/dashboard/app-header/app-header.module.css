@@ -1,9 +1,0 @@
-.root {
-  min-width: 0;
-}
-
-.actions {
-  min-width: 0;
-  justify-content: flex-end;
-  margin-inline-start: auto;
-}

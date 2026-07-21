@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 
 import { Container, View } from "reshaped";
 
-import { AppHeader } from "@/features/dashboard/app-header";
+import { LiveGoalHeader } from "@/features/dashboard/goal-header";
+import { BrandLink } from "@/ui/brand-link";
 import { MAX_APP_WIDTH } from "@/ui/constants";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
+import { HomeButton } from "@/ui/home-button";
 import { ReshapedRoot } from "@/ui/reshaped-root";
 
 import "@/ui/globals.css";
@@ -30,7 +32,22 @@ export default function RootLayout({
         <ReshapedRoot>
           <Container padding={0} width={MAX_APP_WIDTH}>
             <View gap={8} paddingBlock={4} paddingInline={4}>
-              <AppHeader />
+              <View
+                align="center"
+                as="header"
+                direction="row"
+                gap={4}
+                justify="space-between"
+                paddingBlock={4}
+                width="100%"
+                wrap
+              >
+                <BrandLink />
+                <View align="center" direction="row" gap={3} wrap>
+                  <LiveGoalHeader />
+                  <HomeButton />
+                </View>
+              </View>
               {children}
             </View>
           </Container>
