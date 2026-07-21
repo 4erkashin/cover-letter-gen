@@ -12,10 +12,10 @@ import { FLASH_MODEL } from "../constants";
 import { generateCoverLetter } from "../generate-cover-letter";
 
 const details: CoverLetterDetails = {
-  jobTitle: "  Product manager  ",
-  companyName: " Apple ",
-  skills: " HTML, CSS ",
   additionalDetails: " I ship things. ",
+  companyName: " Apple ",
+  jobTitle: "  Product manager  ",
+  skills: " HTML, CSS ",
 };
 
 describe("generateCoverLetter", () => {
@@ -34,20 +34,20 @@ describe("generateCoverLetter", () => {
     expect(generateText).toHaveBeenCalledWith(
       expect.objectContaining({
         model: FLASH_MODEL,
-        system: expect.any(String),
         prompt: expect.stringContaining("Product manager"),
+        system: expect.any(String),
       }),
     );
     expect(FLASH_MODEL).toMatch(/flash/i);
     expect(letter).toMatchObject({
-      title: "Product manager, Apple",
       content: "Dear Apple Team,\n\nI am writing to express my interest.",
       details: {
-        jobTitle: "Product manager",
-        companyName: "Apple",
-        skills: "HTML, CSS",
         additionalDetails: "I ship things.",
+        companyName: "Apple",
+        jobTitle: "Product manager",
+        skills: "HTML, CSS",
       },
+      title: "Product manager, Apple",
     });
     expect(letter.id).toMatch(
       /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i,

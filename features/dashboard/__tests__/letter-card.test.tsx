@@ -7,7 +7,7 @@ vi.mock("next/link", () => ({
     href,
     ...props
   }: React.PropsWithChildren<
-    { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+    React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
   >) => (
     <a href={href} {...props}>
       {children}
@@ -31,7 +31,7 @@ const longContent =
 describe("LetterCard", () => {
   it("links the card body to the Cover Letter edit route", () => {
     render(
-      <LetterCard id="letter-1" content={longContent} onDelete={vi.fn()} />,
+      <LetterCard content={longContent} id="letter-1" onDelete={vi.fn()} />,
     );
 
     expect(
@@ -41,7 +41,7 @@ describe("LetterCard", () => {
 
   it("shows a truncated Cover Letter preview", () => {
     const { container } = render(
-      <LetterCard id="letter-1" content={longContent} onDelete={vi.fn()} />,
+      <LetterCard content={longContent} id="letter-1" onDelete={vi.fn()} />,
     );
 
     expect(screen.getByText(/dear stripe team/i)).toBeInTheDocument();
@@ -51,7 +51,7 @@ describe("LetterCard", () => {
   it("calls onDelete when Delete is pressed without navigating", () => {
     const onDelete = vi.fn();
     render(
-      <LetterCard id="letter-1" content={longContent} onDelete={onDelete} />,
+      <LetterCard content={longContent} id="letter-1" onDelete={onDelete} />,
     );
 
     const deleteButton = screen.getByRole("button", { name: /delete/i });
@@ -69,7 +69,7 @@ describe("LetterCard", () => {
 
   it("exposes Copy and Delete actions", () => {
     render(
-      <LetterCard id="letter-1" content={longContent} onDelete={vi.fn()} />,
+      <LetterCard content={longContent} id="letter-1" onDelete={vi.fn()} />,
     );
 
     expect(screen.getByRole("button", { name: /delete/i })).toBeInTheDocument();
@@ -79,7 +79,7 @@ describe("LetterCard", () => {
   });
 
   it("disables Copy when the preview content is empty", () => {
-    render(<LetterCard id="letter-1" content="" onDelete={vi.fn()} />);
+    render(<LetterCard content="" id="letter-1" onDelete={vi.fn()} />);
 
     expect(
       screen.getByRole("button", { name: /copy to clipboard/i }),

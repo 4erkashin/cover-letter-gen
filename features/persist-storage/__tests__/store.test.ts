@@ -3,26 +3,26 @@ import { beforeEach, describe, expect, it } from "vitest";
 import type { CoverLetter } from "@/domain";
 
 import {
-  STORAGE_KEY,
   getCoverLetters,
   removeCoverLetter,
   resetCoverLettersForTests,
   saveCoverLetter,
+  STORAGE_KEY,
   updateCoverLetter,
 } from "../store";
 
 function makeCoverLetter(overrides: Partial<CoverLetter> = {}): CoverLetter {
   return {
+    content: "Dear Stripe team,",
+    createdAt: "2026-01-01T00:00:00.000Z",
+    details: {
+      additionalDetails: "I build products.",
+      companyName: "Stripe",
+      jobTitle: "Designer",
+      skills: "design systems",
+    },
     id: "letter-1",
     title: "Designer, Stripe",
-    content: "Dear Stripe team,",
-    details: {
-      jobTitle: "Designer",
-      companyName: "Stripe",
-      skills: "design systems",
-      additionalDetails: "I build products.",
-    },
-    createdAt: "2026-01-01T00:00:00.000Z",
     updatedAt: "2026-01-01T00:00:00.000Z",
     ...overrides,
   };
@@ -53,19 +53,19 @@ describe("cover letter persistence", () => {
   });
 
   it("replaces an existing id on save so progress stays distinct", () => {
-    saveCoverLetter(makeCoverLetter({ id: "a", content: "v1" }));
-    saveCoverLetter(makeCoverLetter({ id: "a", content: "v2" }));
+    saveCoverLetter(makeCoverLetter({ content: "v1", id: "a" }));
+    saveCoverLetter(makeCoverLetter({ content: "v2", id: "a" }));
 
     expect(getCoverLetters()).toHaveLength(1);
     expect(getCoverLetters()[0]?.content).toBe("v2");
   });
 
   it("updates a Cover Letter in place without changing list length", () => {
-    saveCoverLetter(makeCoverLetter({ id: "a", content: "v1" }));
-    saveCoverLetter(makeCoverLetter({ id: "b", content: "other" }));
+    saveCoverLetter(makeCoverLetter({ content: "v1", id: "a" }));
+    saveCoverLetter(makeCoverLetter({ content: "other", id: "b" }));
 
     updateCoverLetter({
-      ...makeCoverLetter({ id: "a", content: "v2", title: "Updated" }),
+      ...makeCoverLetter({ content: "v2", id: "a", title: "Updated" }),
     });
 
     expect(getCoverLetters()).toHaveLength(2);

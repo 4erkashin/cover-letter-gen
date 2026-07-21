@@ -21,7 +21,7 @@ vi.mock("next/link", () => ({
     href,
     ...props
   }: React.PropsWithChildren<
-    { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+    React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
   >) => (
     <a href={href} {...props}>
       {children}
@@ -58,19 +58,19 @@ vi.mock("reshaped", async (importOriginal) => {
 import { EditCoverLetter } from "../edit-cover-letter";
 
 const validDetails: CoverLetterDetails = {
-  jobTitle: "Product manager",
-  companyName: "Apple",
-  skills: "HTML, CSS and doing things in time",
   additionalDetails:
     "I want to help you build awesome solutions to accomplish your goals and vision",
+  companyName: "Apple",
+  jobTitle: "Product manager",
+  skills: "HTML, CSS and doing things in time",
 };
 
 const existingLetter: CoverLetter = {
+  content: "Old letter body",
+  createdAt: "2026-01-01T00:00:00.000Z",
+  details: validDetails,
   id: "existing-id",
   title: "Product manager, Apple",
-  content: "Old letter body",
-  details: validDetails,
-  createdAt: "2026-01-01T00:00:00.000Z",
   updatedAt: "2026-01-01T00:00:00.000Z",
 };
 
@@ -148,8 +148,8 @@ describe("EditCoverLetter", () => {
 
     resolveGenerate({
       ...existingLetter,
-      id: "brand-new-id",
       content: "New letter body",
+      id: "brand-new-id",
     });
 
     await waitFor(() => {
@@ -176,8 +176,8 @@ describe("EditCoverLetter", () => {
       expect(showToast).toHaveBeenCalledWith({
         color: "critical",
         position: "bottom-end",
-        title: "Generation failed",
         text: "Could not generate the letter. Try again later.",
+        title: "Generation failed",
       });
       expect(screen.getByRole("status")).toHaveTextContent(
         "Generation failed. Could not generate the letter.",

@@ -1,24 +1,25 @@
 "use client";
 
 import type { KeyboardEvent, MouseEvent } from "react";
+
 import { Button } from "reshaped";
 
 import CopyIcon from "@/ui/assets/copy-icon.svg";
 
 type CopyButtonProps = {
-  text: string;
   className?: string;
+  text: string;
 };
 
 function hasCopyableText(text: string): boolean {
   return text.trim().length > 0;
 }
 
-export function CopyButton({ text, className }: CopyButtonProps) {
+export function CopyButton({ className, text }: CopyButtonProps) {
   const disabled = !hasCopyableText(text);
 
   const handleClick = async (
-    event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
+    event: KeyboardEvent<HTMLElement> | MouseEvent<HTMLElement>,
   ) => {
     event.preventDefault();
     if (disabled) {
@@ -30,14 +31,14 @@ export function CopyButton({ text, className }: CopyButtonProps) {
   return (
     <Button
       className={className}
+      color="neutral"
+      disabled={disabled}
+      endIcon={CopyIcon}
+      onClick={handleClick}
+      size="small"
+      stopPropagation
       type="button"
       variant="ghost"
-      color="neutral"
-      size="small"
-      endIcon={CopyIcon}
-      disabled={disabled}
-      stopPropagation
-      onClick={handleClick}
     >
       Copy to clipboard
     </Button>

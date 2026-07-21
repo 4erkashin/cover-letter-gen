@@ -7,7 +7,6 @@ import { BrandLink } from "@/ui/brand-link";
 import { HomeButton } from "@/ui/home-button";
 
 import { GoalHeader } from "../goal-header";
-
 import styles from "./app-header.module.css";
 
 export function AppHeader() {
@@ -15,23 +14,23 @@ export function AppHeader() {
 
   return (
     <View
-      as="header"
-      direction="row"
       align="center"
-      justify="space-between"
+      as="header"
+      className={styles.root}
+      direction="row"
       gap={4}
-      wrap
+      justify="space-between"
       paddingBlock={4}
       width="100%"
-      className={styles.root}
+      wrap
     >
       <BrandLink />
       <View
-        direction="row"
         align="center"
+        className={styles.actions}
+        direction="row"
         gap={3}
         wrap
-        className={styles.actions}
       >
         <GoalHeader count={coverLetters.length} />
         <HomeButton />

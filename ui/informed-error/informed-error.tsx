@@ -21,16 +21,16 @@ export function InformedError({ kind }: InformedErrorProps) {
   const { headline, supporting } = COPY[kind];
 
   return (
-    <View gap={4} paddingBlock={8} align="start">
+    <View align="start" gap={4} paddingBlock={8}>
       <View gap={2}>
-        <Text variant="title-3" as="h1">
+        <Text as="h1" variant="title-3">
           {headline}
         </Text>
-        <Text variant="body-2" color="neutral-faded">
+        <Text color="neutral-faded" variant="body-2">
           {supporting}
         </Text>
       </View>
-      <Button href="/" variant="solid" color="positive">
+      <Button color="positive" href="/" variant="solid">
         Home
       </Button>
     </View>

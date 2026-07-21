@@ -9,12 +9,12 @@ type HomeButtonProps = {
 export function HomeButton({ className }: HomeButtonProps) {
   return (
     <Button
+      attributes={{ "aria-label": "Home" }}
       className={className}
       href="/"
-      variant="outline"
-      size="small"
       icon={HomeIcon}
-      attributes={{ "aria-label": "Home" }}
+      size="small"
+      variant="outline"
     />
   );
 }

@@ -1,26 +1,26 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  GOAL_TARGET,
+  type CoverLetter,
   coverLetterTitle,
   findCoverLetter,
+  GOAL_TARGET,
   goalProgress,
   overwriteCoverLetter,
-  type CoverLetter,
 } from "../cover-letters";
 
 function makeCoverLetter(overrides: Partial<CoverLetter> = {}): CoverLetter {
   return {
+    content: "Dear Stripe team,",
+    createdAt: "2026-01-01T00:00:00.000Z",
+    details: {
+      additionalDetails: "I build products.",
+      companyName: "Stripe",
+      jobTitle: "Designer",
+      skills: "design systems",
+    },
     id: "letter-1",
     title: "Designer, Stripe",
-    content: "Dear Stripe team,",
-    details: {
-      jobTitle: "Designer",
-      companyName: "Stripe",
-      skills: "design systems",
-      additionalDetails: "I build products.",
-    },
-    createdAt: "2026-01-01T00:00:00.000Z",
     updatedAt: "2026-01-01T00:00:00.000Z",
     ...overrides,
   };
@@ -36,18 +36,18 @@ describe("goalProgress", () => {
   it("reports progress from list length against the goal target", () => {
     expect(goalProgress(0)).toEqual({
       count: 0,
-      target: 5,
       isReached: false,
+      target: 5,
     });
     expect(goalProgress(3)).toEqual({
       count: 3,
-      target: 5,
       isReached: false,
+      target: 5,
     });
     expect(goalProgress(5)).toEqual({
       count: 5,
-      target: 5,
       isReached: true,
+      target: 5,
     });
   });
 
@@ -83,21 +83,21 @@ describe("coverLetterTitle", () => {
 describe("overwriteCoverLetter", () => {
   it("keeps id and createdAt while replacing title, content, details, and updatedAt", () => {
     const existing = makeCoverLetter({
-      id: "same-id",
-      createdAt: "2026-01-01T00:00:00.000Z",
-      updatedAt: "2026-01-01T00:00:00.000Z",
-      title: "Designer, Stripe",
       content: "Old letter body",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      id: "same-id",
+      title: "Designer, Stripe",
+      updatedAt: "2026-01-01T00:00:00.000Z",
     });
     const generated = {
-      title: "Engineer, Notion",
       content: "New letter body",
       details: {
-        jobTitle: "Engineer",
-        companyName: "Notion",
-        skills: "TypeScript",
         additionalDetails: "I ship products.",
+        companyName: "Notion",
+        jobTitle: "Engineer",
+        skills: "TypeScript",
       },
+      title: "Engineer, Notion",
     };
 
     const next = overwriteCoverLetter(existing, generated);

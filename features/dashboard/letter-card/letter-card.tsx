@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import type { KeyboardEvent, MouseEvent } from "react";
+
+import Link from "next/link";
 import { Button, Text } from "reshaped";
 
 import TrashIcon from "@/ui/assets/trash-icon.svg";
@@ -10,20 +11,20 @@ import { CopyButton } from "@/ui/copy-button";
 import styles from "./letter-card.module.css";
 
 type LetterCardProps = {
-  id: string;
-  content: string;
-  onDelete: () => void;
   className?: string;
+  content: string;
+  id: string;
+  onDelete: () => void;
 };
 
 export function LetterCard({
-  id,
-  content,
-  onDelete,
   className,
+  content,
+  id,
+  onDelete,
 }: LetterCardProps) {
   const handleDelete = (
-    event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
+    event: KeyboardEvent<HTMLElement> | MouseEvent<HTMLElement>,
   ) => {
     event.preventDefault();
     onDelete();
@@ -31,13 +32,13 @@ export function LetterCard({
 
   return (
     <article className={[styles.root, className].filter(Boolean).join(" ")}>
-      <Link href={`/${id}`} className={styles.link}>
+      <Link className={styles.link} href={`/${id}`}>
         <div className={styles.content}>
           <Text
             as="p"
-            variant="body-2"
-            color="neutral"
             className={styles.preview}
+            color="neutral"
+            variant="body-2"
           >
             {content}
           </Text>
@@ -46,13 +47,13 @@ export function LetterCard({
 
       <div className={styles.actions}>
         <Button
+          color="critical"
+          icon={TrashIcon}
+          onClick={handleDelete}
+          size="small"
+          stopPropagation
           type="button"
           variant="ghost"
-          color="critical"
-          size="small"
-          icon={TrashIcon}
-          stopPropagation
-          onClick={handleDelete}
         >
           Delete
         </Button>

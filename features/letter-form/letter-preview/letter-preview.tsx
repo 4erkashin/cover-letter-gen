@@ -13,7 +13,7 @@ const EMPTY_PLACEHOLDER =
 export const GENERATING_STATUS = "Generating…";
 
 type LetterPreviewProps = {
-  content?: string | null;
+  content?: null | string;
   isGenerating?: boolean;
 };
 
@@ -38,12 +38,12 @@ export function LetterPreview({
 
   return (
     <View
-      className={styles.root}
       attributes={{
-        role: "region",
-        "aria-label": "Generated letter preview",
         "aria-busy": isGenerating || undefined,
+        "aria-label": "Generated letter preview",
+        role: "region",
       }}
+      className={styles.root}
     >
       <div
         className={[
@@ -56,16 +56,16 @@ export function LetterPreview({
         {isGenerating ? (
           <>
             <div
+              aria-hidden
               className={styles.preloader}
               data-testid="letter-preloader"
-              aria-hidden
             >
               <div className={styles.preloaderBlob} />
             </div>
             <Text
+              className={styles.reducedMotionCopy}
               color="neutral-faded"
               variant="body-2"
-              className={styles.reducedMotionCopy}
             >
               {GENERATING_STATUS}
             </Text>
@@ -73,10 +73,10 @@ export function LetterPreview({
         ) : content ? (
           <Text
             as="p"
+            attributes={{ style: { whiteSpace: "pre-wrap" } }}
+            className={shouldReveal ? styles.reveal : undefined}
             color="neutral"
             variant="body-2"
-            className={shouldReveal ? styles.reveal : undefined}
-            attributes={{ style: { whiteSpace: "pre-wrap" } }}
           >
             {content}
           </Text>

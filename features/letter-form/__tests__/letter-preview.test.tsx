@@ -65,7 +65,7 @@ describe("LetterPreview", () => {
   it("applies the success reveal when content arrives after generating", () => {
     const content = "Dear Apple Team,\n\nI am writing to express my interest.";
     const { container, rerender } = render(
-      <LetterPreview isGenerating content={null} />,
+      <LetterPreview content={null} isGenerating />,
     );
 
     rerender(<LetterPreview content={content} />);
@@ -76,8 +76,8 @@ describe("LetterPreview", () => {
   it("keeps the Preloader over prior content while regenerating", () => {
     render(
       <LetterPreview
-        isGenerating
         content={"Dear Apple Team,\n\nPrevious letter."}
+        isGenerating
       />,
     );
 

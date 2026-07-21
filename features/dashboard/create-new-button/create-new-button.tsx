@@ -4,7 +4,7 @@ import PlusIcon from "@/ui/assets/plus-icon.svg";
 
 type CreateNewButtonProps = {
   className?: string;
-  size?: "small" | "medium" | "large";
+  size?: "large" | "medium" | "small";
 };
 
 export function CreateNewButton({
@@ -14,11 +14,11 @@ export function CreateNewButton({
   return (
     <Button
       className={className}
-      href="/new"
-      variant="solid"
       color="positive"
-      size={size}
+      href="/new"
       icon={PlusIcon}
+      size={size}
+      variant="solid"
     >
       Create New
     </Button>

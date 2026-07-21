@@ -10,9 +10,9 @@ export function CharCounter({ length, max }: CharCounterProps) {
 
   return (
     <Text
+      attributes={{ "data-over-limit": isOverLimit ? "true" : "false" }}
       color={isOverLimit ? "critical" : "neutral-faded"}
       variant="caption-1"
-      attributes={{ "data-over-limit": isOverLimit ? "true" : "false" }}
     >
       {length}/{max}
     </Text>

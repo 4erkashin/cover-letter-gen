@@ -4,6 +4,7 @@ import { useState } from "react";
 import { View } from "reshaped";
 
 import type { CoverLetter, CoverLetterDetails } from "@/domain";
+
 import { GoalBanner } from "@/features/dashboard/goal-banner";
 import { useCoverLetters } from "@/features/persist-storage";
 
@@ -29,12 +30,12 @@ export function EditCoverLetter({
       <FormPreviewShell
         form={
           <LetterForm
-            initialDetails={coverLetter.details}
             existingCoverLetter={coverLetter}
-            submitLabel="Try Again"
             generateCoverLetter={generateCoverLetter}
-            onGeneratingChange={setIsGenerating}
+            initialDetails={coverLetter.details}
             onGenerated={(letter) => setPreviewContent(letter.content)}
+            onGeneratingChange={setIsGenerating}
+            submitLabel="Try Again"
           />
         }
         preview={

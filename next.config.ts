@@ -1,10 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ["reshaped"],
+  },
+  transpilePackages: ["reshaped"],
   turbopack: {
     root: __dirname,
     rules: {
       "*.svg": {
+        as: "*.js",
         loaders: [
           {
             loader: "@svgr/webpack",
@@ -13,13 +18,8 @@ const nextConfig: NextConfig = {
             },
           },
         ],
-        as: "*.js",
       },
     },
-  },
-  transpilePackages: ["reshaped"],
-  experimental: {
-    optimizePackageImports: ["reshaped"],
   },
 };
 

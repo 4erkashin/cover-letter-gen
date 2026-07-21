@@ -32,14 +32,14 @@ vi.mock("@/ui/assets/retry-icon.svg", () => ({
 import { LetterForm } from "../letter-form";
 
 const validDetails: CoverLetterDetails = {
-  jobTitle: "Product manager",
-  companyName: "Apple",
-  skills: "HTML, CSS and doing things in time",
   additionalDetails:
     "I want to help you build awesome solutions to accomplish your goals and vision",
+  companyName: "Apple",
+  jobTitle: "Product manager",
+  skills: "HTML, CSS and doing things in time",
 };
 
-function fillField(label: string | RegExp, value: string) {
+function fillField(label: RegExp | string, value: string) {
   fireEvent.change(screen.getByLabelText(label), { target: { value } });
 }
 
@@ -119,11 +119,11 @@ describe("LetterForm", () => {
 
   it("persists a generated Cover Letter and replace-navigates to /[id] on success", async () => {
     const generatedLetter: CoverLetter = {
+      content: "Dear Apple Team,\n\nI am writing to express my interest.",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      details: validDetails,
       id: "letter-id",
       title: "Product manager, Apple",
-      content: "Dear Apple Team,\n\nI am writing to express my interest.",
-      details: validDetails,
-      createdAt: "2026-01-01T00:00:00.000Z",
       updatedAt: "2026-01-01T00:00:00.000Z",
     };
     const generate = vi.fn().mockResolvedValue(generatedLetter);
@@ -151,8 +151,8 @@ describe("LetterForm", () => {
       expect(showToast).toHaveBeenCalledWith({
         color: "critical",
         position: "bottom-end",
-        title: "Generation failed",
         text: "Could not generate the letter. Try again later.",
+        title: "Generation failed",
       });
     });
 
@@ -202,11 +202,11 @@ describe("LetterForm", () => {
     );
 
     resolveGenerate({
+      content: "Dear Apple Team,\n\nI am writing to express my interest.",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      details: validDetails,
       id: "letter-id",
       title: "Product manager, Apple",
-      content: "Dear Apple Team,\n\nI am writing to express my interest.",
-      details: validDetails,
-      createdAt: "2026-01-01T00:00:00.000Z",
       updatedAt: "2026-01-01T00:00:00.000Z",
     });
 
@@ -231,18 +231,18 @@ describe("LetterForm", () => {
 
   it("shows outline Try Again with a refresh icon in edit mode", () => {
     const existing: CoverLetter = {
+      content: "Old letter body",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      details: validDetails,
       id: "existing-id",
       title: "Product manager, Apple",
-      content: "Old letter body",
-      details: validDetails,
-      createdAt: "2026-01-01T00:00:00.000Z",
       updatedAt: "2026-01-01T00:00:00.000Z",
     };
 
     render(
       <LetterForm
-        initialDetails={existing.details}
         existingCoverLetter={existing}
+        initialDetails={existing.details}
         submitLabel="Try Again"
       />,
     );
@@ -290,19 +290,19 @@ describe("LetterForm", () => {
 
   it("overwrites the same Cover Letter id, stays on the page, and clears busy on edit success", async () => {
     const existing: CoverLetter = {
+      content: "Old letter body",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      details: validDetails,
       id: "existing-id",
       title: "Product manager, Apple",
-      content: "Old letter body",
-      details: validDetails,
-      createdAt: "2026-01-01T00:00:00.000Z",
       updatedAt: "2026-01-01T00:00:00.000Z",
     };
     const generatedLetter: CoverLetter = {
+      content: "New letter body",
+      createdAt: "2026-06-01T00:00:00.000Z",
+      details: validDetails,
       id: "brand-new-id",
       title: "Product manager, Apple",
-      content: "New letter body",
-      details: validDetails,
-      createdAt: "2026-06-01T00:00:00.000Z",
       updatedAt: "2026-06-01T00:00:00.000Z",
     };
     const generate = vi.fn().mockResolvedValue(generatedLetter);
@@ -311,12 +311,12 @@ describe("LetterForm", () => {
 
     render(
       <LetterForm
-        initialDetails={existing.details}
         existingCoverLetter={existing}
-        submitLabel="Try Again"
         generateCoverLetter={generate}
+        initialDetails={existing.details}
         onGenerated={onGenerated}
         onGeneratingChange={onGeneratingChange}
+        submitLabel="Try Again"
       />,
     );
     fireEvent.click(screen.getByRole("button", { name: "Try Again" }));
@@ -325,17 +325,17 @@ describe("LetterForm", () => {
       expect(generate).toHaveBeenCalledWith(validDetails);
       expect(updateCoverLetter).toHaveBeenCalledWith(
         expect.objectContaining({
-          id: "existing-id",
-          createdAt: "2026-01-01T00:00:00.000Z",
           content: "New letter body",
+          createdAt: "2026-01-01T00:00:00.000Z",
           details: validDetails,
+          id: "existing-id",
         }),
       );
       expect(saveCoverLetter).not.toHaveBeenCalled();
       expect(onGenerated).toHaveBeenCalledWith(
         expect.objectContaining({
-          id: "existing-id",
           content: "New letter body",
+          id: "existing-id",
         }),
       );
       expect(replace).not.toHaveBeenCalled();

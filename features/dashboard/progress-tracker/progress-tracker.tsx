@@ -16,19 +16,19 @@ export function ProgressTracker({
 
   return (
     <div
+      aria-label={`${filled} of ${GOAL_TARGET}`}
       className={[styles.root, styles[variant]].filter(Boolean).join(" ")}
       role="img"
-      aria-label={`${filled} of ${GOAL_TARGET}`}
     >
       {Array.from({ length: GOAL_TARGET }, (_, index) => (
         <span
-          key={index}
           className={[styles.step, index < filled ? styles.active : undefined]
             .filter(Boolean)
             .join(" ")}
+          data-active={index < filled ? "true" : "false"}
           data-progress-dot={variant === "dots" ? "true" : undefined}
           data-progress-segment={variant === "segments" ? "true" : undefined}
-          data-active={index < filled ? "true" : "false"}
+          key={index}
         />
       ))}
     </div>

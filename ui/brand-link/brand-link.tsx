@@ -17,11 +17,11 @@ export function BrandLink({ className }: BrandLinkProps) {
 
   return (
     <Link
-      href="/"
-      className={[styles.root, className].filter(Boolean).join(" ")}
-      tabIndex={isDashboard ? -1 : undefined}
-      aria-label="Alt+Shift"
       aria-current={isDashboard ? "page" : undefined}
+      aria-label="Alt+Shift"
+      className={[styles.root, className].filter(Boolean).join(" ")}
+      href="/"
+      tabIndex={isDashboard ? -1 : undefined}
     >
       <AppLogo aria-hidden className={styles.logo} />
     </Link>

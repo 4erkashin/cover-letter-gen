@@ -1,7 +1,7 @@
 "use client";
 
-import { use } from "react";
 import { notFound } from "next/navigation";
+import { use } from "react";
 import { Text, View } from "reshaped";
 
 import { findCoverLetter } from "@/domain";
@@ -21,7 +21,7 @@ export default function EditCoverLetterPage({
   if (isLoading) {
     return (
       <View gap={2}>
-        <Text variant="body-2" color="neutral-faded">
+        <Text color="neutral-faded" variant="body-2">
           Loading…
         </Text>
       </View>

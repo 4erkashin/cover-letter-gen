@@ -20,7 +20,7 @@ vi.mock("next/link", () => ({
     href,
     ...props
   }: React.PropsWithChildren<
-    { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+    React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
   >) => (
     <a href={href} {...props}>
       {children}
@@ -84,29 +84,29 @@ describe("AppHeader", () => {
   it("shows goal progress from the Cover Letter list length", () => {
     coverLettersState.coverLetters = [
       {
+        content: "Dear Stripe team,",
+        createdAt: "2026-01-01T00:00:00.000Z",
+        details: {
+          additionalDetails: "I build products.",
+          companyName: "Stripe",
+          jobTitle: "Designer",
+          skills: "design systems",
+        },
         id: "1",
         title: "Designer, Stripe",
-        content: "Dear Stripe team,",
-        details: {
-          jobTitle: "Designer",
-          companyName: "Stripe",
-          skills: "design systems",
-          additionalDetails: "I build products.",
-        },
-        createdAt: "2026-01-01T00:00:00.000Z",
         updatedAt: "2026-01-01T00:00:00.000Z",
       },
       {
+        content: "Dear Notion team,",
+        createdAt: "2026-01-02T00:00:00.000Z",
+        details: {
+          additionalDetails: "I ship.",
+          companyName: "Notion",
+          jobTitle: "Engineer",
+          skills: "TypeScript",
+        },
         id: "2",
         title: "Engineer, Notion",
-        content: "Dear Notion team,",
-        details: {
-          jobTitle: "Engineer",
-          companyName: "Notion",
-          skills: "TypeScript",
-          additionalDetails: "I ship.",
-        },
-        createdAt: "2026-01-02T00:00:00.000Z",
         updatedAt: "2026-01-02T00:00:00.000Z",
       },
     ];

@@ -31,14 +31,14 @@ vi.mock("@/ui/assets/copy-icon.svg", () => ({
 import { CreateCoverLetter } from "../create-cover-letter";
 
 const validDetails: CoverLetterDetails = {
-  jobTitle: "Product manager",
-  companyName: "Apple",
-  skills: "HTML, CSS and doing things in time",
   additionalDetails:
     "I want to help you build awesome solutions to accomplish your goals and vision",
+  companyName: "Apple",
+  jobTitle: "Product manager",
+  skills: "HTML, CSS and doing things in time",
 };
 
-function fillField(label: string | RegExp, value: string) {
+function fillField(label: RegExp | string, value: string) {
   fireEvent.change(screen.getByLabelText(label), { target: { value } });
 }
 
@@ -77,11 +77,11 @@ describe("CreateCoverLetter", () => {
     });
 
     resolveGenerate({
+      content: "Dear Apple Team,\n\nI am writing to express my interest.",
+      createdAt: "2026-01-01T00:00:00.000Z",
+      details: validDetails,
       id: "letter-id",
       title: "Product manager, Apple",
-      content: "Dear Apple Team,\n\nI am writing to express my interest.",
-      details: validDetails,
-      createdAt: "2026-01-01T00:00:00.000Z",
       updatedAt: "2026-01-01T00:00:00.000Z",
     });
 

@@ -19,20 +19,20 @@ export function GoalBanner({ count }: GoalBannerProps) {
 
   return (
     <section className={styles.root}>
-      <View gap={8} align="center">
-        <View gap={4} align="center" maxWidth="120">
-          <Text variant="featured-3" as="h2" align="center">
+      <View align="center" gap={8}>
+        <View align="center" gap={4} maxWidth="120">
+          <Text align="center" as="h2" variant="featured-3">
             Hit your goal
           </Text>
-          <Text variant="body-2" color="neutral-faded" align="center">
+          <Text align="center" color="neutral-faded" variant="body-2">
             Generate and send out couple more job applications today to get
             hired faster
           </Text>
           <CreateNewButton size="large" />
         </View>
-        <View gap={2} align="center">
+        <View align="center" gap={2}>
           <ProgressTracker count={count} variant="segments" />
-          <Text variant="body-3" color="neutral-faded">
+          <Text color="neutral-faded" variant="body-3">
             {count} out of {GOAL_TARGET}
           </Text>
         </View>

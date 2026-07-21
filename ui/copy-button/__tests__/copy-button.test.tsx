@@ -44,6 +44,8 @@ describe("CopyButton", () => {
 
   it("does not navigate when nested inside a link", () => {
     render(
+      // Intentionally a raw <a>: CopyButton must stop nested-link navigation.
+      // eslint-disable-next-line @next/next/no-html-link-for-pages -- test fixture
       <a href="/letter-1">
         <CopyButton text="Dear Stripe team," />
       </a>,

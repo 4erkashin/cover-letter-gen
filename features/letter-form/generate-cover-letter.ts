@@ -3,13 +3,13 @@
 import { generateText } from "ai";
 
 import {
-  coverLetterTitle,
   type CoverLetter,
   type CoverLetterDetails,
+  coverLetterTitle,
 } from "@/domain";
 
 import { FLASH_MODEL } from "./constants";
-import { SYSTEM_PROMPT, composePrompt } from "./prompts";
+import { composePrompt, SYSTEM_PROMPT } from "./prompts";
 
 export async function generateCoverLetter(
   details: CoverLetterDetails,
@@ -21,27 +21,27 @@ export async function generateCoverLetter(
   }
 
   const trimmed: CoverLetterDetails = {
-    jobTitle: details.jobTitle.trim(),
-    companyName: details.companyName.trim(),
-    skills: details.skills.trim(),
     additionalDetails: details.additionalDetails.trim(),
+    companyName: details.companyName.trim(),
+    jobTitle: details.jobTitle.trim(),
+    skills: details.skills.trim(),
   };
 
   try {
     const { text } = await generateText({
       model: FLASH_MODEL,
-      system: SYSTEM_PROMPT,
       prompt: composePrompt(trimmed),
+      system: SYSTEM_PROMPT,
     });
 
     const nowIso = new Date().toISOString();
 
     return {
+      content: text,
+      createdAt: nowIso,
+      details: trimmed,
       id: crypto.randomUUID(),
       title: coverLetterTitle(trimmed.jobTitle, trimmed.companyName),
-      content: text,
-      details: trimmed,
-      createdAt: nowIso,
       updatedAt: nowIso,
     };
   } catch (error) {

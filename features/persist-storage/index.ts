@@ -1,8 +1,8 @@
 export {
-  STORAGE_KEY,
   getCoverLetters,
   removeCoverLetter,
   saveCoverLetter,
+  STORAGE_KEY,
   updateCoverLetter,
   useCoverLetters,
 } from "./store";

@@ -26,7 +26,9 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Useful scripts: `pnpm lint` · `pnpm typecheck` · `pnpm test`
+Useful scripts: `pnpm lint` · `pnpm format` · `pnpm typecheck` · `pnpm test`
+
+Lint sorting + type-import style: [`docs/adr/0001-eslint-sorting-and-type-imports.md`](./docs/adr/0001-eslint-sorting-and-type-imports.md).
 
 ## Layout
 

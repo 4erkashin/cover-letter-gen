@@ -1,21 +1,21 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { type FormEvent, useState } from "react";
 import {
   Button,
   FormControl,
   HiddenVisually,
   TextArea,
   TextField,
-  View,
   useToast,
+  View,
 } from "reshaped";
 
 import {
-  overwriteCoverLetter,
   type CoverLetter,
   type CoverLetterDetails,
+  overwriteCoverLetter,
 } from "@/domain";
 import { saveCoverLetter, updateCoverLetter } from "@/features/persist-storage";
 import RetryIcon from "@/ui/assets/retry-icon.svg";
@@ -23,37 +23,37 @@ import { CharCounter } from "@/ui/char-counter";
 
 import { ADDITIONAL_DETAILS_MAX } from "./constants";
 import { FormHeader } from "./form-header";
-import { GENERATING_STATUS } from "./letter-preview";
 import { generateCoverLetter as defaultGenerateCoverLetter } from "./generate-cover-letter";
+import { GENERATING_STATUS } from "./letter-preview";
 import {
   isAdditionalDetailsOverLimit,
   isCoverLetterDetailsValid,
 } from "./validation";
 
 const EMPTY_DETAILS: CoverLetterDetails = {
-  jobTitle: "",
-  companyName: "",
-  skills: "",
   additionalDetails: "",
+  companyName: "",
+  jobTitle: "",
+  skills: "",
 };
 
 type LetterFormProps = {
-  generateCoverLetter?: (details: CoverLetterDetails) => Promise<CoverLetter>;
-  onGeneratingChange?: (isGenerating: boolean) => void;
-  onGenerated?: (letter: CoverLetter) => void;
-  submitLabel?: string;
-  initialDetails?: CoverLetterDetails;
   /** When set, Try Again overwrites this id and stays on the page. */
-  existingCoverLetter?: Pick<CoverLetter, "id" | "createdAt">;
+  existingCoverLetter?: Pick<CoverLetter, "createdAt" | "id">;
+  generateCoverLetter?: (details: CoverLetterDetails) => Promise<CoverLetter>;
+  initialDetails?: CoverLetterDetails;
+  onGenerated?: (letter: CoverLetter) => void;
+  onGeneratingChange?: (isGenerating: boolean) => void;
+  submitLabel?: string;
 };
 
 export function LetterForm({
-  generateCoverLetter = defaultGenerateCoverLetter,
-  onGeneratingChange,
-  onGenerated,
-  submitLabel = "Generate Now",
-  initialDetails = EMPTY_DETAILS,
   existingCoverLetter,
+  generateCoverLetter = defaultGenerateCoverLetter,
+  initialDetails = EMPTY_DETAILS,
+  onGenerated,
+  onGeneratingChange,
+  submitLabel = "Generate Now",
 }: LetterFormProps) {
   const router = useRouter();
   const { show } = useToast();
@@ -107,8 +107,8 @@ export function LetterForm({
       show({
         color: "critical",
         position: "bottom-end",
-        title: "Generation failed",
         text: "Could not generate the letter. Try again later.",
+        title: "Generation failed",
       });
       setGenerating(false);
     }
@@ -118,31 +118,31 @@ export function LetterForm({
     <form noValidate onSubmit={handleSubmit}>
       <View gap={4}>
         <FormHeader
-          jobTitle={details.jobTitle}
           companyName={details.companyName}
+          jobTitle={details.jobTitle}
         />
 
         <View direction="row" gap={4}>
-          <View.Item columns={{ s: 12, m: 6 }}>
+          <View.Item columns={{ m: 6, s: 12 }}>
             <FormControl>
               <FormControl.Label>Job title</FormControl.Label>
               <TextField
                 name="jobTitle"
+                onChange={updateField("jobTitle")}
                 placeholder="Product manager"
                 value={details.jobTitle}
-                onChange={updateField("jobTitle")}
               />
             </FormControl>
           </View.Item>
 
-          <View.Item columns={{ s: 12, m: 6 }}>
+          <View.Item columns={{ m: 6, s: 12 }}>
             <FormControl>
               <FormControl.Label>Company</FormControl.Label>
               <TextField
                 name="companyName"
+                onChange={updateField("companyName")}
                 placeholder="Apple"
                 value={details.companyName}
-                onChange={updateField("companyName")}
               />
             </FormControl>
           </View.Item>
@@ -152,24 +152,24 @@ export function LetterForm({
           <FormControl.Label>I am good at…</FormControl.Label>
           <TextField
             name="skills"
+            onChange={updateField("skills")}
             placeholder="HTML, CSS and doing things in time"
             value={details.skills}
-            onChange={updateField("skills")}
           />
         </FormControl>
 
         <FormControl hasError={detailsOverLimit}>
           <FormControl.Label>Additional details</FormControl.Label>
           <TextArea
-            name="additionalDetails"
-            placeholder="Describe why you are a great fit or paste your bio"
-            value={details.additionalDetails}
-            onChange={updateField("additionalDetails")}
-            resize="auto"
             hasError={detailsOverLimit}
             inputAttributes={{
               "aria-invalid": detailsOverLimit,
             }}
+            name="additionalDetails"
+            onChange={updateField("additionalDetails")}
+            placeholder="Describe why you are a great fit or paste your bio"
+            resize="auto"
+            value={details.additionalDetails}
           />
           <FormControl.Helper>
             <CharCounter
@@ -180,24 +180,24 @@ export function LetterForm({
         </FormControl>
 
         <Button
-          type="submit"
-          color={isEdit && !isGenerating ? "neutral" : "positive"}
-          variant={isEdit && !isGenerating ? "outline" : "solid"}
-          icon={isEdit && !isGenerating ? RetryIcon : undefined}
-          fullWidth
-          size="large"
-          disabled={!isValid || isGenerating}
-          loading={isGenerating}
-          loadingAriaLabel={GENERATING_STATUS}
           attributes={
             isGenerating ? { "aria-label": GENERATING_STATUS } : undefined
           }
+          color={isEdit && !isGenerating ? "neutral" : "positive"}
+          disabled={!isValid || isGenerating}
+          fullWidth
+          icon={isEdit && !isGenerating ? RetryIcon : undefined}
+          loading={isGenerating}
+          loadingAriaLabel={GENERATING_STATUS}
+          size="large"
+          type="submit"
+          variant={isEdit && !isGenerating ? "outline" : "solid"}
         >
           {submitLabel}
         </Button>
 
         <HiddenVisually>
-          <div role="status" aria-live="polite">
+          <div aria-live="polite" role="status">
             {statusMessage}
           </div>
         </HiddenVisually>

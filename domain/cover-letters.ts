@@ -1,35 +1,35 @@
-export type IsoDatetimeString = string;
-
-export type CoverLetterDetails = {
-  jobTitle: string;
-  companyName: string;
-  skills: string;
-  additionalDetails: string;
-};
-
 export type CoverLetter = {
+  content: string;
+  createdAt: IsoDatetimeString;
+  details: CoverLetterDetails;
   id: string;
   title: string;
-  content: string;
-  details: CoverLetterDetails;
-  createdAt: IsoDatetimeString;
   updatedAt: IsoDatetimeString;
 };
+
+export type CoverLetterDetails = {
+  additionalDetails: string;
+  companyName: string;
+  jobTitle: string;
+  skills: string;
+};
+
+export type IsoDatetimeString = string;
 
 export const GOAL_TARGET = 5;
 
 export type GoalProgress = {
   count: number;
-  target: typeof GOAL_TARGET;
   isReached: boolean;
+  target: typeof GOAL_TARGET;
 };
 
 /** Progress is distinct saved Cover Letter list length. */
 export function goalProgress(count: number): GoalProgress {
   return {
     count,
-    target: GOAL_TARGET,
     isReached: count >= GOAL_TARGET,
+    target: GOAL_TARGET,
   };
 }
 
@@ -50,15 +50,15 @@ export function coverLetterTitle(
 
 /** Try Again: keep identity, replace generated fields, bump updatedAt. */
 export function overwriteCoverLetter(
-  existing: Pick<CoverLetter, "id" | "createdAt">,
-  generated: Pick<CoverLetter, "title" | "content" | "details">,
+  existing: Pick<CoverLetter, "createdAt" | "id">,
+  generated: Pick<CoverLetter, "content" | "details" | "title">,
 ): CoverLetter {
   return {
-    id: existing.id,
-    createdAt: existing.createdAt,
-    title: generated.title,
     content: generated.content,
+    createdAt: existing.createdAt,
     details: generated.details,
+    id: existing.id,
+    title: generated.title,
     updatedAt: new Date().toISOString(),
   };
 }

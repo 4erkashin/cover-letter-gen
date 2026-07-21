@@ -10,20 +10,24 @@ const coverLettersState = vi.hoisted(() => ({
 
 const removeCoverLetter = vi.hoisted(() => vi.fn());
 const saveCoverLetter = vi.hoisted(() => vi.fn());
-const showToast = vi.hoisted(() => vi.fn((..._args: unknown[]) => "toast-1"));
+const showToast = vi.hoisted(() => {
+  const fn = vi.fn();
+  fn.mockReturnValue("toast-1");
+  return fn;
+});
 const hideToast = vi.hoisted(() => vi.fn());
 
 vi.mock("@/features/persist-storage", () => ({
-  useCoverLetters: () => coverLettersState,
   removeCoverLetter,
   saveCoverLetter,
+  useCoverLetters: () => coverLettersState,
 }));
 
 vi.mock("reshaped", async (importOriginal) => {
   const actual = await importOriginal<typeof import("reshaped")>();
   return {
     ...actual,
-    useToast: () => ({ show: showToast, hide: hideToast }),
+    useToast: () => ({ hide: hideToast, show: showToast }),
   };
 });
 
@@ -33,7 +37,7 @@ vi.mock("next/link", () => ({
     href,
     ...props
   }: React.PropsWithChildren<
-    { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+    React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
   >) => (
     <a href={href} {...props}>
       {children}
@@ -64,16 +68,16 @@ function makeCoverLetter(
   content = "Dear Stripe team,",
 ): CoverLetter {
   return {
+    content,
+    createdAt: "2026-01-01T00:00:00.000Z",
+    details: {
+      additionalDetails: "I build products.",
+      companyName: "Stripe",
+      jobTitle: "Designer",
+      skills: "design systems",
+    },
     id,
     title: "Designer, Stripe",
-    content,
-    details: {
-      jobTitle: "Designer",
-      companyName: "Stripe",
-      skills: "design systems",
-      additionalDetails: "I build products.",
-    },
-    createdAt: "2026-01-01T00:00:00.000Z",
     updatedAt: "2026-01-01T00:00:00.000Z",
   };
 }
@@ -171,8 +175,8 @@ describe("Dashboard", () => {
     expect(removeCoverLetter).toHaveBeenCalledWith("a");
     expect(showToast).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: "Cover letter deleted",
         actionsSlot: expect.anything(),
+        title: "Cover letter deleted",
       }),
     );
 

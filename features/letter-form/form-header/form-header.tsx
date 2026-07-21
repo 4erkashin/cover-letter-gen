@@ -3,8 +3,8 @@ import { Text } from "reshaped";
 import { coverLetterTitle } from "@/domain";
 
 type FormHeaderProps = {
-  jobTitle: string;
   companyName: string;
+  jobTitle: string;
 };
 
 function formHeaderTitle(jobTitle: string, companyName: string): string {
@@ -22,9 +22,9 @@ function formHeaderTitle(jobTitle: string, companyName: string): string {
   return title || company;
 }
 
-export function FormHeader({ jobTitle, companyName }: FormHeaderProps) {
+export function FormHeader({ companyName, jobTitle }: FormHeaderProps) {
   return (
-    <Text variant="title-3" as="h1">
+    <Text as="h1" variant="title-3">
       {formHeaderTitle(jobTitle, companyName)}
     </Text>
   );

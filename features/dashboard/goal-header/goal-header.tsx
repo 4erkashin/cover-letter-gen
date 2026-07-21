@@ -14,12 +14,12 @@ export function GoalHeader({ count }: GoalHeaderProps) {
   const { isReached } = goalProgress(count);
 
   return (
-    <View direction="row" align="center" gap={3}>
-      <Text variant="body-3" color="neutral-faded">
+    <View align="center" direction="row" gap={3}>
+      <Text color="neutral-faded" variant="body-3">
         {count}/{GOAL_TARGET} applications generated
       </Text>
       {isReached ? (
-        <CheckIcon className={styles.check} aria-label="Goal reached" />
+        <CheckIcon aria-label="Goal reached" className={styles.check} />
       ) : (
         <ProgressTracker count={count} variant="dots" />
       )}

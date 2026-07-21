@@ -7,8 +7,8 @@ import type { CoverLetter } from "@/domain";
 export const STORAGE_KEY = "cover-letter-gen";
 
 const $coverLetters = persistentAtom<CoverLetter[]>(STORAGE_KEY, [], {
-  encode: JSON.stringify,
   decode: JSON.parse,
+  encode: JSON.stringify,
 });
 
 export type CoverLettersState = {
