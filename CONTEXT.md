@@ -23,3 +23,7 @@ _Avoid_: Logo color, green, accent, lime
 **Primary**:
 The interactive product green. Used for CTAs and other primary actions. Maps to Reshaped's primary color family (`backgroundPrimary`, etc.); value is `PRIMARY` in the theme entry.
 _Avoid_: CTA color, button green, accent, lime
+
+**Neutral Foreground**:
+Default body text ink. Maps to Reshaped's `foregroundNeutral` (`Text color="neutral"`); values are `NEUTRAL_FOREGROUND` / `NEUTRAL_FOREGROUND_DARK` in the theme entry. Not the neutral surface/hue seed.
+_Avoid_: Gray, muted, secondary text, neutral-faded (unless that token is intended)

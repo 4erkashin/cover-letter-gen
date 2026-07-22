@@ -13,7 +13,13 @@ import { FIXEL_DISPLAY_VAR, FIXEL_TEXT_VAR } from "@/ui/fonts";
  */
 export const BRAND = "#099250";
 export const BRAND_DARK = "#36ab67";
+
 export const PRIMARY = "#087443";
+
+/** Default text ink (`foregroundNeutral` / `Text color="neutral"`). */
+export const NEUTRAL_FOREGROUND = "#667085";
+export const NEUTRAL_FOREGROUND_DARK = "#c3cee5";
+
 export const THEME_NAME = "altShift";
 
 /** App shell max width in Reshaped units (default unit = 4px). */
@@ -28,10 +34,17 @@ const FIXEL_TEXT_STACK = `var(${FIXEL_TEXT_VAR}), ${SYSTEM_SANS}`;
 
 export const themeCss = getThemeCSS(THEME_NAME, {
   ...baseThemeDefinition,
-  color: generateThemeColors({
-    brand: { hex: BRAND, hexDark: BRAND_DARK },
-    primary: PRIMARY,
-  }),
+  color: {
+    ...generateThemeColors({
+      brand: { hex: BRAND, hexDark: BRAND_DARK },
+      primary: PRIMARY,
+    }),
+    // Exact ink — do not pass this as the `neutral` hue seed (that paints surfaces).
+    foregroundNeutral: {
+      hex: NEUTRAL_FOREGROUND,
+      hexDark: NEUTRAL_FOREGROUND_DARK,
+    },
+  },
   font: {
     ...baseThemeDefinition.font,
     body1: {
