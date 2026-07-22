@@ -44,6 +44,8 @@ ADRs: [`docs/adr/0001-eslint-sorting-and-type-imports.md`](./docs/adr/0001-eslin
 
 `ui/` may also hold shared shell helpers (`assets/`, `themes/`, fonts, globals, Reshaped root) — not a second component tree.
 
+Single-use Reshaped composition stays at the call site (`app/` layout/pages); extract to `ui/` only when the chrome is shared or a named product piece.
+
 ### Fat features
 
 A feature is too fat when its short description needs the word **“and”** (two jobs in one name). Split by capability, not by file type — do not invent `components/` + `lib/` just to tidy. `features/letter-form/` is **watch / maybe-split**, not a mandatory split.

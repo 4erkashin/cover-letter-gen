@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-import { Container, View } from "reshaped";
+import { Button, Container, View } from "reshaped";
 
 import { Goal } from "@/features/goal";
 import { AppLogo } from "@/ui/app-logo";
+import HomeIcon from "@/ui/assets/home-icon.svg";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
-import { HomeButton } from "@/ui/home-button";
 import { ReshapedRoot } from "@/ui/reshaped-root";
 import { MAX_APP_WIDTH, THEME_NAME, themeCss } from "@/ui/theme";
 
@@ -51,7 +51,13 @@ export default function RootLayout({
                   <Goal.Root>
                     <Goal.Status />
                   </Goal.Root>
-                  <HomeButton />
+                  <Button
+                    attributes={{ "aria-label": "Home" }}
+                    href="/"
+                    icon={HomeIcon}
+                    size="small"
+                    variant="outline"
+                  />
                 </View>
               </View>
               {children}
