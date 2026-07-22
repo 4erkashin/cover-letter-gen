@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import Link from "next/link";
 import { Button, Container, View } from "reshaped";
 
 import { Goal } from "@/features/goal";
@@ -31,37 +32,32 @@ export default function RootLayout({
       <head>
         <style dangerouslySetInnerHTML={{ __html: themeCss }} />
       </head>
+
       <body>
         <ReshapedRoot>
           <Container padding={0} width={MAX_APP_WIDTH}>
-            <View gap={8} paddingBlock={4} paddingInline={4}>
-              <View
-                align="center"
-                as="header"
-                direction="row"
-                gap={4}
-                justify="space-between"
-                paddingBlock={4}
-                width="100%"
-                wrap
-              >
-                <AppLogo />
+            <View
+              align="center"
+              as="header"
+              direction="row"
+              gap={4}
+              justify="space-between"
+              paddingBlock={8}
+            >
+              <AppLogo />
 
-                <View align="center" direction="row" gap={3} wrap>
-                  <Goal.Root>
-                    <Goal.Status />
-                  </Goal.Root>
-                  <Button
-                    attributes={{ "aria-label": "Home" }}
-                    href="/"
-                    icon={HomeIcon}
-                    size="small"
-                    variant="outline"
-                  />
-                </View>
+              <View align="center" direction="row" gap={3} wrap>
+                <Goal.Root>
+                  <Goal.Status />
+                </Goal.Root>
+
+                <Link aria-label="Home" href="/">
+                  <Button icon={HomeIcon} size="small" variant="outline" />
+                </Link>
               </View>
-              {children}
             </View>
+
+            {children}
           </Container>
         </ReshapedRoot>
       </body>
