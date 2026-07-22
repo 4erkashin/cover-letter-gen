@@ -2,6 +2,8 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
+import { escapeRegExp } from "@/lib/escape-reg-exp";
+
 import { FIXEL_DISPLAY_VAR, FIXEL_TEXT_VAR } from "../fonts";
 
 /**
@@ -28,7 +30,3 @@ describe("ui/fonts.ts Fixel CSS variable names", () => {
     );
   });
 });
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}

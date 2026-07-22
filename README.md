@@ -39,6 +39,7 @@ ADRs: [`docs/adr/0001-eslint-sorting-and-type-imports.md`](./docs/adr/0001-eslin
 | `domain/`   | Pure Cover Letter / Goal types and rules — no React, I/O, or UI copy |
 | `features/` | User-facing capabilities; own their domain-flavored UI               |
 | `ui/`       | Reusable chrome — no Cover Letter / Goal vocabulary in name or props |
+| `lib/`      | Domain-agnostic pure helpers — no product meaning, no grab-bag barrel |
 | `app/`      | Thin Next.js routes only — wire features, do not host logic          |
 
 `ui/` may also hold shared shell helpers (`assets/`, `themes/`, fonts, globals, Reshaped root) — not a second component tree.
@@ -53,7 +54,7 @@ Delete production leftovers. Do not keep a permanent `app/prototype/` home. Futu
 
 ### Barrels
 
-Keep per-module barrels (`ui/copy-button/index.ts`, `features/letter-form/index.ts`). Import from the owning module — no root grab-bag barrels under `ui/` or `features/`.
+Keep per-module barrels (`ui/copy-button/index.ts`, `features/letter-form/index.ts`). Import from the owning module — no root grab-bag barrels under `ui/`, `features/`, or `lib/`.
 
 ## Related issues
 
