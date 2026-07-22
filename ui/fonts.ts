@@ -1,5 +1,7 @@
 import localFont from "next/font/local";
 
+import { FIXEL_DISPLAY_VAR, FIXEL_TEXT_VAR } from "@/ui/font-vars";
+
 export const fixelText = localFont({
   display: "swap",
   src: [
@@ -24,7 +26,7 @@ export const fixelText = localFont({
       weight: "700",
     },
   ],
-  variable: "--font-fixel-text",
+  variable: FIXEL_TEXT_VAR,
 });
 
 export const fixelDisplay = localFont({
@@ -57,5 +59,5 @@ export const fixelDisplay = localFont({
       weight: "800",
     },
   ],
-  variable: "--font-fixel-display",
+  variable: FIXEL_DISPLAY_VAR,
 });

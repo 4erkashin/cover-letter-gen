@@ -14,7 +14,7 @@ body {
   flex-direction: column;
   color: var(--rs-color-foreground-neutral);
   background: var(--rs-color-background-page-faded);
-  font-family: var(--font-fixel-text), system-ui, sans-serif;
+  font-family: var(--rs-font-family-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
