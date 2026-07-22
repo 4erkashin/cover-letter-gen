@@ -8,6 +8,7 @@ import { MAX_APP_WIDTH } from "@/ui/constants";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
 import { HomeButton } from "@/ui/home-button";
 import { ReshapedRoot } from "@/ui/reshaped-root";
+import { THEME_NAME, themeCss } from "@/ui/theme";
 
 import "@/ui/globals.css";
 
@@ -24,10 +25,13 @@ export default function RootLayout({
   return (
     <html
       className={`${fixelDisplay.variable} ${fixelText.variable}`}
-      data-rs-theme="slate"
+      data-rs-theme={THEME_NAME}
       data-scroll-behavior="smooth"
       lang="en"
     >
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: themeCss }} />
+      </head>
       <body>
         <ReshapedRoot>
           <Container padding={0} width={MAX_APP_WIDTH}>

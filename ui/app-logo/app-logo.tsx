@@ -11,8 +11,12 @@ export function AppLogo() {
       direction="row"
       gap={3}
     >
-      <Icon size={11} svg={AppLogoCircle} />
-      <Icon autoWidth size={5.5} svg={AppLogoText} />
+      <Icon
+        attributes={{ style: { color: "var(--rs-color-brand)" } }}
+        size={11}
+        svg={AppLogoCircle}
+      />
+      <Icon autoWidth color="neutral" size={5.5} svg={AppLogoText} />
     </View>
   );
 }

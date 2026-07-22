@@ -3,7 +3,7 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { type ColorMode, Reshaped, ToastProvider } from "reshaped";
 
-import "reshaped/themes/slate/theme.css";
+import { THEME_NAME } from "@/ui/theme";
 
 export function ReshapedRoot({ children }: { children: ReactNode }) {
   const [colorMode, setColorMode] = useState<ColorMode>("light");
@@ -28,7 +28,7 @@ export function ReshapedRoot({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <Reshaped colorMode={colorMode} theme="slate">
+    <Reshaped colorMode={colorMode} theme={THEME_NAME}>
       <ToastProvider>{children}</ToastProvider>
     </Reshaped>
   );
