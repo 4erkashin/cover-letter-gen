@@ -1,4 +1,4 @@
-# PRD: Greenfield Alt+Shift cover-letter app
+# PRD: Cover-letter generator app
 
 ## Summary
 
@@ -8,44 +8,44 @@ Domain language: **Cover Letter** (see `CONTEXT.md`). UI copy may say “applica
 
 **Goal** = distinct saved Cover Letters (list length); target **5**. Banner while `n < 5`. **Try Again** overwrites the same id and does **not** +1 the goal.
 
-This file is the durable product source of truth (relocated from [PRD GitHub issue](https://github.com/4erkashin/cover-letter-gen/issues/11), handoff from [Map: Cover letter app handoff PRD](https://github.com/4erkashin/cover-letter-gen/issues/1)). Ready for `/implement` or `/to-tickets` — no further product decisions required.
-
----
-
 ## Scope / non-goals
 
 ### In scope
 
 - Next.js app with Reshaped; routes and behaviors below
-- Client persistence (Nanostores-style `localStorage` + cross-tab sync, as in v2)
-- Cheap/fast Flash-class model, swappable; streaming **not** required for v1 animation
+- Client persistence (Nanostores-style `localStorage` + cross-tab sync)
+- Cheap/fast Flash-class model, swappable; streaming **not** required, loading animation used instead
 - Mobile: single-column adaptation of the same screens
 - Brand: Alt+Shift
 
 ### Post-PRD delivery obligations (implement / ship; not blocking this PRD)
 
 - Decision Log in README
-- README AI-workflow blurb (tools / where AI helped / what you finished by hand)
+- README AI-workflow blurb (tools / where AI helped / what was finished by hand)
 - Deploy demo link (e.g. Vercel)
 
 Tracked separately: [Ship obligations (README Decision Log, AI workflow, deploy)](https://github.com/4erkashin/cover-letter-gen/issues/20).
 
-### Named implementer discretion
-
-- Prompt quality bar
-- Toast library / undo duration
-- Exact mobile breakpoints
-
 ### Non-goals
 
-- Implementing or deploying as part of the original wayfinder map (map stopped at this PRD)
-- Porting v1/v2 wholesale or cloning the sample’s FSD/Vite architecture
 - Custom design system instead of Reshaped
 - Renaming the domain concept to Application
 - Streaming token UI as the generation animation
-- Teaching Figma→AI codegen in this PRD body (belongs in README / Notes; see linked research)
 
----
+### Author extras (not assignment-scored)
+
+Personal polish / flex — lock intent here; call out in the pdf.net handoff note. Not required for mock fidelity or the acceptance table.
+
+#### Brand console (easter egg)
+
+- **Open:** activate Brand / logo **only on** `/` (dashboard). Elsewhere Brand still navigates to `/`. Rationale: mock has Brand (left) and Home (right); on dashboard Brand would otherwise be idle.
+- **v1 contents:**
+  - Color mode: **System / Light / Dark** (persist + cross-tab; System follows `prefers-color-scheme` — port/adapt from v2 Reshaped wiring)
+  - AI Gateway credits: **remaining balance** + **total used** via `getCredits` (env key; fetch when console opens)
+- **Deferred bonus** (after core polish):
+  - Browser-local API key override (fall back to `AI_GATEWAY_API_KEY`)
+  - Model picker **only** when a user-provided key is active — env-key users stay on the fixed Flash-class model (no burning author gateway balance on expensive models)
+  - App-local token metering (optional later; v1 uses gateway credits only)
 
 ## Screens & navigation
 
@@ -59,7 +59,7 @@ Tracked separately: [Ship obligations (README Decision Log, AI workflow, deploy)
 
 - **List card** body → `/[id]`; **Delete** / **Copy** do not navigate
 - **Header Home** → `/` from every screen
-- **Brand / logo** → `/`; non-tabbable when already on dashboard
+- **Brand / logo** → `/` when not on dashboard; on `/`, activate opens the **Brand console** (author easter egg — see below); tabbable on dashboard
 - **Every + Create New / Hit your goal CTA** (dashboard header, dashboard banner, edit banner) → `/new`
 - **Successful Generate Now** on create → **`replace`** to `/[id]` (Back does not reopen empty create)
 - **Create generation failure** → stay on `/new`; keep form; write nothing
@@ -235,16 +235,16 @@ Outline source: [Lock PRD issue outline and acceptance mapping](https://github.c
 
 ## Acceptance mapping
 
-| Criterion                               | Points at                                        | Concrete checks                                                                                                                                           |
-| --------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Consistency with the mockup             | UI states checklist; Screens & navigation        | Nine named states; synced header/banner `n`; field labels/limits/`current/1200` + red over-limit                                                          |
-| Understanding of design                 | Design system; Edge cases & locked copy          | Named patterns inventory used (not one-off screens); empty + both 404 copy locked                                                                         |
-| Quality of the design system            | Design system & folder layout                    | Reshaped + prescribed `app/`·`domain/`·`features/`·`ui/`; thin wrappers only where assignment-specific                                                    |
-| Quality of layout and responsiveness    | Screens; Scope (mobile discretion)               | Desktop matches mock compositions; single-column mobile adaptation present (exact breakpoints discretionary)                                              |
-| Project structure                       | Design system & folder layout                    | Exact four-folder layout; `Letter*` entity patterns vs chrome names as locked                                                                             |
+| Criterion                               | Points at                                        | Concrete checks                                                                                                                                                                           |
+| --------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Consistency with the mockup             | UI states checklist; Screens & navigation        | Nine named states; synced header/banner `n`; field labels/limits/`current/1200` + red over-limit                                                                                          |
+| Understanding of design                 | Design system; Edge cases & locked copy          | Named patterns inventory used (not one-off screens); empty + both 404 copy locked                                                                                                         |
+| Quality of the design system            | Design system & folder layout                    | Reshaped + prescribed `app/`·`domain/`·`features/`·`ui/`; thin wrappers only where assignment-specific                                                                                    |
+| Quality of layout and responsiveness    | Screens; Scope (mobile discretion)               | Desktop matches mock compositions; single-column mobile adaptation present (exact breakpoints discretionary)                                                                              |
+| Project structure                       | Design system & folder layout                    | Exact four-folder layout; `Letter*` entity patterns vs chrome names as locked                                                                                                             |
 | Understanding of React / best practices | Generation; Goal & persistence; Design system    | Server Action + AI SDK `generateText`; prompts server-only (`server-only` / no Client Component import); client persistence with cross-tab sync; feature compositions own screen behavior |
-| Code readability                        | Design system; References                        | Pattern names match PRD inventory; decisions traceable via linked tickets/assets                                                                          |
-| Code scalability                        | Design system; Generation                        | Domain in `domain/`; swappable Flash-class model; UI patterns reusable across create/edit                                                                 |
-| Handling of edge cases                  | Edge cases & locked copy; Generation             | Gen failure (create writes nothing / edit keeps last-good); delete+undo; not-found + unknown-route 404 (no silent redirect); leave discards unsaved edits |
-| Attention to detail                     | UI states; Generation animation; Edge cases      | Loading: Preloader + button spinner + ~320ms letter reveal + a11y; exact locked copy strings; banner absent at ≥5                                         |
-| Product solutions                       | Goal & persistence; Scope (delivery obligations) | Goal = list length, Try Again no +1; banner while &lt;5; calm empty state; README Decision Log + AI workflow + deploy called out as post-PRD obligations  |
+| Code readability                        | Design system; References                        | Pattern names match PRD inventory; decisions traceable via linked tickets/assets                                                                                                          |
+| Code scalability                        | Design system; Generation                        | Domain in `domain/`; swappable Flash-class model; UI patterns reusable across create/edit                                                                                                 |
+| Handling of edge cases                  | Edge cases & locked copy; Generation             | Gen failure (create writes nothing / edit keeps last-good); delete+undo; not-found + unknown-route 404 (no silent redirect); leave discards unsaved edits                                 |
+| Attention to detail                     | UI states; Generation animation; Edge cases      | Loading: Preloader + button spinner + ~320ms letter reveal + a11y; exact locked copy strings; banner absent at ≥5                                                                         |
+| Product solutions                       | Goal & persistence; Scope (delivery obligations) | Goal = list length, Try Again no +1; banner while &lt;5; calm empty state; README Decision Log + AI workflow + deploy called out as post-PRD obligations                                  |
