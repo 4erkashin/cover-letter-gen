@@ -13,5 +13,5 @@ Presentation wording in the mock (“Applications”, “New application”, “
 _Avoid_: Using “Application” as the code/module type name
 
 **Goal**:
-The target count of distinct saved Cover Letters (5). Progress is list length; regenerating (Try Again) does not increment it.
+The target count of distinct saved Cover Letters. Progress is list length; regenerating (Try Again) does not increment it.
 _Avoid_: Streak, quota, XP
