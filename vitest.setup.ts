@@ -4,6 +4,10 @@ import { afterEach, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
 
+vi.mock("next/font/local", () => ({
+  default: () => ({ className: "", style: {}, variable: "" }),
+}));
+
 afterEach(() => {
   cleanup();
 });

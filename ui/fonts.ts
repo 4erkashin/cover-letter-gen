@@ -1,6 +1,12 @@
 import localFont from "next/font/local";
 
-import { FIXEL_DISPLAY_VAR, FIXEL_TEXT_VAR } from "@/ui/font-vars";
+/**
+ * CSS custom property names for Fixel.
+ * next/font requires `variable` to be an AST string literal — export the same
+ * strings for the theme; keep them in sync via `ui/__tests__/fixel-font-vars.test.ts`.
+ */
+export const FIXEL_TEXT_VAR = "--font-fixel-text";
+export const FIXEL_DISPLAY_VAR = "--font-fixel-display";
 
 export const fixelText = localFont({
   display: "swap",
@@ -26,7 +32,7 @@ export const fixelText = localFont({
       weight: "700",
     },
   ],
-  variable: FIXEL_TEXT_VAR,
+  variable: "--font-fixel-text",
 });
 
 export const fixelDisplay = localFont({
@@ -59,5 +65,5 @@ export const fixelDisplay = localFont({
       weight: "800",
     },
   ],
-  variable: FIXEL_DISPLAY_VAR,
+  variable: "--font-fixel-display",
 });

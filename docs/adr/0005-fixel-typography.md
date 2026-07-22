@@ -1,6 +1,6 @@
 # Fixel as brand typography
 
-App UI uses **Fixel Display** for titles/headlines and **Fixel Text** for body, loaded via `next/font/local` and wired through the Reshaped `altShift` theme (see ADR-0004). CSS variable names live in `ui/font-vars.ts` and are shared by the font loader and the theme stacks so the two cannot drift. Brand choice over system/Inter stacks.
+App UI uses **Fixel Display** for titles/headlines and **Fixel Text** for body, loaded via `next/font/local` and wired through the Reshaped `altShift` theme (see ADR-0004). CSS variable names are owned by `ui/fonts.ts`: next/font requires `variable` as an AST string literal, so each name is duplicated there (literal + exported const for the theme stacks) and locked by `ui/__tests__/fixel-font-vars.test.ts`. Brand choice over system/Inter stacks.
 
 Figma-sourced sizes (`headline-1` 48/60, `headline-2` 36/44, semibold, −0.02 tracking) land on Reshaped 4’s headline tokens. Other type-scale tokens stay on Reshaped defaults until later Figma-driven iterations; we do not invent sizes.
 

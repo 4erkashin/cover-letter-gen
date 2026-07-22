@@ -4,7 +4,7 @@ import {
   getThemeCSS,
 } from "@reshaped/theming";
 
-import { FIXEL_DISPLAY_VAR, FIXEL_TEXT_VAR } from "@/ui/font-vars";
+import { FIXEL_DISPLAY_VAR, FIXEL_TEXT_VAR } from "@/ui/fonts";
 
 /**
  * Source of truth for Brand greens.
