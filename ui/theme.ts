@@ -10,6 +10,9 @@ export const BRAND_DARK = "#36ab67";
 export const PRIMARY = "#087443";
 export const THEME_NAME = "altShift";
 
+/** App shell max width in Reshaped units (default unit = 4px). */
+export const MAX_APP_WIDTH = 280;
+
 export const themeCss = getThemeCSS(THEME_NAME, {
   ...baseThemeDefinition,
   color: generateThemeColors({

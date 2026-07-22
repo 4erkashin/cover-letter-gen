@@ -4,11 +4,10 @@ import { Container, View } from "reshaped";
 
 import { Goal } from "@/features/goal";
 import { AppLogo } from "@/ui/app-logo";
-import { MAX_APP_WIDTH } from "@/ui/constants";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
 import { HomeButton } from "@/ui/home-button";
 import { ReshapedRoot } from "@/ui/reshaped-root";
-import { THEME_NAME, themeCss } from "@/ui/theme";
+import { MAX_APP_WIDTH, THEME_NAME, themeCss } from "@/ui/theme";
 
 import "@/ui/globals.css";
 
