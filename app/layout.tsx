@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Container, View } from "reshaped";
 
 import { Goal } from "@/features/goal";
-import { BrandLink } from "@/ui/brand-link";
+import { AppLogo } from "@/ui/app-logo";
 import { MAX_APP_WIDTH } from "@/ui/constants";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
 import { HomeButton } from "@/ui/home-button";
@@ -42,7 +42,8 @@ export default function RootLayout({
                 width="100%"
                 wrap
               >
-                <BrandLink />
+                <AppLogo />
+
                 <View align="center" direction="row" gap={3} wrap>
                   <Goal.Root>
                     <Goal.Status />

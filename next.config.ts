@@ -12,10 +12,9 @@ const nextConfig: NextConfig = {
         as: "*.js",
         loaders: [
           {
+            // Do not set SVGR `icon: true` — it forces 1em×1em and breaks
+            // Reshaped Icon `autoWidth` for non-square assets (e.g. wordmark).
             loader: "@svgr/webpack",
-            options: {
-              icon: true,
-            },
           },
         ],
       },
