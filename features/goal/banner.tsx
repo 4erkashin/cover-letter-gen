@@ -1,19 +1,21 @@
+"use client";
+
+import type { ReactNode } from "react";
+
 import { Text, View } from "reshaped";
 
-import { GOAL_TARGET, goalProgress } from "@/domain";
-
-import { CreateNewButton } from "../create-new-button";
-import { ProgressTracker } from "../progress-tracker";
-import styles from "./goal-banner.module.css";
+import styles from "./banner.module.css";
+import { GoalProgress } from "./progress";
+import { useGoalContext } from "./root";
 
 type GoalBannerProps = {
-  count: number;
+  action: ReactNode;
 };
 
-export function GoalBanner({ count }: GoalBannerProps) {
-  const { isReached } = goalProgress(count);
+export function GoalBanner({ action }: GoalBannerProps) {
+  const { count, isLoading, isReached, target } = useGoalContext();
 
-  if (isReached) {
+  if (isLoading || isReached) {
     return null;
   }
 
@@ -28,12 +30,12 @@ export function GoalBanner({ count }: GoalBannerProps) {
             Generate and send out couple more job applications today to get
             hired faster
           </Text>
-          <CreateNewButton size="large" />
+          {action}
         </View>
         <View align="center" gap={2}>
-          <ProgressTracker count={count} variant="segments" />
+          <GoalProgress variant="segments" />
           <Text color="neutral-faded" variant="body-3">
-            {count} out of {GOAL_TARGET}
+            {count} out of {target}
           </Text>
         </View>
       </View>

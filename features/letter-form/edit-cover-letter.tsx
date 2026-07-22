@@ -5,8 +5,8 @@ import { View } from "reshaped";
 
 import type { CoverLetter, CoverLetterDetails } from "@/domain";
 
-import { GoalBanner } from "@/features/dashboard/goal-banner";
-import { useCoverLetters } from "@/features/persist-storage";
+import { Goal } from "@/features/goal";
+import { CreateNewButton } from "@/ui/create-new-button";
 
 import { FormPreviewShell } from "./form-preview-shell";
 import { LetterForm } from "./letter-form";
@@ -21,7 +21,6 @@ export function EditCoverLetter({
   coverLetter,
   generateCoverLetter,
 }: EditCoverLetterProps) {
-  const { coverLetters } = useCoverLetters();
   const [isGenerating, setIsGenerating] = useState(false);
   const [previewContent, setPreviewContent] = useState(coverLetter.content);
 
@@ -42,7 +41,9 @@ export function EditCoverLetter({
           <LetterPreview content={previewContent} isGenerating={isGenerating} />
         }
       />
-      <GoalBanner count={coverLetters.length} />
+      <Goal.Root>
+        <Goal.Banner action={<CreateNewButton size="large" />} />
+      </Goal.Root>
     </View>
   );
 }

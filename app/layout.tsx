@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { Container, View } from "reshaped";
 
-import { LiveGoalHeader } from "@/features/dashboard/goal-header";
+import { Goal } from "@/features/goal";
 import { BrandLink } from "@/ui/brand-link";
 import { MAX_APP_WIDTH } from "@/ui/constants";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
@@ -44,7 +44,9 @@ export default function RootLayout({
               >
                 <BrandLink />
                 <View align="center" direction="row" gap={3} wrap>
-                  <LiveGoalHeader />
+                  <Goal.Root>
+                    <Goal.Status />
+                  </Goal.Root>
                   <HomeButton />
                 </View>
               </View>

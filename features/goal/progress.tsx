@@ -1,26 +1,24 @@
-import { GOAL_TARGET } from "@/domain";
+"use client";
 
-import styles from "./progress-tracker.module.css";
+import styles from "./progress.module.css";
+import { useGoalContext } from "./root";
 
-type ProgressTrackerProps = {
-  count: number;
-  /** Compact dots for GoalHeader; large segments for GoalBanner. */
+type GoalProgressProps = {
+  /** Compact dots for Status; large segments for Banner. */
   variant?: "dots" | "segments";
 };
 
-export function ProgressTracker({
-  count,
-  variant = "dots",
-}: ProgressTrackerProps) {
-  const filled = Math.min(Math.max(count, 0), GOAL_TARGET);
+export function GoalProgress({ variant = "dots" }: GoalProgressProps) {
+  const { count, target } = useGoalContext();
+  const filled = Math.min(Math.max(count, 0), target);
 
   return (
     <div
-      aria-label={`${filled} of ${GOAL_TARGET}`}
+      aria-label={`${filled} of ${target}`}
       className={[styles.root, styles[variant]].filter(Boolean).join(" ")}
       role="img"
     >
-      {Array.from({ length: GOAL_TARGET }, (_, index) => (
+      {Array.from({ length: target }, (_, index) => (
         <span
           className={[styles.step, index < filled ? styles.active : undefined]
             .filter(Boolean)

@@ -4,14 +4,14 @@ import { Button, Grid, Text, useToast, View } from "reshaped";
 
 import type { CoverLetter } from "@/domain";
 
+import { Goal } from "@/features/goal";
 import {
   removeCoverLetter,
   saveCoverLetter,
   useCoverLetters,
 } from "@/features/persist-storage";
+import { CreateNewButton } from "@/ui/create-new-button";
 
-import { CreateNewButton } from "./create-new-button";
-import { GoalBanner } from "./goal-banner";
 import { LetterCard } from "./letter-card";
 
 export function Dashboard() {
@@ -80,7 +80,9 @@ export function Dashboard() {
         </Grid>
       ) : null}
 
-      <GoalBanner count={count} />
+      <Goal.Root>
+        <Goal.Banner action={<CreateNewButton size="large" />} />
+      </Goal.Root>
     </View>
   );
 }
