@@ -1,11 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+  <!--
+    Brand fills must mirror BRAND / BRAND_DARK in ui/theme.ts (SVG cannot import TS).
+    Kept honest by ui/__tests__/icon-brand-colors.test.ts.
+  -->
   <style>
     path {
       fill: #099250;
     }
     @media (prefers-color-scheme: dark) {
       path {
-        fill: #3ecf8e;
+        fill: #36ab67;
       }
     }
   </style>
