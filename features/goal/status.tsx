@@ -20,7 +20,10 @@ export function GoalStatus() {
         direction="row"
         gap={3}
       >
-        <span className={styles.skeletonLabel} data-testid="goal-status-skeleton" />
+        <span
+          className={styles.skeletonLabel}
+          data-testid="goal-status-skeleton"
+        />
         <span className={styles.skeletonDots} />
       </View>
     );
@@ -28,9 +31,10 @@ export function GoalStatus() {
 
   return (
     <View align="center" direction="row" gap={3}>
-      <Text color="neutral-faded" variant="body-3">
+      <Text color="neutral-faded" variant="body-1">
         {count}/{target} applications generated
       </Text>
+
       {isReached ? (
         <CheckIcon aria-label="Goal reached" className={styles.check} />
       ) : (

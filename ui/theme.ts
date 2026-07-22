@@ -34,6 +34,12 @@ export const themeCss = getThemeCSS(THEME_NAME, {
   }),
   font: {
     ...baseThemeDefinition.font,
+    body1: {
+      fontFamilyToken: "body",
+      fontSize: { px: 18 },
+      fontWeightToken: "regular",
+      lineHeight: { px: 28 },
+    },
     headline1: {
       fontFamilyToken: "headline",
       fontSize: { px: 48 },
