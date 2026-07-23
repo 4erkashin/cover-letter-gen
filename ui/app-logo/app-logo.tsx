@@ -16,7 +16,12 @@ export function AppLogo() {
         size={11}
         svg={AppLogoCircle}
       />
-      <Icon autoWidth color="neutral" size={5.5} svg={AppLogoText} />
+      <Icon
+        attributes={{ style: { color: "var(--rs-color-black)" } }}
+        autoWidth
+        size={5.5}
+        svg={AppLogoText}
+      />
     </View>
   );
 }

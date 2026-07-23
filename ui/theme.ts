@@ -20,6 +20,10 @@ export const PRIMARY = "#087443";
 export const NEUTRAL_FOREGROUND = "#667085";
 export const NEUTRAL_FOREGROUND_DARK = "#c3cee5";
 
+/** Product near-black (`black` / `--rs-color-black`). Figma eye-black, not `#000`. */
+export const BLACK = "#101828";
+export const BLACK_DARK = "#f9fafb";
+
 export const THEME_NAME = "altShift";
 
 /** App shell max width in Reshaped units (default unit = 4px). */
@@ -39,7 +43,10 @@ export const themeCss = getThemeCSS(THEME_NAME, {
       brand: { hex: BRAND, hexDark: BRAND_DARK },
       primary: PRIMARY,
     }),
-    // Exact ink — do not pass this as the `neutral` hue seed (that paints surfaces).
+    black: {
+      hex: BLACK,
+      hexDark: BLACK_DARK,
+    },
     foregroundNeutral: {
       hex: NEUTRAL_FOREGROUND,
       hexDark: NEUTRAL_FOREGROUND_DARK,

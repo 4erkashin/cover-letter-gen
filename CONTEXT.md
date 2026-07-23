@@ -27,3 +27,7 @@ _Avoid_: CTA color, button green, accent, lime
 **Neutral Foreground**:
 Default body text ink. Maps to Reshaped's `foregroundNeutral` (`Text color="neutral"`); values are `NEUTRAL_FOREGROUND` / `NEUTRAL_FOREGROUND_DARK` in the theme entry. Not the neutral surface/hue seed.
 _Avoid_: Gray, muted, secondary text, neutral-faded (unless that token is intended)
+
+**Black**:
+The product near-black — Figma's eye-black (`#101828`), not `#000`. Strong ink/fill where the mock reads as black; opt-in via the `black` token / `--rs-color-black`, not the page default (that stays Neutral Foreground). Values are `BLACK` / `BLACK_DARK` in the theme entry.
+_Avoid_: True black, `#000`, charcoal, slate, ink (when meaning this color)
