@@ -24,7 +24,11 @@ Only include these when they add genuine value. Most ADRs won't need them.
 
 ## Numbering
 
-Scan `docs/adr/` for the highest existing number and increment by one.
+Scan `docs/adr/` for the highest existing number and increment by one. Numbers are stable IDs — if an ADR is removed or merged away, leave the gap; do not renumber.
+
+## Index
+
+`docs/adr/README.md` groups ADRs by coarse concern for browsing. When you add or change an ADR, update that index in the same change (place it under the right heading, or add a new coarse heading if none fits).
 
 ## When to offer an ADR
 
