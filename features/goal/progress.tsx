@@ -1,18 +1,18 @@
 "use client";
 
+import { Fragment, type ReactNode } from "react";
 import { View } from "reshaped";
 
 import { useGoalContext } from "./root";
 
 type GoalProgressProps = {
-  /** Compact dots for Status; large segments for Banner. */
-  variant?: "dots" | "segments";
+  children: (active: boolean) => ReactNode;
+  gap?: number;
 };
 
-export function GoalProgress({ variant = "dots" }: GoalProgressProps) {
+export function GoalProgress({ children, gap = 1 }: GoalProgressProps) {
   const { count, target } = useGoalContext();
   const firstInactiveIndex = Math.min(Math.max(count, 0), target);
-  const isDots = variant === "dots";
 
   return (
     <View
@@ -22,29 +22,11 @@ export function GoalProgress({ variant = "dots" }: GoalProgressProps) {
         role: "img",
       }}
       direction="row"
-      gap={isDots ? 1 : 2}
+      gap={gap}
     >
-      {Array.from({ length: target }, (_, index) => {
-        const active = index < firstInactiveIndex;
-
-        return (
-          <View
-            attributes={{
-              "aria-hidden": true,
-              ...(active && {
-                style: {
-                  backgroundColor: "var(--rs-color-foreground-neutral)",
-                },
-              }),
-            }}
-            backgroundColor={active ? undefined : "neutral-faded"}
-            borderRadius="small"
-            height={2}
-            key={index}
-            width={isDots ? 2 : 8}
-          />
-        );
-      })}
+      {Array.from({ length: target }, (_, index) => (
+        <Fragment key={index}>{children(index < firstInactiveIndex)}</Fragment>
+      ))}
     </View>
   );
 }

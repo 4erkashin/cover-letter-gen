@@ -6,6 +6,7 @@ import { Skeleton } from "@/ui/skeleton";
 
 import CheckIcon from "@/ui/assets/check-icon.svg";
 
+import { Indicator } from "./indicator";
 import { GoalProgress } from "./progress";
 import { useGoalContext } from "./root";
 
@@ -40,7 +41,9 @@ export function GoalStatus() {
           svg={CheckIcon}
         />
       ) : (
-        <GoalProgress variant="dots" />
+        <GoalProgress>
+          {(active) => <Indicator.Dot active={active} />}
+        </GoalProgress>
       )}
     </View>
   );

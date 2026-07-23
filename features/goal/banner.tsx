@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { Text, View } from "reshaped";
 
 import styles from "./banner.module.css";
+import { Indicator } from "./indicator";
 import { GoalProgress } from "./progress";
 import { useGoalContext } from "./root";
 
@@ -33,7 +34,9 @@ export function GoalBanner({ action }: GoalBannerProps) {
           {action}
         </View>
         <View align="center" gap={2}>
-          <GoalProgress variant="segments" />
+          <GoalProgress gap={2}>
+            {(active) => <Indicator.Dash active={active} />}
+          </GoalProgress>
           <Text color="neutral-faded" variant="body-3">
             {count} out of {target}
           </Text>
