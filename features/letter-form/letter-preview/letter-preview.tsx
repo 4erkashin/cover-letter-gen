@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Text, View } from "reshaped";
+import { classNames, Text, View } from "reshaped";
 
 import { CopyButton } from "@/ui/copy-button";
 
@@ -46,12 +46,10 @@ export function LetterPreview({
       className={styles.root}
     >
       <div
-        className={[
+        className={classNames(
           styles.body,
-          isGenerating ? styles.bodyGenerating : undefined,
-        ]
-          .filter(Boolean)
-          .join(" ")}
+          isGenerating && styles.bodyGenerating,
+        )}
       >
         {isGenerating ? (
           <>

@@ -32,6 +32,22 @@ const eslintConfig = defineConfig([
           ],
         },
       ],
+      // ADR-0010 — JSX className: use classNames from reshaped, not array/join slop.
+      "no-restricted-syntax": [
+        "error",
+        {
+          message:
+            "Use classNames(...) from reshaped for multi-part className (ADR-0010).",
+          selector:
+            "JSXAttribute[name.name='className'] > JSXExpressionContainer > ArrayExpression",
+        },
+        {
+          message:
+            "Use classNames(...) from reshaped instead of .join on className (ADR-0010).",
+          selector:
+            "JSXAttribute[name.name='className'] > JSXExpressionContainer > CallExpression[callee.property.name='join']",
+        },
+      ],
       "perfectionist/sort-imports": [
         "error",
         {

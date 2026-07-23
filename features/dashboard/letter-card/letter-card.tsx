@@ -3,7 +3,7 @@
 import type { KeyboardEvent, MouseEvent } from "react";
 
 import Link from "next/link";
-import { Button, Text } from "reshaped";
+import { Button, classNames, Text } from "reshaped";
 
 import { CopyButton } from "@/ui/copy-button";
 
@@ -32,7 +32,7 @@ export function LetterCard({
   };
 
   return (
-    <article className={[styles.root, className].filter(Boolean).join(" ")}>
+    <article className={classNames(styles.root, className)}>
       <Link className={styles.link} href={`/${id}`}>
         <div className={styles.content}>
           <Text

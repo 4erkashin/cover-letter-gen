@@ -10,9 +10,7 @@ import { GoalProgress } from "./progress";
 import { useGoalContext } from "./root";
 
 export function GoalStatus() {
-  const { count, /* isLoading, */ isReached, target } = useGoalContext();
-
-  const isLoading = true;
+  const { count, isLoading, isReached, target } = useGoalContext();
 
   if (isLoading) {
     return (
@@ -30,7 +28,7 @@ export function GoalStatus() {
   }
 
   return (
-    <View align="center" direction="row" gap={3}>
+    <View align="center" direction="row" gap={4}>
       <Text color="neutral" variant="body-1">
         {count}/{target} applications generated
       </Text>
