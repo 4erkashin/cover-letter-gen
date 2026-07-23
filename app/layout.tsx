@@ -5,10 +5,11 @@ import { Button, Container, View } from "reshaped";
 
 import { Goal } from "@/features/goal";
 import { AppLogo } from "@/ui/app-logo";
-import HomeIcon from "@/ui/assets/home-icon.svg";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
 import { ReshapedRoot } from "@/ui/reshaped-root";
 import { MAX_APP_WIDTH, THEME_NAME, themeCss } from "@/ui/theme";
+
+import HomeIcon from "@/ui/assets/home-icon.svg";
 
 import "@/ui/globals.css";
 

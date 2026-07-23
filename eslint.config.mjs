@@ -35,11 +35,19 @@ const eslintConfig = defineConfig([
       "perfectionist/sort-imports": [
         "error",
         {
+          // ADR-0001 — SVG defaults trail other @/ imports (taste: no mid-named-block icons).
+          customGroups: [
+            {
+              elementNamePattern: "\\.svg$",
+              groupName: "svg",
+            },
+          ],
           groups: [
             "type-import",
             ["value-builtin", "value-external"],
             "type-internal",
             "value-internal",
+            "svg",
             ["type-parent", "type-sibling", "type-index"],
             ["value-parent", "value-sibling", "value-index"],
             "ts-equals-import",

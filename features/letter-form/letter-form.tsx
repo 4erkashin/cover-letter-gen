@@ -18,8 +18,9 @@ import {
   overwriteCoverLetter,
 } from "@/domain";
 import { saveCoverLetter, updateCoverLetter } from "@/features/persist-storage";
-import RetryIcon from "@/ui/assets/retry-icon.svg";
 import { CharCounter } from "@/ui/char-counter";
+
+import RetryIcon from "@/ui/assets/retry-icon.svg";
 
 import { ADDITIONAL_DETAILS_MAX } from "./constants";
 import { FormHeader } from "./form-header";

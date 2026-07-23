@@ -5,8 +5,9 @@ import type { KeyboardEvent, MouseEvent } from "react";
 import Link from "next/link";
 import { Button, Text } from "reshaped";
 
-import TrashIcon from "@/ui/assets/trash-icon.svg";
 import { CopyButton } from "@/ui/copy-button";
+
+import TrashIcon from "@/ui/assets/trash-icon.svg";
 
 import styles from "./letter-card.module.css";
 

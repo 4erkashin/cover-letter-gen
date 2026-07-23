@@ -2,8 +2,9 @@
 
 import { Icon, Text, View } from "reshaped";
 
-import CheckIcon from "@/ui/assets/check-icon.svg";
 import { Skeleton } from "@/ui/skeleton";
+
+import CheckIcon from "@/ui/assets/check-icon.svg";
 
 import { GoalProgress } from "./progress";
 import { useGoalContext } from "./root";
