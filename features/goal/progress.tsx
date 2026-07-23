@@ -1,16 +1,15 @@
 "use client";
 
 import { Fragment, type ReactNode } from "react";
-import { View } from "reshaped";
+import { View, type ViewProps } from "reshaped";
 
 import { useGoalContext } from "./root";
 
-type GoalProgressProps = {
+type GoalProgressProps = Omit<ViewProps, "children"> & {
   children: (active: boolean) => ReactNode;
-  gap?: number;
 };
 
-export function GoalProgress({ children, gap = 1 }: GoalProgressProps) {
+export function GoalProgress({ children, ...props }: GoalProgressProps) {
   const { count, target } = useGoalContext();
   const firstInactiveIndex = Math.min(Math.max(count, 0), target);
 
@@ -22,7 +21,8 @@ export function GoalProgress({ children, gap = 1 }: GoalProgressProps) {
         role: "img",
       }}
       direction="row"
-      gap={gap}
+      gap={1}
+      {...props}
     >
       {Array.from({ length: target }, (_, index) => (
         <Fragment key={index}>{children(index < firstInactiveIndex)}</Fragment>
