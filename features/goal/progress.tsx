@@ -1,8 +1,7 @@
 "use client";
 
-import { classNames } from "reshaped";
+import { View } from "reshaped";
 
-import styles from "./progress.module.css";
 import { useGoalContext } from "./root";
 
 type GoalProgressProps = {
@@ -13,25 +12,39 @@ type GoalProgressProps = {
 export function GoalProgress({ variant = "dots" }: GoalProgressProps) {
   const { count, target } = useGoalContext();
   const firstInactiveIndex = Math.min(Math.max(count, 0), target);
+  const isDots = variant === "dots";
 
   return (
-    <div
-      aria-label={`${firstInactiveIndex} of ${target}`}
-      className={classNames(styles.root, styles[variant])}
-      role="img"
+    <View
+      align="center"
+      attributes={{
+        "aria-label": `${firstInactiveIndex} of ${target}`,
+        role: "img",
+      }}
+      direction="row"
+      gap={isDots ? 1 : 2}
     >
-      {Array.from({ length: target }, (_, index) => (
-        <span
-          className={classNames(
-            styles.step,
-            index < firstInactiveIndex && styles.active,
-          )}
-          data-active={index < firstInactiveIndex ? "true" : "false"}
-          data-progress-dot={variant === "dots" ? "true" : undefined}
-          data-progress-segment={variant === "segments" ? "true" : undefined}
-          key={index}
-        />
-      ))}
-    </div>
+      {Array.from({ length: target }, (_, index) => {
+        const active = index < firstInactiveIndex;
+
+        return (
+          <View
+            attributes={{
+              "aria-hidden": true,
+              ...(active && {
+                style: {
+                  backgroundColor: "var(--rs-color-foreground-neutral)",
+                },
+              }),
+            }}
+            backgroundColor={active ? undefined : "neutral-faded"}
+            borderRadius="small"
+            height={2}
+            key={index}
+            width={isDots ? 2 : 8}
+          />
+        );
+      })}
+    </View>
   );
 }
