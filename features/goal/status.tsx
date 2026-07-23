@@ -1,30 +1,29 @@
 "use client";
 
-import { Text, View } from "reshaped";
+import { Icon, Text, View } from "reshaped";
 
 import CheckIcon from "@/ui/assets/check-icon.svg";
+import { Skeleton } from "@/ui/skeleton";
 
 import { GoalProgress } from "./progress";
 import { useGoalContext } from "./root";
-import styles from "./status.module.css";
 
 export function GoalStatus() {
-  const { count, isLoading, isReached, target } = useGoalContext();
+  const { count, /* isLoading, */ isReached, target } = useGoalContext();
+
+  const isLoading = true;
 
   if (isLoading) {
     return (
       <View
-        align="center"
-        aria-busy="true"
-        aria-label="Goal progress loading"
-        direction="row"
-        gap={3}
+        attributes={{
+          "aria-busy": true,
+          "aria-label": "Goal progress loading",
+        }}
       >
-        <span
-          className={styles.skeletonLabel}
-          data-testid="goal-status-skeleton"
-        />
-        <span className={styles.skeletonDots} />
+        <Text variant="body-1">
+          <Skeleton width="11rem" />
+        </Text>
       </View>
     );
   }
@@ -36,7 +35,11 @@ export function GoalStatus() {
       </Text>
 
       {isReached ? (
-        <CheckIcon aria-label="Goal reached" className={styles.check} />
+        <Icon
+          attributes={{ "aria-label": "Goal reached", role: "img" }}
+          size={7}
+          svg={CheckIcon}
+        />
       ) : (
         <GoalProgress variant="dots" />
       )}

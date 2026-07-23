@@ -18,6 +18,20 @@ const eslintConfig = defineConfig([
           fixStyle: "inline-type-imports",
         },
       ],
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              // ADR-0009 — app Skeleton wraps Reshaped motion/tokens.
+              importNames: ["Skeleton"],
+              message:
+                "Import Skeleton from @/ui/skeleton (ADR-0009). SkeletonProps from reshaped is fine.",
+              name: "reshaped",
+            },
+          ],
+        },
+      ],
       "perfectionist/sort-imports": [
         "error",
         {
@@ -61,6 +75,12 @@ const eslintConfig = defineConfig([
           groups: ["named", "nullish"],
         },
       ],
+    },
+  },
+  {
+    files: ["ui/skeleton/skeleton.tsx"],
+    rules: {
+      "no-restricted-imports": "off",
     },
   },
   // Override default ignores of eslint-config-next.

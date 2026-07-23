@@ -1,0 +1,12 @@
+---
+description: Do not invent low-value tests; follow the repo keep bar
+alwaysApply: true
+---
+
+# Testing discipline
+
+Do **not** add tests by default. More tests here have been harmful than helpful when they only assert classNames, testids, or thin UI wiring.
+
+Before writing any test, read `docs/agents/testing.md`. Only add a test when it clears that keep bar (user asked / agreed seam, duplicated truth that can drift, or non-obvious pure logic with an independent expected value).
+
+If unsure, skip the test.

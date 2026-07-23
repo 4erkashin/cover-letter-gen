@@ -11,3 +11,7 @@ Uses the default triage vocabulary (`needs-triage`, `needs-info`, `ready-for-age
 ### Domain docs
 
 Single-context layout. See `docs/agents/domain.md`.
+
+### Testing
+
+Do not invent low-value tests. See `docs/agents/testing.md`.
