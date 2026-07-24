@@ -4,19 +4,21 @@ type IndicatorMarkProps = Omit<ViewProps, "children"> & {
   isFilled: boolean;
 };
 
+const NOT_FILLED_OPACITY = 0.24;
+
 function IndicatorMark({ isFilled, ...props }: IndicatorMarkProps) {
   return (
     <View
       attributes={{
         "aria-hidden": true,
-        ...(isFilled && {
+        ...(!isFilled && {
           style: {
-            backgroundColor: "var(--rs-color-foreground-neutral)",
+            opacity: NOT_FILLED_OPACITY,
           },
         }),
       }}
-      backgroundColor={isFilled ? undefined : "neutral-faded"}
-      borderRadius="small"
+      backgroundColor="black"
+      borderRadius="circular"
       height={2}
       {...props}
     />

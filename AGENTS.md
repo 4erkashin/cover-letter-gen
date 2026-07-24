@@ -15,3 +15,7 @@ Single-context layout. See `docs/agents/domain.md`.
 ### Testing
 
 Do not invent low-value tests. See `docs/agents/testing.md`.
+
+### Accessibility
+
+Exemplar-driven a11y patterns already in the repo. See `docs/agents/a11y.md`.
