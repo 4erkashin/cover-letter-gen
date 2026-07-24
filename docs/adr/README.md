@@ -29,3 +29,4 @@ When you add or change an ADR, update this file in the same PR (right concern he
 - [0010](./0010-reshaped-classnames.md) — `classNames` for JSX `className`
 - [0011](./0011-reshaped-props-over-css-modules.md) — Reshaped props before CSS modules
 - [0012](./0012-root-element-props-passthrough.md) — wrappers expose root-element props
+- [0013](./0013-owned-boolean-prop-prefixes.md) — owned booleans use is-/has-/can-/should-

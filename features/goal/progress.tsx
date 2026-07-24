@@ -6,7 +6,7 @@ import { View, type ViewProps } from "reshaped";
 import { useGoalContext } from "./root";
 
 type GoalProgressProps = Omit<ViewProps, "children"> & {
-  children: (active: boolean) => ReactNode;
+  children: (isFilled: boolean) => ReactNode;
 };
 
 export function GoalProgress({ children, ...props }: GoalProgressProps) {

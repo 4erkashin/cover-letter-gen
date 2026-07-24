@@ -42,7 +42,7 @@ export function GoalStatus() {
         />
       ) : (
         <GoalProgress>
-          {(active) => <Indicator.Dot active={active} />}
+          {(isFilled) => <Indicator.Dot isFilled={isFilled} />}
         </GoalProgress>
       )}
     </View>

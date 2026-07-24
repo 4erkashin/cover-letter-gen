@@ -1,9 +1,9 @@
 # Wrappers expose root-element props; no parallel layout snowflakes
 
-Feature/UI wrappers were inventing one-off prop names (`gap`, `spacing`, …) for things the root already accepts — usually Reshaped `View`. Call sites then had to learn a different shape per component.
+Feature/UI wrappers were inventing one-off prop names for layout and sizing the root already accepts — usually Reshaped `View`. Call sites then had to learn a different shape per component.
 
-**Decision:** for a wrapper whose root is a design-system (or DOM) element, accept that root’s props (e.g. `ViewProps`), apply component defaults, then `{...props}` so the caller wins. Don’t invent a renamed subset of those props. Custom props are allowed only when they are **not** a root-prop rename — domain/behavior/slots (e.g. `active`, a render-prop `children`). Living exemplar: `features/goal/progress.tsx`. Unreviewed snowflakes elsewhere are debt until touched, not approved exceptions.
+**Decision:** for a wrapper whose root is a design-system (or DOM) element, accept that root’s props, apply component defaults, then `{...props}` so the caller wins. Don’t invent a renamed subset of those props. Custom props are allowed only when they are **not** a root-prop rename — domain state, behavior, or slots. Living exemplars: `features/goal/progress.tsx`, `features/goal/indicator.tsx`. Unreviewed snowflakes elsewhere are debt until touched, not approved exceptions.
 
-Sits beside ADR-0011 (Reshaped props over CSS modules): that one is how we style; this one is how wrapper APIs are shaped.
+Sits beside ADR-0011 (Reshaped props over CSS modules): that one is how we style; this one is how wrapper APIs are shaped. Custom boolean naming for owned props is ADR-0013.
 
-**Rejected:** curated parallel prop names for layout the root already has; merging `attributes` so the component always wins a11y (caller override is intentional); repo-wide retrofit in the same change as this ADR.
+**Rejected:** curated parallel prop names for layout the root already has; merging root attribute bags so the component always wins a11y (caller override is intentional); repo-wide retrofit in the same change as this ADR.

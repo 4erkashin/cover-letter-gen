@@ -1,38 +1,34 @@
-import { View } from "reshaped";
+import { View, type ViewProps } from "reshaped";
 
-type IndicatorMarkProps = {
-  active: boolean;
+type IndicatorMarkProps = Omit<ViewProps, "children"> & {
+  isFilled: boolean;
 };
 
-type IndicatorMarkSizeProps = IndicatorMarkProps & {
-  width: number;
-};
-
-function IndicatorMark({ active, width }: IndicatorMarkSizeProps) {
+function IndicatorMark({ isFilled, ...props }: IndicatorMarkProps) {
   return (
     <View
       attributes={{
         "aria-hidden": true,
-        ...(active && {
+        ...(isFilled && {
           style: {
             backgroundColor: "var(--rs-color-foreground-neutral)",
           },
         }),
       }}
-      backgroundColor={active ? undefined : "neutral-faded"}
+      backgroundColor={isFilled ? undefined : "neutral-faded"}
       borderRadius="small"
       height={2}
-      width={width}
+      {...props}
     />
   );
 }
 
-function IndicatorDot({ active }: IndicatorMarkProps) {
-  return <IndicatorMark active={active} width={2} />;
+function IndicatorDot({ isFilled, ...props }: IndicatorMarkProps) {
+  return <IndicatorMark isFilled={isFilled} width={2} {...props} />;
 }
 
-function IndicatorDash({ active }: IndicatorMarkProps) {
-  return <IndicatorMark active={active} width={8} />;
+function IndicatorDash({ isFilled, ...props }: IndicatorMarkProps) {
+  return <IndicatorMark isFilled={isFilled} width={8} {...props} />;
 }
 
 export const Indicator = {

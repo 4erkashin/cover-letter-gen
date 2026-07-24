@@ -35,7 +35,7 @@ export function GoalBanner({ action }: GoalBannerProps) {
         </View>
         <View align="center" gap={2}>
           <GoalProgress gap={2}>
-            {(active) => <Indicator.Dash active={active} />}
+            {(isFilled) => <Indicator.Dash isFilled={isFilled} />}
           </GoalProgress>
           <Text color="neutral-faded" variant="body-3">
             {count} out of {target}

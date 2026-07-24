@@ -14,6 +14,10 @@ Create the `docs/adr/` directory lazily — only when the first ADR is needed.
 
 That's it. An ADR can be a single paragraph. The value is in recording *that* a decision was made and *why* — not in filling out sections.
 
+## Stay meta; point at living exemplars
+
+Keep decision prose abstract. Do **not** freeze illustrative API or prop names in the ADR text — those go stale when call sites rename. Prefer living exemplar **paths** (and decision-critical literals: packages, tokens, rule ids, rejected alternatives that *are* the decision).
+
 ## Optional sections
 
 Only include these when they add genuine value. Most ADRs won't need them.
