@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-import Link from "next/link";
 import { Button, Container, View } from "reshaped";
 
 import { Goal } from "@/features/goal";
 import { AppLogo } from "@/ui/app-logo";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
+import { NavLink } from "@/ui/nav-link";
 import { ReshapedRoot } from "@/ui/reshaped-root";
 import { MAX_APP_WIDTH, THEME_NAME, themeCss } from "@/ui/theme";
 
@@ -52,7 +52,7 @@ export default function RootLayout({
                   <Goal.Status />
                 </Goal.Root>
 
-                <Link aria-label="Home" href="/">
+                <NavLink aria-label="Home" href="/">
                   {/**
                    * Figma wants 40×40 with a 20px glyph;
                    * Reshaped derives both from `size` and offers 36 (medium) or 52 (large).
@@ -72,7 +72,7 @@ export default function RootLayout({
                     size="large"
                     variant="outline"
                   />
-                </Link>
+                </NavLink>
               </View>
             </View>
 
