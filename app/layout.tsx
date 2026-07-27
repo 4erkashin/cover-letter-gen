@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
-import { Container } from "reshaped";
+import { Container, View } from "reshaped";
 
-import { AppHeader } from "@/ui/app-header";
+import { Goal } from "@/features/goal";
+import { AppLogo } from "@/ui/app-logo";
 import { fixelDisplay, fixelText } from "@/ui/fonts";
+import { HomeButton } from "@/ui/home-button";
 import { ReshapedRoot } from "@/ui/reshaped-root";
 import { MAX_APP_WIDTH, THEME_NAME, themeCss } from "@/ui/theme";
 
@@ -33,7 +35,24 @@ export default function RootLayout({
       <body>
         <ReshapedRoot>
           <Container padding={0} width={MAX_APP_WIDTH}>
-            <AppHeader />
+            <View
+              align="center"
+              as="header"
+              direction="row"
+              gap={4}
+              justify="space-between"
+              paddingBlock={8}
+            >
+              <AppLogo />
+
+              <View align="center" direction="row" gap={3}>
+                <Goal.Root>
+                  <Goal.Status />
+                </Goal.Root>
+
+                <HomeButton />
+              </View>
+            </View>
 
             {children}
           </Container>
