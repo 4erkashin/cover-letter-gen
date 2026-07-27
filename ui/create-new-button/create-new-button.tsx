@@ -1,26 +1,26 @@
-import { Button } from "reshaped";
+"use client";
+
+import type { ComponentProps } from "react";
+
+import { LinkButton } from "@/ui/link-button";
 
 import PlusIcon from "@/ui/assets/plus-icon.svg";
 
-type CreateNewButtonProps = {
-  className?: string;
-  size?: "large" | "medium" | "small";
-};
+type CreateNewButtonProps = Omit<
+  ComponentProps<typeof LinkButton>,
+  "children" | "color" | "href" | "icon" | "variant"
+>;
 
-export function CreateNewButton({
-  className,
-  size = "medium",
-}: CreateNewButtonProps) {
+export function CreateNewButton(props: CreateNewButtonProps) {
   return (
-    <Button
-      className={className}
+    <LinkButton
+      {...props}
       color="positive"
       href="/new"
       icon={PlusIcon}
-      size={size}
       variant="solid"
     >
       Create New
-    </Button>
+    </LinkButton>
   );
 }

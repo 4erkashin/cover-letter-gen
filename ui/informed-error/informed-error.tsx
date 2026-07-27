@@ -1,4 +1,6 @@
-import { Button, Text, View } from "reshaped";
+import { Text, View } from "reshaped";
+
+import { LinkButton } from "@/ui/link-button";
 
 export type InformedErrorKind = "missing-application" | "unknown-route";
 
@@ -30,9 +32,9 @@ export function InformedError({ kind }: InformedErrorProps) {
           {supporting}
         </Text>
       </View>
-      <Button color="positive" href="/" variant="solid">
+      <LinkButton color="positive" href="/" variant="solid">
         Home
-      </Button>
+      </LinkButton>
     </View>
   );
 }

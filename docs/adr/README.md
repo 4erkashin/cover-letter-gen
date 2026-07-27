@@ -24,7 +24,7 @@ When you add or change an ADR, update this file in the same PR (right concern he
 
 ## UI conventions
 
-- [0006](./0006-reshaped-button-next-link.md) — Button + next/link for in-app nav
+- [0006](./0006-reshaped-button-next-link.md) — Button renders a `next/link` root for in-app nav
 - [0009](./0009-custom-skeleton-wrapper.md) — custom Skeleton motion wrapper
 - [0010](./0010-reshaped-classnames.md) — `classNames` for JSX `className`
 - [0011](./0011-reshaped-props-over-css-modules.md) — Reshaped props before CSS modules

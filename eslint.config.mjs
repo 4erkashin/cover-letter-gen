@@ -47,6 +47,13 @@ const eslintConfig = defineConfig([
           selector:
             "JSXAttribute[name.name='className'] > JSXExpressionContainer > CallExpression[callee.property.name='join']",
         },
+        {
+          // ADR-0006 — Button href renders a plain <a>, so App Router nav full-reloads.
+          message:
+            "Use LinkButton from @/ui/link-button for in-app nav (ADR-0006). For a deliberate full navigation, disable this rule inline with a reason.",
+          selector:
+            "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='href']",
+        },
       ],
       "perfectionist/sort-imports": [
         "error",
