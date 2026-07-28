@@ -6,6 +6,15 @@ import {
 
 import { FIXEL_DISPLAY_VAR, FIXEL_TEXT_VAR } from "@/ui/fonts";
 
+export const THEME_NAME = "altShift";
+
+/**
+ * Product near-black fill (`black` / `--rs-color-black`).
+ * Figma eye-black, not `#000`.
+ * Static both modes.
+ */
+export const BLACK = "#101828";
+
 /**
  * Source of truth for Brand greens.
  * `app/icon.svg` duplicates these hexes (SVG can't import TS) — keep both in sync;
@@ -16,15 +25,21 @@ export const BRAND_DARK = "#36ab67";
 
 export const PRIMARY = "#087443";
 
-/** Default text ink (`foregroundNeutral` / `Text color="neutral"`). */
-export const NEUTRAL_FOREGROUND = "#667085";
+/** Primary neutral ink (`foregroundNeutral` / `Text color="neutral"`). */
+export const NEUTRAL_FOREGROUND = "#344054";
 export const NEUTRAL_FOREGROUND_DARK = "#c3cee5";
 
-/** Product near-black (`black` / `--rs-color-black`). Figma eye-black, not `#000`. */
-export const BLACK = "#101828";
-export const BLACK_DARK = "#f9fafb";
+/** Muted neutral ink (`foregroundNeutralFaded` / `Text color="neutral-faded"`). */
+export const NEUTRAL_FADED = "#667085";
+export const NEUTRAL_FADED_DARK = "#98A2B3";
 
-export const THEME_NAME = "altShift";
+/** Interactive chrome border (`borderNeutral` / `--rs-color-border-neutral`). */
+export const NEUTRAL_BORDER = "#D0D5DD";
+export const NEUTRAL_BORDER_DARK = "#475467";
+
+/** Strongest product ink (`foregroundStrong`). Light shares Black’s hex; dark flips. */
+export const STRONG_FOREGROUND = "#101828";
+export const STRONG_FOREGROUND_DARK = "#f9fafb";
 
 /** App shell max width in Reshaped units (default unit = 4px). */
 export const MAX_APP_WIDTH = 280;
@@ -45,11 +60,22 @@ export const themeCss = getThemeCSS(THEME_NAME, {
     }),
     black: {
       hex: BLACK,
-      hexDark: BLACK_DARK,
+    },
+    borderNeutral: {
+      hex: NEUTRAL_BORDER,
+      hexDark: NEUTRAL_BORDER_DARK,
     },
     foregroundNeutral: {
       hex: NEUTRAL_FOREGROUND,
       hexDark: NEUTRAL_FOREGROUND_DARK,
+    },
+    foregroundNeutralFaded: {
+      hex: NEUTRAL_FADED,
+      hexDark: NEUTRAL_FADED_DARK,
+    },
+    foregroundStrong: {
+      hex: STRONG_FOREGROUND,
+      hexDark: STRONG_FOREGROUND_DARK,
     },
   },
   font: {

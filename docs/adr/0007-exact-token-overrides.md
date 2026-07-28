@@ -1,22 +1,14 @@
-# Neutral foreground and black are exact token overrides
+# Exact color token overrides
 
-Figma’s default body ink (`#667085`, `NEUTRAL_FOREGROUND`) and eye-black (`#101828`, `BLACK`) are exact product colors. Reshaped’s `generateThemeColors({ neutral })` seed paints the neutral **surface** family and derives ink at fixed lightness — passing the Figma ink hex as `neutral` would color backgrounds and leave `Text color="neutral"` wrong. Stock `black` is true `#000`; we want one product Black for fills, overlays, and opt-in text.
+Product ink, borders, and Black are exact theme values on Reshaped semantic slots — not derived from `generateThemeColors({ neutral })`. That seed paints the neutral **surface** family; using it for ink or borders misses the slots we paint and warps backgrounds. Stock `borderNeutral` and `black` also diverge from the product (translucent border; true `#000`).
 
-**Decision:** keep Brand/Primary via `generateThemeColors` as today. Set exact overrides — `foregroundNeutral: { hex: NEUTRAL_FOREGROUND, hexDark: NEUTRAL_FOREGROUND_DARK }` and `black: { hex: BLACK, hexDark: BLACK_DARK }` — in the theme entry. Do not use the `neutral` hue seed for body ink until we intentionally theme neutral surfaces. Keep page default text as Neutral Foreground; paint Black on text via `var(--rs-color-black)` where Figma reads as black (`Text` has no `color="black"`). Accept that Overlay scrims, media buttons, and text on `View backgroundColor="white"` also use this Black.
-
-Dark pairs are invented like `BRAND` / `BRAND_DARK` (same family, paired constant) — not Figma-sourced. Neutral Foreground dark uses a mid lifted slate (`#c3cee5`) so muted body ink stays readable on dark pages (Brand’s small lightness bump is too dark for text). Black’s dark pair is a strong near-white (`#f9fafb`), not `#fff` and not the muted `#c3cee5`.
+**Decision:** keep Brand/Primary via `generateThemeColors`. Exact-override (and add custom tokens only when needed) in the theme entry — living values in `ui/theme.ts`, product names in `CONTEXT.md`. Do not seed `neutral` for ink or borders until we intentionally theme neutral surfaces. Leave `borderNeutralFaded` on stock until a distinct decorative value shows up. Prefer stock Reshaped ink slots (`foregroundNeutral`, `foregroundNeutralFaded`, …); add a custom `foreground*` only when the strongest eye-black *ink* must mode-flip and no stock slot fits (**Strong Foreground**). Keep **Black** static (no `hexDark`) for fills/scrims/media alphas / `View backgroundColor="black"`, matching Reshaped’s black/white contract; paint eye-black *ink* with Strong Foreground (`Text` has no `color="black"`). Page default text stays Neutral Foreground; muted copy uses `neutral-faded`. Outline controls consume border/ink tokens — no local hexes (see e.g. `ui/home-button`).
 
 ## Considered options
 
-**Neutral foreground**
-
-- **`generateThemeColors({ neutral: NEUTRAL_FOREGROUND })`** — free dark variants for the whole neutral family, but the hex lands on `backgroundNeutral`, not default text ink.
-- **Use `neutral-faded` instead** — with a neutral seed, faded foreground is near the Figma hex, but we want the `neutral` Text color slot and an exact match.
-- **Apply Brand’s exact ΔL to the light ink** — keeps the recipe but fails body contrast on dark pages.
-- **Near-white / stock Reshaped dark L** — maximum clarity; rejected as too bright vs the muted light ink.
-
-**Black**
-
-- **Custom CSS var only (leave stock `#000`)** — second “almost black”; Overlay/media stay true black while UI Black diverges.
-- **Flip `body` color to Black** — titles inherit for free, but most Figma copy is Neutral Foreground; would force explicit `color="neutral"` everywhere muted.
-- **Leave stock `black`** — titles/icons can’t match Figma without one-off hexes.
+- **`generateThemeColors({ neutral })` for ink or borders** — free family variants, but the seed lands on surfaces, not the exact ink/border slots.
+- **`hexDark` on `black`** — inverts “Black” in dark mode; fights Reshaped’s static black/white model and breaks black↔white pairings / media alphas.
+- **Eye-black *ink* via `black` only** — no readable dark-mode text without inverting Black.
+- **Custom ink when a stock `foreground*` already fits** — rejected; rewire/use the stock slot instead (e.g. Neutral / Neutral Faded).
+- **One-off hex on a single control** — fights product-wide usage and ADR-0011; components should read theme tokens.
+- **Also override `borderNeutralFaded` by default** — decorative borders may differ; leave stock until needed.
