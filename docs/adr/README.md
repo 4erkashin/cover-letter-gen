@@ -21,7 +21,7 @@ When you add or change an ADR, update this file in the same PR (right concern he
 
 - [0004](./0004-runtime-reshaped-theme.md) — runtime Reshaped theme (no CLI)
 - [0005](./0005-fixel-typography.md) — Fixel as brand typography
-- [0007](./0007-exact-token-overrides.md) — color token overrides reasoning
+- [0007](./0007-exact-token-overrides.md) — exact color/shadow token overrides
 
 ## UI conventions
 

@@ -26,20 +26,24 @@ _Avoid_: CTA color, button green, accent, lime
 
 **Neutral Foreground**:
 Primary neutral ink (labels, icons, default `Text color="neutral"`). Maps to Reshaped's `foregroundNeutral`; values are `NEUTRAL_FOREGROUND` / `NEUTRAL_FOREGROUND_DARK` in the theme entry. Not the neutral surface/hue seed.
-_Avoid_: Gray, Gray/700, `#344054`, secondary, charcoal, Neutral Strong
+_Avoid_: Gray, Gray/700, secondary, charcoal, Neutral Strong
 
 **Neutral Faded**:
 Muted neutral ink (softer copy where the mock reads lighter than Neutral Foreground). Maps to Reshaped's `foregroundNeutralFaded` (`Text color="neutral-faded"`); values are `NEUTRAL_FADED` / `NEUTRAL_FADED_DARK` in the theme entry.
-_Avoid_: Gray, Gray/500, `#667085`, secondary, muted (as a token name), old Neutral
+_Avoid_: Gray, Gray/500, secondary, muted (as a token name), old Neutral
 
 **Neutral Border**:
 Interactive chrome border (outline buttons, fields, similar controls). Maps to Reshaped's `borderNeutral` (`--rs-color-border-neutral`); values are `NEUTRAL_BORDER` / `NEUTRAL_BORDER_DARK` in the theme entry. Not `borderNeutralFaded` or the neutral surface/hue seed.
-_Avoid_: Gray, Gray-300, `#D0D5DD`, slate, muted border, faded border (unless that token is intended)
+_Avoid_: Gray, Gray-300, slate, muted border, faded border (unless that token is intended)
 
 **Strong Foreground**:
-Strongest product ink — Figma eye-black text/icons (`#101828` in light). Custom theme color `foregroundStrong` / `--rs-color-foreground-strong`; values are `STRONG_FOREGROUND` / `STRONG_FOREGROUND_DARK`. Not Black (fills/scrims) and not Neutral Foreground.
-_Avoid_: Black (when meaning ink), title color, emphasis, contrast, `#101828` as a one-off
+Strongest product ink — Figma eye-black text/icons. Custom theme color `foregroundStrong` / `--rs-color-foreground-strong`; values are `STRONG_FOREGROUND` / `STRONG_FOREGROUND_DARK`. Not Black (fills/scrims) and not Neutral Foreground.
+_Avoid_: Black (when meaning ink), title color, emphasis, contrast, one-off eye-black hex
 
 **Black**:
-The product near-black fill — Figma's eye-black (`#101828`), not `#000`. Static in light and dark (Reshaped `black` / `white` stay mode-invariant). For fills, scrims, media alphas, `View backgroundColor="black"`; not for flipping text ink (use Strong Foreground). Value is `BLACK` in the theme entry.
-_Avoid_: True black, `#000`, charcoal, slate, `BLACK_DARK`, strong ink (when meaning text)
+The product near-black fill — Figma's eye-black, not true black. Static in light and dark (Reshaped `black` / `white` stay mode-invariant). For fills, scrims, media alphas, `View backgroundColor="black"`; not for flipping text ink (use Strong Foreground). Value is `BLACK` in the theme entry.
+_Avoid_: True black, charcoal, slate, `BLACK_DARK`, strong ink (when meaning text)
+
+**Outline Shadow**:
+Soft elevation on outline chrome (outline buttons and similar). Maps to Reshaped's `shadow.outline` (`--rs-shadow-outline`); living value in the theme entry. Not raised/overlay elevation, not a per-control `box-shadow`.
+_Avoid_: Drop shadow, button shadow, card shadow, elevation (unqualified), one-off `box-shadow`

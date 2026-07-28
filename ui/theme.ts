@@ -113,4 +113,32 @@ export const themeCss = getThemeCSS(THEME_NAME, {
       family: FIXEL_DISPLAY_STACK,
     },
   },
+  shadow: {
+    ...baseThemeDefinition.shadow,
+    /** Outline Shadow — soft elevation on outline chrome. */
+    outline: {
+      dark: {
+        parts: [
+          {
+            blurRadius: 2,
+            colorToken: "white",
+            offsetX: 0,
+            offsetY: 1,
+            opacity: 0.05,
+            spreadRadius: 0,
+          },
+        ],
+      },
+      parts: [
+        {
+          blurRadius: 2,
+          colorToken: "black",
+          offsetX: 0,
+          offsetY: 1,
+          opacity: 0.05,
+          spreadRadius: 0,
+        },
+      ],
+    },
+  },
 });
