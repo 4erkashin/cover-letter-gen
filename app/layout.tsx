@@ -43,9 +43,9 @@ export default function RootLayout({
               justify="space-between"
               paddingBlock={8}
             >
-              <AppLogo />
+              <AppLogo paddingBlock={0.5} />
 
-              <View align="center" direction="row" gap={3}>
+              <View align="center" direction="row" gap={6}>
                 <Goal.Root>
                   <Goal.Status />
                 </Goal.Root>

@@ -30,7 +30,7 @@ export function GoalStatus() {
 
   return (
     <View align="center" direction="row" gap={4}>
-      <Text color="neutral" variant="body-1">
+      <Text color="neutral-faded" variant="body-1">
         {count}/{target} applications generated
       </Text>
 

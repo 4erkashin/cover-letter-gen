@@ -11,13 +11,11 @@ function IndicatorMark({ isFilled, ...props }: IndicatorMarkProps) {
     <View
       attributes={{
         "aria-hidden": true,
-        ...(!isFilled && {
-          style: {
-            opacity: NOT_FILLED_OPACITY,
-          },
-        }),
+        style: {
+          backgroundColor: "var(--rs-color-foreground-strong)",
+          ...(!isFilled && { opacity: NOT_FILLED_OPACITY }),
+        },
       }}
-      backgroundColor="black"
       borderRadius="circular"
       height={2}
       {...props}
