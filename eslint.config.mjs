@@ -14,6 +14,50 @@ import path from "node:path";
 const absoluteLayerPath = (dir) => path.join(import.meta.dirname, dir);
 
 // Decisions ESLint can enforce, so review does not have to.
+const restrictedSyntaxRules = [
+  {
+    message:
+      "Use classNames(...) from reshaped for multi-part className (ADR-0010).",
+    selector:
+      "JSXAttribute[name.name='className'] > JSXExpressionContainer > ArrayExpression",
+  },
+  {
+    message:
+      "Use classNames(...) from reshaped instead of .join on className (ADR-0010).",
+    selector:
+      "JSXAttribute[name.name='className'] > JSXExpressionContainer > CallExpression[callee.property.name='join']",
+  },
+  {
+    // see ADR-0006 for more details.
+    message:
+      "Use LinkButton from @/ui/link-button for in-app nav (ADR-0006). For a deliberate full navigation, disable this rule inline with a reason.",
+    selector:
+      "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='href']",
+  },
+];
+
+/** ADR-0014 — destination ownership stays out of `ui/` (callers pass typed href). */
+const uiDestinationOwnershipSyntax = [
+  {
+    message:
+      "ui/ must not hardcode in-app destinations (ADR-0014). Accept href from the app/ or features/ caller.",
+    selector:
+      "JSXAttribute[name.name='href'][value.type='Literal'][value.value=/^\\//]",
+  },
+  {
+    message:
+      "ui/ must not hardcode in-app destinations (ADR-0014). Accept href from the app/ or features/ caller.",
+    selector:
+      "JSXAttribute[name.name='href'] > JSXExpressionContainer > Literal[value=/^\\//]",
+  },
+  {
+    message:
+      "ui/ must not hardcode in-app destinations (ADR-0014). Accept href from the app/ or features/ caller.",
+    selector:
+      "JSXAttribute[name.name='href'] > JSXExpressionContainer > TemplateLiteral[quasis.0.value.raw=/^\\//]",
+  },
+];
+
 const adrRules = {
   "@typescript-eslint/consistent-type-imports": [
     "error",
@@ -69,29 +113,7 @@ const adrRules = {
       ],
     },
   ],
-  // ADR-0010 — JSX className: use classNames from reshaped, not array/join slop.
-  "no-restricted-syntax": [
-    "error",
-    {
-      message:
-        "Use classNames(...) from reshaped for multi-part className (ADR-0010).",
-      selector:
-        "JSXAttribute[name.name='className'] > JSXExpressionContainer > ArrayExpression",
-    },
-    {
-      message:
-        "Use classNames(...) from reshaped instead of .join on className (ADR-0010).",
-      selector:
-        "JSXAttribute[name.name='className'] > JSXExpressionContainer > CallExpression[callee.property.name='join']",
-    },
-    {
-      // see ADR-0006 for more details.
-      message:
-        "Use LinkButton from @/ui/link-button for in-app nav (ADR-0006). For a deliberate full navigation, disable this rule inline with a reason.",
-      selector:
-        "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='href']",
-    },
-  ],
+  "no-restricted-syntax": ["error", ...restrictedSyntaxRules],
 };
 
 const sortingRules = {
@@ -153,6 +175,18 @@ const eslintConfig = defineConfig([
   ...nextTs,
   perfectionist.configs["recommended-natural"],
   { rules: { ...adrRules, ...sortingRules } },
+  {
+    files: ["ui/**/*.{ts,tsx}"],
+    ignores: ["ui/**/__tests__/**"],
+    rules: {
+      // Flat overrides replace the whole rule — re-list shared selectors (ADR-0006/0010).
+      "no-restricted-syntax": [
+        "error",
+        ...restrictedSyntaxRules,
+        ...uiDestinationOwnershipSyntax,
+      ],
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:

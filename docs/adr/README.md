@@ -16,6 +16,7 @@ When you add or change an ADR, update this file in the same PR (right concern he
 
 - [0003](./0003-compound-feature-ui.md) — compound feature composition
 - [0008](./0008-ui-never-imports-features.md) — `ui/` never imports features or domain
+- [0014](./0014-ui-never-owns-destinations.md) — `ui/` never owns in-app destinations
 
 ## Theme
 

@@ -8,7 +8,7 @@ import HomeIcon from "@/ui/assets/home-icon.svg";
 
 type HomeButtonProps = Omit<
   ComponentProps<typeof LinkButton>,
-  "children" | "href" | "icon" | "size" | "variant"
+  "children" | "icon" | "size" | "variant"
 >;
 
 export function HomeButton(props: HomeButtonProps) {
@@ -30,7 +30,6 @@ export function HomeButton(props: HomeButtonProps) {
         },
       }}
       {...props}
-      href="/"
       icon={HomeIcon}
       size="large"
       variant="outline"

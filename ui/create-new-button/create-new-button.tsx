@@ -8,18 +8,12 @@ import PlusIcon from "@/ui/assets/plus-icon.svg";
 
 type CreateNewButtonProps = Omit<
   ComponentProps<typeof LinkButton>,
-  "children" | "color" | "href" | "icon" | "variant"
+  "children" | "color" | "icon" | "variant"
 >;
 
 export function CreateNewButton(props: CreateNewButtonProps) {
   return (
-    <LinkButton
-      {...props}
-      color="positive"
-      href="/new"
-      icon={PlusIcon}
-      variant="solid"
-    >
+    <LinkButton {...props} color="positive" icon={PlusIcon} variant="solid">
       Create New
     </LinkButton>
   );

@@ -22,7 +22,7 @@ export function AppLogo(props: AppLogoProps) {
         svg={AppLogoCircle}
       />
       <Icon
-        attributes={{ style: { color: "var(--rs-color-black)" } }}
+        attributes={{ style: { color: "var(--rs-color-foreground-strong)" } }}
         autoWidth
         size={5.5}
         svg={AppLogoText}

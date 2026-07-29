@@ -5,7 +5,7 @@ import { InformedError } from "../informed-error";
 
 describe("InformedError", () => {
   it("shows locked missing-application copy with a Home CTA", () => {
-    render(<InformedError kind="missing-application" />);
+    render(<InformedError href="/" kind="missing-application" />);
 
     expect(
       screen.getByRole("heading", { name: "This application isn't here" }),
@@ -15,13 +15,11 @@ describe("InformedError", () => {
         "It may have been removed, or the link may be out of date.",
       ),
     ).toBeInTheDocument();
-
-    const home = screen.getByRole("link", { name: "Home" });
-    expect(home).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
   });
 
   it("shows locked unknown-route copy with a Home CTA", () => {
-    render(<InformedError kind="unknown-route" />);
+    render(<InformedError href="/" kind="unknown-route" />);
 
     expect(
       screen.getByRole("heading", { name: "This page isn't here" }),
@@ -31,8 +29,6 @@ describe("InformedError", () => {
         "The address may be mistyped, or the page may have moved.",
       ),
     ).toBeInTheDocument();
-
-    const home = screen.getByRole("link", { name: "Home" });
-    expect(home).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
   });
 });

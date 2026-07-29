@@ -1,3 +1,5 @@
+import type { ComponentProps } from "react";
+
 import { Text, View } from "reshaped";
 
 import { LinkButton } from "@/ui/link-button";
@@ -16,10 +18,11 @@ const COPY = {
 } as const;
 
 type InformedErrorProps = {
+  href: ComponentProps<typeof LinkButton>["href"];
   kind: InformedErrorKind;
 };
 
-export function InformedError({ kind }: InformedErrorProps) {
+export function InformedError({ href, kind }: InformedErrorProps) {
   const { headline, supporting } = COPY[kind];
 
   return (
@@ -32,7 +35,7 @@ export function InformedError({ kind }: InformedErrorProps) {
           {supporting}
         </Text>
       </View>
-      <LinkButton color="positive" href="/" variant="solid">
+      <LinkButton color="positive" href={href} variant="solid">
         Home
       </LinkButton>
     </View>

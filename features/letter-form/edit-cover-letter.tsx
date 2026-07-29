@@ -42,7 +42,7 @@ export function EditCoverLetter({
         }
       />
       <Goal.Root>
-        <Goal.Banner action={<CreateNewButton size="large" />} />
+        <Goal.Banner action={<CreateNewButton href="/new" size="large" />} />
       </Goal.Root>
     </View>
   );

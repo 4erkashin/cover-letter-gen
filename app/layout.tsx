@@ -50,7 +50,7 @@ export default function RootLayout({
                   <Goal.Status />
                 </Goal.Root>
 
-                <HomeButton />
+                <HomeButton href="/" />
               </View>
             </View>
 

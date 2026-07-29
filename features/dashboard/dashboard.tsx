@@ -46,12 +46,19 @@ export function Dashboard() {
   };
 
   return (
-    <View gap={8}>
-      <View align="center" direction="row" gap={4} justify="space-between">
-        <Text as="h1" variant="title-2">
+    <View>
+      <View align="center" direction="row" justify="space-between">
+        <Text
+          as="h1"
+          attributes={{
+            style: { color: "var(--rs-color-foreground-strong)" },
+          }}
+          variant="headline-1"
+        >
           Applications
         </Text>
-        <CreateNewButton />
+
+        <CreateNewButton href="/new" />
       </View>
 
       {isEmpty ? (
@@ -62,7 +69,7 @@ export function Dashboard() {
           <Text align="center" color="neutral-faded" variant="body-2">
             Create your first one and it will show up here.
           </Text>
-          <CreateNewButton />
+          <CreateNewButton href="/new" />
         </View>
       ) : null}
 
@@ -81,7 +88,7 @@ export function Dashboard() {
       ) : null}
 
       <Goal.Root>
-        <Goal.Banner action={<CreateNewButton size="large" />} />
+        <Goal.Banner action={<CreateNewButton href="/new" size="large" />} />
       </Goal.Root>
     </View>
   );

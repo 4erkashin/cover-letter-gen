@@ -1,0 +1,7 @@
+# `ui/` never owns in-app destinations
+
+ADR-0008 keeps *imports* pointing into `ui/`. That still left `ui/` free to hardcode in-app paths on navigational chrome — which conflates **destination ownership** (which route a control goes to) with **navigation mechanism** (how App Router client navigation is wired). Mechanism already lives in `ui/` (ADR-0006). Destinations do not belong there: route knowledge is product/shell concern, and baking paths into shared chrome makes “home” / “create” / error recovery silently coupled to the URL map.
+
+**Decision:** `ui/` never chooses an in-app path. Navigational pieces accept the destination from the caller as a typed App Router `href` and only forward it. `app/` and `features/` own destinations at the mount site. There are no product-chrome exceptions. Enforce with lint the same way ADR-0008 enforces import direction — a `no-restricted-syntax` ban on hardcoded in-app path literals under `ui/` — because a required prop alone still lets an author hardcode the path inside the component. Living exemplars that must stop owning paths: `ui/home-button`, `ui/create-new-button`, `ui/informed-error`.
+
+**Rejected:** letting “product chrome” in `ui/` hardcode `/`, `/new`, or similar because the control is only used one way; pushing every destination through `app/` via slots while `features/` already builds letter links; a parallel `PATHS` registry in `ui/` (callers pass typed path literals; Next already generates the route union).
