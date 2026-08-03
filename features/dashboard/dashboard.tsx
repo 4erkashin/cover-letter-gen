@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Grid, Text, useToast, View } from "reshaped";
+import { Button, Divider, Grid, Text, useToast, View } from "reshaped";
 
 import type { CoverLetter } from "@/domain";
 
@@ -47,18 +47,22 @@ export function Dashboard() {
 
   return (
     <View>
-      <View align="center" direction="row" justify="space-between">
-        <Text
-          as="h1"
-          attributes={{
-            style: { color: "var(--rs-color-foreground-strong)" },
-          }}
-          variant="headline-1"
-        >
-          Applications
-        </Text>
+      <View>
+        <View align="center" direction="row" justify="space-between">
+          <Text
+            as="h1"
+            attributes={{
+              style: { color: "var(--rs-color-foreground-strong)" },
+            }}
+            variant="headline-1"
+          >
+            Applications
+          </Text>
 
-        <CreateNewButton href="/new" />
+          <CreateNewButton href="/new" />
+        </View>
+
+        <Divider />
       </View>
 
       {isEmpty ? (
