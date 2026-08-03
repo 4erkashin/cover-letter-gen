@@ -48,7 +48,7 @@ export function Dashboard() {
 
   return (
     <View>
-      <View>
+      <View gap={4}>
         <View align="center" direction="row" justify="space-between">
           <Text
             as="h1"

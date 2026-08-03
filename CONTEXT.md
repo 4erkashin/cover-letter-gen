@@ -33,8 +33,12 @@ Muted neutral ink (softer copy where the mock reads lighter than Neutral Foregro
 _Avoid_: Gray, Gray/500, secondary, muted (as a token name), old Neutral
 
 **Neutral Border**:
-Interactive chrome border (outline buttons, fields, similar controls). Maps to Reshaped's `borderNeutral` (`--rs-color-border-neutral`); values are `NEUTRAL_BORDER` / `NEUTRAL_BORDER_DARK` in the theme entry. Not `borderNeutralFaded` or the neutral surface/hue seed.
+Interactive chrome border (outline buttons, fields, similar controls). Maps to Reshaped's `borderNeutral` (`--rs-color-border-neutral`); values are `NEUTRAL_BORDER` / `NEUTRAL_BORDER_DARK` in the theme entry. Not Neutral Border Faded or the neutral surface/hue seed.
 _Avoid_: Gray, Gray-300, slate, muted border, faded border (unless that token is intended)
+
+**Neutral Border Faded**:
+Decorative / layout separator border (`Divider` default, hairlines). Maps to Reshaped's `borderNeutralFaded` (`--rs-color-border-neutral-faded`); values are `NEUTRAL_BORDER_FADED` / `NEUTRAL_BORDER_FADED_DARK` in the theme entry. Not Neutral Border (interactive chrome).
+_Avoid_: Gray, Gray/200, divider color, hairline, muted border (unqualified)
 
 **Strong Foreground**:
 Strongest product ink — Figma eye-black text/icons. Custom theme color `foregroundStrong` / `--rs-color-foreground-strong`; values are `STRONG_FOREGROUND` / `STRONG_FOREGROUND_DARK`. Not Black (fills/scrims) and not Neutral Foreground.

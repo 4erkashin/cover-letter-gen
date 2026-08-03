@@ -37,6 +37,10 @@ export const NEUTRAL_FADED_DARK = "#98A2B3";
 export const NEUTRAL_BORDER = "#D0D5DD";
 export const NEUTRAL_BORDER_DARK = "#475467";
 
+/** Decorative separator border (`borderNeutralFaded` / `--rs-color-border-neutral-faded`). */
+export const NEUTRAL_BORDER_FADED = "#EAECF0";
+export const NEUTRAL_BORDER_FADED_DARK = "#444444";
+
 /** Strongest product ink (`foregroundStrong`). Light shares Black’s hex; dark flips. */
 export const STRONG_FOREGROUND = "#101828";
 export const STRONG_FOREGROUND_DARK = "#f9fafb";
@@ -74,6 +78,10 @@ export const themeCss = getThemeCSS(THEME_NAME, {
       borderNeutral: {
         hex: NEUTRAL_BORDER,
         hexDark: NEUTRAL_BORDER_DARK,
+      },
+      borderNeutralFaded: {
+        hex: NEUTRAL_BORDER_FADED,
+        hexDark: NEUTRAL_BORDER_FADED_DARK,
       },
       foregroundNeutral: {
         hex: NEUTRAL_FOREGROUND,
