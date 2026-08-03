@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 import {
-  Button,
   FormControl,
   HiddenVisually,
   TextArea,
@@ -18,6 +17,7 @@ import {
   overwriteCoverLetter,
 } from "@/domain";
 import { saveCoverLetter, updateCoverLetter } from "@/features/persist-storage";
+import { Button } from "@/ui/button";
 import { CharCounter } from "@/ui/char-counter";
 
 import RetryIcon from "@/ui/assets/retry-icon.svg";

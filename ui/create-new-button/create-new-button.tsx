@@ -13,9 +13,23 @@ type CreateNewButtonProps = Omit<
   "children" | "color" | "icon" | "variant"
 >;
 
-export function CreateNewButton(props: CreateNewButtonProps) {
+export function CreateNewButton({
+  attributes,
+  ...props
+}: CreateNewButtonProps) {
   return (
-    <LinkButton {...props} color="primary" icon={PlusIcon}>
+    <LinkButton
+      {...props}
+      attributes={{
+        ...attributes,
+        style: {
+          border: "1px solid var(--rs-color-border-primary)",
+          ...attributes?.style,
+        },
+      }}
+      color="primary"
+      icon={PlusIcon}
+    >
       <Text as="span" variant="body-2" weight="semibold">
         Create New
       </Text>

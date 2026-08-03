@@ -1,0 +1,21 @@
+/**
+ * Figma geometry for medium/large (ADR-0015).
+ * Icon --rs-h-s is set inline by Reshaped; !important beats that.
+ */
+.sizeMedium {
+  --rs-button-p-h: var(--rs-unit-x4-5);
+  --rs-button-p-v: var(--rs-unit-x2-5);
+}
+
+.sizeMedium > [aria-hidden="true"] {
+  --rs-h-s: 5 !important;
+}
+
+.sizeLarge {
+  --rs-button-p-h: var(--rs-unit-x7);
+  --rs-button-p-v: var(--rs-unit-x4);
+}
+
+.sizeLarge > [aria-hidden="true"] {
+  --rs-h-s: 6 !important;
+}

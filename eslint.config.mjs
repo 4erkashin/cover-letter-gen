@@ -110,6 +110,13 @@ const adrRules = {
             "Import Skeleton from @/ui/skeleton (ADR-0009). SkeletonProps from reshaped is fine.",
           name: "reshaped",
         },
+        {
+          // see ADR-0015 for more details.
+          importNames: ["Button"],
+          message:
+            "Import Button from @/ui/button (ADR-0015). ButtonProps from reshaped is fine.",
+          name: "reshaped",
+        },
       ],
     },
   ],

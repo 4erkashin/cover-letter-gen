@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Divider, Grid, Text, useToast, View } from "reshaped";
+import { Divider, Grid, Text, useToast, View } from "reshaped";
 
 import type { CoverLetter } from "@/domain";
 
@@ -10,6 +10,7 @@ import {
   saveCoverLetter,
   useCoverLetters,
 } from "@/features/persist-storage";
+import { Button } from "@/ui/button";
 import { CreateNewButton } from "@/ui/create-new-button";
 
 import { LetterCard } from "./letter-card";

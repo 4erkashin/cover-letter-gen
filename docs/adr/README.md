@@ -32,3 +32,4 @@ When you add or change an ADR, update this file in the same PR (right concern he
 - [0011](./0011-reshaped-props-over-css-modules.md) — Reshaped props before CSS modules
 - [0012](./0012-root-element-props-passthrough.md) — wrappers expose root-element props
 - [0013](./0013-owned-boolean-prop-prefixes.md) — owned booleans use is-/has-/can-/should-
+- [0015](./0015-button-size-padding-remap.md) — app `Button` wrapper; Figma medium/large geometry

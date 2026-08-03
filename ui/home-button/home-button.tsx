@@ -15,11 +15,10 @@ export function HomeButton(props: HomeButtonProps) {
   return (
     <LinkButton
       /**
-       * Figma wants 40×40 with a 20px glyph;
-       * Reshaped derives both from `size` and offers 36 (medium) or 52 (large).
-       * `large` buys the 20px icon,
-       * the vars reset the box: 24 + 2×8 tall, 24 − 8 + 2×12 wide,
-       * icon-only trimming padding to 10px.
+       * Figma wants 40×40 with a 20px glyph.
+       * Default medium already remaps the icon to 20 (ADR-0015);
+       * these vars beat medium CTA pads so icon-only lands on 40×40:
+       * 24 + 2×8 tall, 20 + 2×10 wide (icon-only trims p-h by 2).
        */
       attributes={{
         "aria-label": "Home",
@@ -31,7 +30,6 @@ export function HomeButton(props: HomeButtonProps) {
       }}
       {...props}
       icon={HomeIcon}
-      size="large"
       variant="outline"
     />
   );

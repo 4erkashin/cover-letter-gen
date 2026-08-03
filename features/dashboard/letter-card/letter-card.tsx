@@ -3,8 +3,9 @@
 import type { KeyboardEvent, MouseEvent } from "react";
 
 import Link from "next/link";
-import { Button, classNames, Text } from "reshaped";
+import { classNames, Text } from "reshaped";
 
+import { Button } from "@/ui/button";
 import { CopyButton } from "@/ui/copy-button";
 
 import TrashIcon from "@/ui/assets/trash-icon.svg";

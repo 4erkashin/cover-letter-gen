@@ -2,7 +2,7 @@
 
 import type { KeyboardEvent, MouseEvent } from "react";
 
-import { Button } from "reshaped";
+import { Button } from "@/ui/button";
 
 import CopyIcon from "@/ui/assets/copy-icon.svg";
 
