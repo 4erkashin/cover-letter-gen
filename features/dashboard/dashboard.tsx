@@ -1,100 +1,19 @@
 "use client";
 
-import { Divider, Grid, Text, useToast, View } from "reshaped";
+import { View } from "reshaped";
 
-import type { CoverLetter } from "@/domain";
-
-import { Goal } from "@/features/goal";
-import {
-  removeCoverLetter,
-  saveCoverLetter,
-  useCoverLetters,
-} from "@/features/persist-storage";
-import { Button } from "@/ui/button";
-import { CreateNewButton } from "@/ui/create-new-button";
-
-import { LetterCard } from "./letter-card";
+import { Header } from "./header";
 
 export function Dashboard() {
-  const { coverLetters, isLoading } = useCoverLetters();
-  const { hide, show } = useToast();
-  const count = coverLetters.length;
-  const isEmpty = !isLoading && count === 0;
-
-  const handleDelete = (letter: CoverLetter) => {
-    removeCoverLetter(letter.id);
-    const toastId = show({
-      actionsSlot: (
-        <Button
-          onClick={() => {
-            saveCoverLetter(letter);
-            // Toast undo closes over the id `show` returns — circular by API design.
-            // eslint-disable-next-line react-hooks/immutability -- toast id from show()
-            hide(toastId);
-          }}
-          size="small"
-          type="button"
-          variant="ghost"
-        >
-          Undo
-        </Button>
-      ),
-      position: "bottom-end",
-      text: "You can undo this action.",
-      timeout: "long",
-      title: "Cover letter deleted",
-    });
-  };
-
   return (
-    <View>
-      <View gap={4}>
-        <View align="center" direction="row" justify="space-between">
-          <Text
-            as="h1"
-            attributes={{
-              style: { color: "var(--rs-color-foreground-strong)" },
-            }}
-            variant="headline-1"
-          >
-            Applications
-          </Text>
+    <View gap={12}>
+      <View gap={6}>
+        <Header />
 
-          <CreateNewButton href="/new" />
-        </View>
-
-        <Divider />
+        <pre>list shell</pre>
       </View>
 
-      {isEmpty ? (
-        <View align="center" gap={4} paddingBlock={10}>
-          <Text align="center" as="h2" variant="featured-3">
-            No applications yet
-          </Text>
-          <Text align="center" color="neutral-faded" variant="body-2">
-            Create your first one and it will show up here.
-          </Text>
-          <CreateNewButton href="/new" />
-        </View>
-      ) : null}
-
-      {count > 0 ? (
-        <Grid columns={{ m: 2, s: 1 }} gap={4}>
-          {coverLetters.map((letter) => (
-            <Grid.Item key={letter.id}>
-              <LetterCard
-                content={letter.content}
-                id={letter.id}
-                onDelete={() => handleDelete(letter)}
-              />
-            </Grid.Item>
-          ))}
-        </Grid>
-      ) : null}
-
-      <Goal.Root>
-        <Goal.Banner action={<CreateNewButton href="/new" size="large" />} />
-      </Goal.Root>
+      <pre>banner</pre>
     </View>
   );
 }

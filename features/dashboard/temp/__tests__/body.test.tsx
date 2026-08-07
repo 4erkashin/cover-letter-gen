@@ -61,7 +61,7 @@ vi.mock("@/ui/assets/trash-icon.svg", () => ({
   default: () => <svg data-testid="trash-icon" />,
 }));
 
-import { Dashboard } from "../dashboard";
+import { Body } from "../body";
 
 function makeCoverLetter(
   id: string,
@@ -82,7 +82,7 @@ function makeCoverLetter(
   };
 }
 
-describe("Dashboard", () => {
+describe("Dashboard Body (parked)", () => {
   beforeEach(() => {
     coverLettersState.coverLetters = [];
     coverLettersState.isLoading = false;
@@ -94,7 +94,7 @@ describe("Dashboard", () => {
   });
 
   it("shows locked empty-state copy when there are no Cover Letters", () => {
-    render(<Dashboard />);
+    render(<Body />);
 
     expect(
       screen.getByRole("heading", { name: "No applications yet" }),
@@ -109,7 +109,7 @@ describe("Dashboard", () => {
   });
 
   it("sends every Create New CTA to /new", () => {
-    render(<Dashboard />);
+    render(<Body />);
 
     const createLinks = screen.getAllByRole("link", { name: /create new/i });
     expect(createLinks.length).toBeGreaterThanOrEqual(2);
@@ -124,7 +124,7 @@ describe("Dashboard", () => {
       makeCoverLetter("2"),
       makeCoverLetter("3"),
     ];
-    const { rerender } = render(<Dashboard />);
+    const { rerender } = render(<Body />);
 
     expect(
       screen.getByRole("heading", { name: "Hit your goal" }),
@@ -139,7 +139,7 @@ describe("Dashboard", () => {
       makeCoverLetter("4"),
       makeCoverLetter("5"),
     ];
-    rerender(<Dashboard />);
+    rerender(<Body />);
 
     expect(
       screen.queryByRole("heading", { name: "Hit your goal" }),
@@ -151,7 +151,7 @@ describe("Dashboard", () => {
       makeCoverLetter("a", "Dear Apple team,"),
       makeCoverLetter("b", "Dear Stripe team,"),
     ];
-    render(<Dashboard />);
+    render(<Body />);
 
     expect(
       screen.getByRole("link", { name: /dear apple team/i }),
@@ -168,7 +168,7 @@ describe("Dashboard", () => {
   it("deletes immediately and offers undo via toast", () => {
     const letter = makeCoverLetter("a", "Dear Apple team,");
     coverLettersState.coverLetters = [letter];
-    render(<Dashboard />);
+    render(<Body />);
 
     fireEvent.click(screen.getByRole("button", { name: /delete/i }));
 
@@ -196,14 +196,14 @@ describe("Dashboard", () => {
       makeCoverLetter("2"),
       makeCoverLetter("3"),
     ];
-    const { rerender } = render(<Dashboard />);
+    const { rerender } = render(<Body />);
     expect(screen.getByText("3 out of 5")).toBeInTheDocument();
 
     coverLettersState.coverLetters = [
       makeCoverLetter("1"),
       makeCoverLetter("2"),
     ];
-    rerender(<Dashboard />);
+    rerender(<Body />);
 
     expect(screen.getByText("2 out of 5")).toBeInTheDocument();
     expect(
