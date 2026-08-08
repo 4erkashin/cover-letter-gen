@@ -1,6 +1,6 @@
 import { persistentAtom } from "@nanostores/persistent";
 import { useStore } from "@nanostores/react";
-import { computed } from "nanostores";
+import { atom, computed, onMount } from "nanostores";
 
 import type { CoverLetter } from "@/domain";
 
@@ -17,15 +17,40 @@ export type CoverLettersState = {
 };
 
 /**
+ * Random hold (ms) after hydration before `useCoverLetters` clears `isLoading`.
+ * Inclusive `[minMs, maxMs]` — defaults live here; ADR-0016 explains why we delay.
+ */
+function getHydrationDelayMs(minMs = 400, maxMs = 1600): number {
+  return Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+}
+
+/** Shared across all `useCoverLetters` subscribers — one timer per document. */
+const $hydrationDelayDone = atom(false);
+let hydrationDelayScheduled = false;
+
+/**
  * Explicit return-type annotation widens the computed's value type to
  * `CoverLettersState` (with `isLoading: boolean`, not the literal `false`),
  * so `useStore`'s `ssr` option can return the `isLoading: true` variant
  * without any type assertions.
  */
 const $coverLettersState = computed(
-  $coverLetters,
-  (coverLetters): CoverLettersState => ({ coverLetters, isLoading: false }),
+  [$coverLetters, $hydrationDelayDone],
+  (coverLetters, delayDone): CoverLettersState => ({
+    coverLetters,
+    isLoading: !delayDone,
+  }),
 );
+
+onMount($coverLettersState, () => {
+  if (hydrationDelayScheduled || $hydrationDelayDone.get()) {
+    return;
+  }
+  hydrationDelayScheduled = true;
+  setTimeout(() => {
+    $hydrationDelayDone.set(true);
+  }, getHydrationDelayMs());
+});
 
 /**
  * Stable snapshot for SSR and the hydration render.

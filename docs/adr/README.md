@@ -18,6 +18,10 @@ When you add or change an ADR, update this file in the same PR (right concern he
 - [0008](./0008-ui-never-imports-features.md) — `ui/` never imports features or domain
 - [0014](./0014-ui-never-owns-destinations.md) — `ui/` never owns in-app destinations
 
+## Persistence & loading
+
+- [0016](./0016-artificial-hydration-delay.md) — artificial hydration delay on `useCoverLetters`
+
 ## Theme
 
 - [0004](./0004-runtime-reshaped-theme.md) — runtime Reshaped theme (no CLI)

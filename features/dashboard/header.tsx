@@ -4,7 +4,7 @@ import { Divider, Text, View } from "reshaped";
 
 import { CreateNewButton } from "@/ui/create-new-button";
 
-export function Header() {
+export function DashboardHeader() {
   return (
     <View gap={4}>
       <View align="center" direction="row" justify="space-between">
